@@ -1,0 +1,35 @@
+folder-select-modal{
+  ion-content.content {
+    background-color: white;
+  }
+  .is-iphone-x.header-ios,  {
+    padding-top: 25px !important;
+    background-color: #f8f8f8 !important;
+  }
+  ion-header.header.header-ios{
+    padding-top: 20px;
+    background-color: #f8f8f8;
+  }
+
+  ion-list.folders {
+    margin-bottom: 0px !important;
+    ion-item {
+      ion-label {
+        padding-left: 34px !important;
+      }      
+    }    
+  }
+  .pt-10 {
+    padding-top: 10px;
+  }
+  ion-item {
+    h2 {
+      font-size: 1.5rem !important;
+      color: lightslategrey;
+    }
+    span {
+      cursor: pointer;
+      font-family: sans-serif;
+    }
+  }
+}

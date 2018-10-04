@@ -1,0 +1,115 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-appcenter-analytics": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-appcenter-crashes": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-camera": {
+      "CAMERA_USAGE_DESCRIPTION": "Allow the app to use your camera to share your photos with your coworkers.",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "Allow the app to access your photos to share them with your coworkers.",
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-crop": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-document-viewer": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-filepicker": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-fullscreen": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-ios-non-exempt-encryption": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-photo-library": {
+      "PHOTO_LIBRARY_USAGE_DESCRIPTION": " ",
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-taptic-engine": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-video-editor": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "ionic-plugin-deeplinks": {
+      "URL_SCHEME": "communifire",
+      "DEEPLINK_SCHEME": "https",
+      "DEEPLINK_HOST": "*.communifire.com",
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "phonegap-plugin-push": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-appcenter-shared": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-compat": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.ionic.communifire"
+    }
+  }
+}

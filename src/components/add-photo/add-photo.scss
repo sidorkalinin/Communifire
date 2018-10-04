@@ -1,0 +1,39 @@
+add-photo {
+  .attachment-item {
+      border-radius: 3px;
+      padding: 10px;
+      flex: 0 0 33%;
+      background-color: #F5F5F5;
+      border: 1px solid #ececec;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: baseline;
+      height: 100px;
+      img {
+          height: 100px;
+          width: auto;
+          border-radius: 3px;
+      }
+      .size {
+          ion-icon {
+              color: #327eff;
+          }
+          span {
+              font-size: 0.8em;
+              color: $greyText;
+          }
+      }
+      margin: 0 0 0 16px;
+  }
+  .attachment-item.isImage {
+      padding: 0 !important;
+      background-color: #fff;
+      border: none;
+      justify-content: center;
+      align-items: center;
+  }
+  .attch-button-wrapper{
+    text-align: center;
+  }
+}

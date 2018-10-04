@@ -1,0 +1,148 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title (click)="navToList()">Event</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="adduser()">
+        <ion-icon name="ios-person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Event</ion-title>
+    <ion-buttons right>
+      <edit-button [entity]='{contentId: contentId, entityType: "event"}' [hidden]='!canedit'></edit-button>
+      <button ion-button icon-only (click)="adduser()">
+        <ion-icon name="ios-person-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-margin>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="banner" *ngIf="contentDetail?.ImageURL">
+    <img [src]="contentDetail?.ImageURL | secure | async">
+  </div>
+
+  <div class="article-content" padding>
+    <div class="article-title-detail" text-center>
+      <div class="event-date date-avatar" [class.hasCover]="!!contentDetail?.ImageURL">
+        <h4>{{ contentDetail?.StartDateWithRespectToUser | amDateFormat:'MMM'}}</h4>
+        <h2>{{ contentDetail?.StartDateWithRespectToUser | amDateFormat:'DD'}}</h2>
+      </div>
+      <span>
+        <h3>
+          {{contentDetail?.Title}}
+        </h3>
+      </span>
+      <p>
+        <span>{{"ARTICLE.BY" | translate}}</span>
+        <span [innerHtml]="contentDetail?.UserDisplayName"></span> {{"ARTICLE.ON" | translate}}
+        <span>{{contentDetail?.CreatedOnDate | amDateFormat:'MMM Do, YYYY'}}</span>
+      </p>
+
+
+      <p>
+        {{"ARTICLE.POSTEDIN" | translate}}
+        <span *ngIf="contentDetail?.SpaceID > 0" [innerHtml]="contentDetail?.SpaceName"></span>
+        <span *ngIf="contentDetail?.SpaceID === 0">Top Level Community</span>
+      </p>
+
+    </div>
+
+    <div class="event-details">
+      <div class="primary-details" text-center>
+        <p>{{contentDetail?.StartDateWithRespectToUser | amDateFormat:'dddd, MMMM Do, YYYY'}}</p>
+        <p *ngIf="!contentDetail?.IsAllDay">{{ contentDetail?.StartDateWithRespectToUser | amDateFormat:'HH:mm A'}} to {{ contentDetail?.EndDateWithRespectToUser
+          | amDateFormat:'HH:mm A'}}</p>
+        <p *ngIf="contentDetail?.IsAllDay">{{ "EVENT.ALL_DAY" | translate }}</p>
+
+        <p *ngIf="contentDetail?.VenueName">{{ contentDetail?.VenueName }}</p>
+        <p *ngIf="contentDetail?.IsRepeat" [style.fontSize]="'14px'" [style.color]="'#9a9a9a'">{{ "COMMONS.REPEATS" | translate }} {{contentDetail?.RepeatSummary}}</p>
+
+
+        <h6>Will you be attending?</h6>
+        <ion-segment [(ngModel)]="confirmation" (ngModelChange)="onChangeModel($event)" color="secondary">
+          <ion-segment-button [value]="1">Going</ion-segment-button>
+          <ion-segment-button [value]="2">Maybe</ion-segment-button>
+          <ion-segment-button [value]="3">No</ion-segment-button>
+        </ion-segment>
+
+        <p>{{ contentDetail?.Users?.length + invited }} Invited - {{ going }} Going</p>
+      </div>
+      <ion-list no-margin no-lines class="info-list">
+        <ion-item *ngIf="contentDetail?.Description && contentDetail?.Description !== ' '" no-padding>
+          <h6>More Info:</h6>
+          <p [style.whiteSpace]="'normal'" [innerHTML]="contentDetail?.Description"></p>
+        </ion-item>
+
+        <ion-item *ngIf="contentDetail?.WhoShouldAttend" no-padding>
+          <h6>Who should attend:</h6>
+          <p [style.whiteSpace]="'normal'" [innerHTML]="contentDetail?.WhoShouldAttend"></p>
+        </ion-item>
+
+        <ion-item *ngIf="contentDetail?.Website" no-padding>
+          <h6>Website:</h6>
+          <p [style.whiteSpace]="'normal'" [innerHTML]="contentDetail?.Website"></p>
+        </ion-item>
+
+        <ion-item *ngIf="contentDetail?.Telephone" no-padding>
+          <h6>Phone:</h6>
+          <p [style.whiteSpace]="'normal'" [innerHTML]="contentDetail?.Telephone"></p>
+        </ion-item>
+
+        <ion-item *ngIf="contentDetail?.Organization" no-padding>
+          <h6>Organizations:</h6>
+          <p [style.whiteSpace]="'normal'" [innerHTML]="contentDetail?.Organization"></p>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div class="article-desc">
+      <p [innerHTML]="contentDetail?.ContentSummary"></p>
+    </div>
+
+    <show-attachments [entity]="{id: contentId, type: 5}"></show-attachments>
+  </div>
+
+  <ion-list no-margin class="article-tags" padding-horizontal *ngIf="contentDetail?.Keywords" no-lines>
+    <ion-item>
+      <h6>{{"ARTICLE.TAGS" | translate}}</h6>
+      <h6>{{contentDetail?.Keywords}}</h6>
+    </ion-item>
+  </ion-list>
+
+  <ion-row class="article-likes-comments" padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding>
+      <p [style.textAlign]="'end'" *ngIf="contentDetail?.CommentCount == 1" class="comment-color">{{contentDetail?.CommentCount}} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+      <p [style.textAlign]="'end'" *ngIf="contentDetail?.CommentCount > 1" class="comment-color">{{contentDetail?.CommentCount}} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</p>
+    </ion-col>
+  </ion-row>
+
+  <div class="article-response like-button-section" padding-horizontal>
+    <single-content-like (getCount)="setCount($event)" [contentID]="contentDetail?.EventID" [entityType]="5"></single-content-like>
+  </div>
+
+  <div class="article-response write-comment-section" padding-horizontal>
+    <write-comment (click)="openModal()"></write-comment>
+  </div>
+  <div class="article-comments">
+    <comment [comments]="comments" (sendParent)="openModal($event)" [step]="0"></comment>
+    <ion-infinite-scroll (ionInfinite)="getComments($event)" threshold="1000px" threshold="1000px">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+</ion-content>

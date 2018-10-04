@@ -1,0 +1,18 @@
+<!-- Generated template for the MetaInformationComponent component -->
+<div class='more'>
+  <button  (click)='showMore()'>
+    <span>
+      {{ "CREATE.METAINFORMATION" | translate }}(<span>{{isMore?'hide':'show'}}</span>)
+    </span>
+  </button>
+</div>
+<div class='more-content' [hidden]='!isMore'>
+  <div class='pb-10'>
+    <ion-label>{{ "CREATE.METATITLE" | translate }}</ion-label>
+    <ion-input placeholder='{{ "CREATE.METATITLE" | translate }}' [(ngModel)]='metaTitle' (keyup)='returnInfo()'></ion-input>
+  </div>
+  <div class='pb-10'>
+    <ion-label>{{ "CREATE.METADESCRIPTION" | translate }}</ion-label>
+    <ion-textarea placeholder='{{ "CREATE.METADESCRIPTION" | translate }}' [(ngModel)]='metaDescription' (keyup)='returnInfo()'></ion-textarea>
+  </div>
+</div>

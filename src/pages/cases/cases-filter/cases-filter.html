@@ -1,0 +1,31 @@
+<ion-header  [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar hideBackButton>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "COMMONS.FILTER_CASES" | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="applyFilter()">
+        {{ "COMMONS.SEARCH" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list no-lines no-paddding>
+    <project-select (returnProject)="setProject($event)" [currentProject]="projectId" [spaceId]="spaceId"></project-select>
+    <category-select *ngIf="projectId" (returnCategory)="setCategory($event)" [currentCategory]="categoryId" [projectId]="projectId" [spaceId]="spaceId"></category-select>
+    <milestone-select *ngIf="projectId" (returnMilestone)="setMilestone($event)" [currentMilestone]="milestoneId" [projectId]="projectId" [spaceId]="spaceId"></milestone-select>
+    <status-select (returnStatus)="setStatus($event)" [currentStatus]="statusId" [spaceId]="spaceId"></status-select>
+    <priority-select (returnPriority)="setPriority($event)" [currentPriority]="priorityId" [spaceId]="spaceId"></priority-select>
+    <assign-to-select [hidden]="!projectId && spaceId == 0" (returnUser)="setAssignedUser($event)" [currentUser]="assignedToId" [spaceId]="spaceId" [projectId]="projectId"></assign-to-select>
+    <assign-to-select [hidden]="!projectId && spaceId == 0" (returnUser)="setReportedUser($event)" [title]="'COMMONS.CREATED_BY'" [currentUser]="createdById" [spaceId]="spaceId" [projectId]="projectId"></assign-to-select>
+  </ion-list>
+  <ion-buttons text-center>
+    <button ion-button outline (click)="reset()">{{ "COMMONS.RESET" | translate }}</button>
+  </ion-buttons>
+</ion-content>

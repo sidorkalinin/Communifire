@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher *ngIf="!isLoading" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card card-title>
+    <ion-card-content>
+      <span>
+        {{ "TITLES.WIKIS" | translate }}
+      </span>
+      <add-button [entity]="{name: 'Wiki', spaceId: spaceId, userId: userId, title: title}" *ngIf='profile == undefined'></add-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-searchbar [(ngModel)]="searchfilter" (keydown)="isLoadingSearch = true; wikis = []" (ionInput)="search()" showCancelButton="true" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+
+  <searching-for *ngIf="isLoadingSearch && searchfilter.length != 0" [text]="searchfilter"></searching-for>
+
+  <div *ngIf="isLoading">
+    <empty-card *ngFor="let item of [1, 2, 3]"></empty-card>
+  </div>
+
+  <no-results-found *ngIf="wikis.length == 0 && !isLoading && !isLoadingSearch"></no-results-found>
+  <home-activity-card [activity]="activity" *ngFor="let activity of wikis"></home-activity-card>
+
+  <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="doInfinite($event)" threshold="1000px">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

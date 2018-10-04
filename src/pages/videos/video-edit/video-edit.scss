@@ -1,0 +1,142 @@
+page-video-edit {
+  // ion-header.header.header-ios{
+  //   padding-top: 20px;
+  //   background-color: #f8f8f8;
+  // } 
+  
+  .fa-red{
+    color:red;
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+  }
+  .pb-5{
+    padding-bottom: 5px;
+  }
+  .pt-5{
+    padding-top: 5px;
+  }
+  .pb-10{
+    padding-bottom: 10px;
+  }
+  .pt-10{
+    padding-top: 10px;
+  }
+  .pt-15{
+    padding-top: 15px;
+  }
+  .pt-20{
+    padding-top:20px;
+  }
+  .mg-0{
+    margin:0px;    
+  }
+  .w-100{
+    width: 100% !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+  .mb-10{
+    margin-bottom: 10px;
+  }
+  .mt-10{
+    margin-top: 10px;
+  }
+  
+  ion-content{
+    .scroll-content{
+      padding: 0px !important;
+    }    
+  }
+  
+  .title{
+    font-size: initial;    
+    ion-input{      
+      padding: 2px 10px 2px 15px;
+      border-bottom: solid 1px gainsboro;
+    }    
+    .wrapper{
+      ion-label{      
+        padding-left: 15px;
+        margin-bottom: 0px;
+      }
+      ion-textarea{
+        padding: 2px 10px 2px 15px;        
+        textarea{
+          width: 100%;
+          margin-left: 0px !important;
+          font-size: initial;
+        }        
+      }
+      border-bottom: solid 1px !important;
+      border-color: gainsboro !important;
+    }
+  }
+  .editor{
+    font-size: initial;
+    ion-label{      
+      margin: 0px !important;
+      padding: 11px 8px 11px 15px;
+    }
+    border-bottom: solid 1px !important;
+    border-color: gainsboro !important;
+    overflow: unset;
+  }
+  .checkgroup{
+    ion-item{
+      border-bottom: 1px solid gainsboro;
+      padding: 5px 20px 5px 0px;
+      margin-left: 15px;
+    }
+  }
+  .time{
+    font-size: 1.6rem;
+    .item-inner{
+      padding: 5px 15px 5px 0px;
+      border-bottom: solid 1px !important;
+      border-color: gainsboro !important;
+    }
+    .text-right{
+      text-align: right;
+      border-bottom: none !important;
+      input{
+        text-align: right;        
+      }
+    }
+    ion-row{
+      margin-left: 11px;
+      border-bottom: solid 1px !important;
+      border-color: gainsboro !important;
+    }
+  }
+
+  .extra{
+    ion-label{
+      padding: 0px 16px 0px 16px;
+    }
+    font-size: 1.6rem;
+    padding: 10px 10px 5px 5px;
+    .wrapper{
+      border-bottom: solid 1px gainsboro;
+    }
+  }
+  
+  #contentBody{
+    .fr-toolbar{
+      border-top: 1px solid gainsboro;
+      border-bottom: 1px solid gainsboro;
+      box-shadow: none;
+      position: relative;
+    }
+    .fr-element.fr-view{
+      min-height: 170px;
+      max-height: 1000px;
+    }
+    .fr-counter, .fr-placeholder{
+      display: none;
+    }
+  }
+  #contentBody *{
+    box-shadow: none;
+  }
+}

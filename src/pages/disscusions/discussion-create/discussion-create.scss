@@ -1,0 +1,96 @@
+page-discussion-create {
+  // ion-header.header.header-ios{
+  //   padding-top: 20px;
+  //   background-color: #f8f8f8;
+  // }  
+  .fa-red{
+    color:red;
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+  }
+  ion-content{
+    .scroll-content{
+      padding: 0px !important;
+    }    
+  }
+  .title{
+    font-size: initial;
+    ion-label{      
+      padding-left: 10px;
+    }
+    .wrapper{
+      padding-top: 10px;
+      border-bottom: solid 2px !important;
+      border-color: gainsboro !important;
+    }
+  }
+  .setting{
+    font-size: 1.6rem;
+    .item-inner{
+      padding: 5px 0px 5px 0px;
+      border-bottom: solid 2px gainsboro;
+    }
+  }
+  .checkgroup{
+    ion-item{
+      border-bottom: 1px solid gainsboro;
+      padding: 5px 0px 5px 15px;
+    }
+    border-bottom: solid 2px gainsboro;
+    box-shadow: none;
+  }
+  .extra{
+    ion-label{
+      padding: 10px 16px 0px 16px;
+    }
+    font-size: 1.6rem;
+    padding: 10px 10px;
+    .wrapper{
+      border-bottom: solid 2px !important;
+      border-color: gainsboro !important;
+    }
+  }
+  .btns{
+    padding: 5px 15px;
+    button{
+      height: 2.2em !important;
+      font-size: 1.4rem;
+    }
+    .btn-save{
+      position: absolute;
+      right: 20px;      
+    }
+  }
+  ion-card{
+    overflow: initial;
+  }
+  #contentBody{
+    .fr-toolbar{
+      border-top: 1px solid gainsboro;
+      border-bottom: 1px solid gainsboro;
+      box-shadow: none;
+      position: relative;
+    }
+    .fr-element.fr-view{
+      min-height: 170px;
+      max-height: 1000px;
+    }
+    .fr-counter, .fr-placeholder{
+      display: none;
+    }    
+  }
+  #contentBody *{
+    box-shadow: none;
+  }
+  .editor{
+    font-size: initial;
+    ion-label{      
+      margin: 0px !important;
+      padding: 11px 8px 11px 15px;
+    }
+    border-bottom: solid 1px !important;
+    border-color: gainsboro !important;
+    overflow: unset;
+  }
+}

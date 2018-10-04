@@ -1,0 +1,42 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar color="blue">
+    <ion-title>{{ label }}</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        {{ "CREATE.CANCEL" | translate }}
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="add()">
+        {{ label2?label2:"CREATE.ADD" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="peopleFilter">
+      <ion-segment-button value="all-people">
+        {{ "PEOPLE.SEGMENT.ALL" | translate }}
+      </ion-segment-button>
+
+      <ion-segment-button value="my-connection">
+        {{ "PEOPLE.SEGMENT.CONNECTION" | translate }}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="peopleFilter">
+    <div *ngSwitchCase="'my-connection'">
+      <people-list [isLoading]="isLoadingMy" [peoples]="friends"  (returnArray)="setArray($event)" [array]="attendeesIdArray" (doSearch)="searchtext = $event" [hascheckbox]="true"></people-list>
+    </div>
+
+    <div *ngSwitchCase="'all-people'">
+      <people-list [isLoadingSearch]="isLoadingSearch" [isLoading]="isLoading" (returnArray)="setArray($event)" [array]="attendeesIdArray" [peoples]="people" (doSearch)="search($event)" [hascheckbox]="true"></people-list>
+      <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>  
+</ion-content>

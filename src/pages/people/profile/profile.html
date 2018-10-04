@@ -1,0 +1,85 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar>
+    <ion-title>{{ 'PROFILE.HEADING' | translate}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="manageFriends()" *ngIf="isme">
+        {{ "EXTRA.CONNECTIONS" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>  
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" *ngIf="profileView === 1">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="communifire-card" *ngIf="profile">
+    <div *ngIf="profile['Cover photo']" class="avatar-box" [style.backgroundImage]="'url(' + profile['Cover photo'] + ')'" [style.backgroundSize]="'cover'">
+      <img *ngIf="profile['Profile photo']" [src]="profile['Profile photo'][1] | secure | async" alt="images">
+      <img *ngIf="profile['Profile Photo']" [src]="profile['Profile Photo'][1] | secure | async" alt="images">
+      <img *ngIf="profile.ProfilePhoto" [src]="profile.ProfilePhoto[1] | secure | async" alt="images">
+    </div>
+    <div *ngIf="profile.CoverPhoto" class="avatar-box" [style.backgroundImage]="'url(' + profile.CoverPhoto + ')'" [style.backgroundSize]="'cover'">
+      <img *ngIf="profile['Profile photo']" [src]="profile['Profile photo'][1] | secure | async" alt="images">
+      <img *ngIf="profile['Profile Photo']" [src]="profile['Profile Photo'][1] | secure | async" alt="images">
+    </div>
+    <div class="avatar-content" padding text-center>
+      <h3>
+        <span *ngIf="profile['First name']">{{ profile['First name'] }}</span>
+        <span *ngIf="profile.FirstName">{{ profile.FirstName }}</span>
+        <span *ngIf="profile['Last name']">{{ profile['Last name'] }}</span>
+        <span *ngIf="profile.LastName">{{ profile.LastName }}</span>
+      </h3>
+      <p *ngIf="profile['About me']" [innerHtml]="profile['About me']"></p>
+      <p>{{ profile.Department }}</p>
+    </div>
+  </div>
+  <button-group [buttons]="buttons" (changed)="switchProfileView($event)"></button-group>
+
+  <ng-container [ngSwitch]="profileView">
+    <loader *ngIf="isLoading"></loader>
+    <div class="communifire-profile" *ngSwitchCase="0" padding>
+      <ng-container *ngIf="profile">
+        <h5 margin-top>{{"PROFILELABELS.TITLE" | translate}}</h5>
+        <p>{{profile?.Email}}</p>
+
+        <h6 *ngIf="profile?.Phone">{{"PROFILELABELS.PHONE" | translate}}</h6>
+        <p>{{profile?.Phone}}</p>
+
+        <h6 *ngIf="profile?.CompanyName">{{"PROFILELABELS.COMPANY" | translate}}</h6>
+        <p *ngIf="profile.Company">{{profile?.Company}}</p>
+        <p *ngIf="profile.CompanyName">{{profile?.CompanyName}}</p>
+
+        <h6 *ngIf="profile.City || profile.State">{{"PROFILELABELS.LOCATION" | translate}}</h6>
+        <p>
+          {{ profile.City }}
+          <span *ngIf="profile.City && profile.State">, </span>
+          {{ profile.State }}
+        </p>
+
+        <h6 *ngIf="profile['About me']">{{"PROFILELABELS.BIO" | translate}}</h6>
+        <p [innerHtml]="profile['About me']"></p>
+
+        <h6 *ngIf="profile.Interests">{{"PROFILELABELS.INTERESTS" | translate}}</h6>
+        <p [innerHtml]="profile.Interests"></p>
+      </ng-container>
+    </div>
+
+    <div *ngSwitchCase="1">
+      <status-modal [toUser]="userId" (modalClose)="refreshPage($event)"></status-modal>
+      <div *ngIf="activities.length === 0">
+        <empty-card *ngFor="let item of [1, 2, 3]"></empty-card>
+      </div>
+      <content-card-list [activities]="activities"></content-card-list>
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="1000px">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+
+    <div class="space-more" *ngSwitchCase="2">
+      <ion-list no-lines>
+        <list-button (click)="goToEntity(item)" *ngFor="let item of list" [icon]="item.icon" [title]="item.title"></list-button>
+      </ion-list>
+    </div>
+  </ng-container>
+</ion-content>

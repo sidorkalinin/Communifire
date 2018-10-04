@@ -1,0 +1,10 @@
+<!-- Generated template for the DiscussionCategoryComponent component -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{label}}
+  </ion-label>
+  <div item-content>
+    <span>{{selecteditem?selecteditem.ContentTitle:title?title: "COMPONENT.NOTSELECTED" | translate }}</span>    
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

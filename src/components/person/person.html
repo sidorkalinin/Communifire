@@ -1,0 +1,11 @@
+<ion-item class="communifire-person">
+  <ion-checkbox *ngIf="hascheckbox" [(ngModel)]="selected" (ionChange)="onSelect()" [disabled]="invited"></ion-checkbox>
+  <ion-avatar item-start (click)="goToDetails()">
+    <img *ngIf="!isImgLoaded" [src]="avatarImageURL">
+    <img [hidden]="!isImgLoaded" (load)="isImgLoaded = true" [src]="person.AvatarImageURL | secure | async">
+  </ion-avatar>
+  <ion-label (click)="goToDetails()">
+    <h2 [innerHtml]="person.FirstName + ' ' + person.LastName"></h2>
+    <p [innerHtml]="person?.RankName"></p>
+  </ion-label>
+</ion-item>

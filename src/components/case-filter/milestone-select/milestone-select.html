@@ -1,0 +1,17 @@
+<!-- <ion-item>
+  <ion-label>{{ "TITLES.Milestone" | translate }}</ion-label>
+  <ion-select select interface="popover" [(ngModel)]="currentMilestone" (ionChange)="onChange()">
+    <ion-option   *ngFor="let milestone of milestones" [value]="milestone?.MilestoneID">{{ milestone?.MilestoneTitle }}</ion-option>
+  </ion-select>
+</ion-item> -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{ "TITLES.Milestone" | translate }}
+  </ion-label>
+  <div item-content>
+    <span *ngIf="!currentMilestone && !isComment">{{ "COMMONS.VIEW_ALL" | translate }}</span>
+    <span *ngIf="!currentMilestone && isComment">{{ "COMMONS.NOT_SET" | translate }}</span>
+    <span *ngIf="currentMilestone">{{ milestone?.MilestoneTitle }}</span>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

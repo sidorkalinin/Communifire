@@ -1,0 +1,49 @@
+page-login {
+    ion-item {
+        .item-inner {
+            padding-right: 0 !important;
+        }
+        border: none !important;
+        box-shadow: none !important;
+        ion-input {
+            border: 1px solid $greyText;
+            padding: 5px 10px;
+            border-radius: 5px;
+            .text-input-md{
+                margin: 8px 8px !important;
+            }
+        }
+        ion-label {
+            color: #000 !important;
+            font-size: 1em !important;
+            padding: 5px 0;
+        }
+    }
+    .login-button {
+        background-color: $loginButton;
+        &:hover {
+            background-color: $loginButton !important;
+        }
+    }
+    .content {
+        background-color: #fff !important;
+    }
+    // .scroll-content {
+    //     padding-top: 10px !important;
+    // }
+    .back-button-default {
+        position: absolute;
+        top: 30px;
+        height: 20px;
+        left: 0;
+        font-size: 1.7em;
+        padding: 0px 16px !important;
+    }
+}
+
+.is-iphone-x page-login {
+    margin-top: 10px !important;
+    // .back-button-default {
+    //     top: calc(30px + 30px);
+    // }    
+}

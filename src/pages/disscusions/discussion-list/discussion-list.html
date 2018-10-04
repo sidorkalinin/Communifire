@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card card-title>
+    <ion-card-content>
+      {{ "TITLES.DISCUSSIONS" | translate }}
+      <ion-buttons>
+        <button end add-button ion-button clear (click)="createDiscussion()" *ngIf='profile == undefined'>
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button end ion-button clear (click)='showSearchBar()'> 
+          <ion-icon name="search"></ion-icon>
+        </button>        
+      </ion-buttons>      
+    </ion-card-content>
+  </ion-card>
+  <ion-searchbar [(ngModel)]="searchfilter" (keydown)="isLoadingSearch = true; categories = []" (ionInput)="search()" (ionCancel)="onCancel($event)" showCancelButton="true" *ngIf="bsearchbar" [animated]="false" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+  <ion-row>
+    <ion-item no-lines *ngIf="bsearchbar == false">
+      {{ "COMMONS.CATEGORIES" | translate }}
+    </ion-item>
+  </ion-row>
+
+  <!-- <loader *ngIf="isLoading"></loader> -->
+
+  <no-results-found *ngIf="topics.length == 0 && !isLoading && !isLoadingSearch &&  bsearchbar && searchfilter.length > 0"></no-results-found>
+  <searching-for *ngIf="isLoadingSearch && searchfilter.length != 0" [text]="searchfilter"></searching-for>
+  <div *ngIf="isLoading">
+    <empty-discussion-card *ngFor="let item of [1,2,3,4,5]"></empty-discussion-card>
+  </div>
+  
+  <ng-container *ngIf="bsearchbar == false || searchfilter.length == 0">
+    <discussion-category-item [discussion]="category" *ngFor="let category of categories"></discussion-category-item>
+  </ng-container>
+  <ng-container *ngIf="bsearchbar == true">
+    <bug-item *ngFor="let item of topics" [item]="item"></bug-item>
+  </ng-container>
+
+  <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="doInfinite($event)" threshold="1000px">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

@@ -1,0 +1,9 @@
+<!-- Generated template for the AnnouncementComponent component -->
+<ion-item tappable (click)="goToDetails()" [style.cursor]="'pointer'">
+  <ion-avatar item-start>
+    <img [src]="announcement.SpaceImageUrl | secure | async">
+  </ion-avatar>  
+  <p [style.color]="'#000'">
+    <span [innerHtml]="announcement?.PropertyName"></span>.
+  </p>  
+</ion-item>

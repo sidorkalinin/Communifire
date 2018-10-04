@@ -1,0 +1,17 @@
+<!-- <ion-item>
+  <ion-label>{{ title | translate }}</ion-label>
+  <ion-select select interface="popover" [(ngModel)]="currentUser" (ionChange)="onChange()">
+    <ion-option *ngFor="let user of users" [value]="user?.UserID">{{ user?.UserInfoDisplayName }}</ion-option>
+  </ion-select>
+</ion-item> -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{ title | translate }}
+  </ion-label>
+  <div item-content>
+    <span *ngIf="!currentUser && !isComment">{{ "COMMONS.VIEW_ALL" | translate }}</span>
+    <span *ngIf="!currentUser && isComment">{{ "COMMONS.NOT_SET" | translate }}</span>
+    <span *ngIf="currentUser"><span [innerHtml]="user?.UserInfoDisplayName"></span></span>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

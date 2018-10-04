@@ -1,0 +1,117 @@
+<!--
+  Generated template for the SpaceCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title [hidden]='!bFirstStep'>{{ "CREATE.CREATESPACE" | translate }}</ion-title>
+    <ion-title [hidden]='bFirstStep'>{{ "CREATE.SPACESETTING" | translate }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card [hidden]='!bFirstStep'>
+    <div class='pb-10 pt-15'>
+      <ion-label>{{ "CREATE.SPACENAME" | translate }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+      <ion-input id='name' placeholder='{{ "CREATE.TITLE" | translate }}' [(ngModel)]='spaceName' [ngClass]='titleClass' (ionFocus)='getFocus()'></ion-input>
+    </div>
+    <div class='pb-10'>
+      <ion-label>{{"CREATE.SPACEDESCRIPTION" | translate }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+      <ion-textarea id='description' placeholder='{{"CREATE.SUMMARY" | translate }}' [(ngModel)]='description' [ngClass]='summaryClass' (ionFocus)='getFocus()'></ion-textarea>
+    </div>
+    <div class='pb-10'>
+      <ion-label>{{ "CREATE.SPACETYPE" | translate }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+      <ion-list radio-group [(ngModel)]="spaceVisibility" class='radio-list'>
+        <ion-item>
+          <ion-label> Public space </ion-label>
+          <ion-radio value="Public"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label> Private space </ion-label>
+          <ion-radio value="Private"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class='pb-10'>
+      <ion-label>{{ "CREATE.SPACEACCESS" | translate }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+      <ion-list radio-group [(ngModel)]="membershipType" class='radio-list'>
+        <ion-item>
+          <ion-label> Yes </ion-label>
+          <ion-radio value="1"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label> No </ion-label>
+          <ion-radio value="0"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class='pb-10'>
+      <space-photo (featurefile)='setSpacePhoto($event)'></space-photo>
+    </div>
+  </ion-card>
+
+  <ion-card [hidden]='bFirstStep'>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{ "TITLES.ARTICLES" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableArticles"></ion-toggle>
+      </ion-item>    
+      <ion-item>
+        <ion-label>{{ "TITLES.BLOGS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableBlogs"></ion-toggle>
+      </ion-item>    
+      <ion-item>
+        <ion-label>{{ "TITLES.CASES" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableCases"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.DISCUSSIONS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableForums"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.EVENTS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableEvents"></ion-toggle>
+      </ion-item>    
+      <ion-item>
+        <ion-label>{{ "TITLES.FILES" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableFiles"></ion-toggle>
+      </ion-item>    
+      <ion-item>
+        <ion-label>{{ "TITLES.IDEAS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableIdeas"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.PHOTOS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enablePhotos"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.POLLS_AND_SURVEYS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enablePolls"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.TASKS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableTasks"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.VIDEOS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableVideos"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ "TITLES.WIKIS" | translate }}</ion-label>
+        <ion-toggle [(ngModel)]="enableWiki"></ion-toggle>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <button ion-button class='btn-cancel' color="light" (click)='cancel()' [hidden] = "!bFirstStep">{{"CREATE.CANCEL" | translate}}</button>
+    <button ion-button class='btn-continue' color="secondary" (click)='continue()' [hidden]="!bFirstStep">{{"CREATE.CONTINUE" | translate}}</button>
+    <button ion-button class='btn-back' color="light" (click)='back()' [hidden] = "bFirstStep">{{"CREATE.GOBACK" | translate}}</button>
+    <button ion-button class='btn-save' color="secondary" (click)='save()' [hidden] = "bFirstStep">{{"CREATE.PUBLISH" | translate}}</button>  
+  </ion-card>
+</ion-content>

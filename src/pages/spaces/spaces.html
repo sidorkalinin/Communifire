@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="blue">
+    <ion-title>{{"SPACES" | translate}}</ion-title>
+    <button ion-button icon-only button-clear menuToggle color="white">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!-- <ion-buttons right>
+      <button end add-button ion-button clear (click)='addClick()'>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="spaces" (ionChange)="changeSegment($event)">
+      <ion-segment-button value="my-spaces">
+        {{"COMMONS.MYSPACES" | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="all-spaces">
+        {{"COMMONS.ALLSPACES" | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-margin>
+  <div [ngSwitch]="spaces">
+    <div *ngSwitchCase="'my-spaces'">
+      <spaces-list [spaces]="mySpaces" [topLevel]="topLevel" [isLoading]="isLoading"></spaces-list>
+    </div>
+
+    <div *ngSwitchCase="'all-spaces'">
+      <spaces-list [spaces]="mySpaces" [topLevel]="topLevel" [notMe]="allSpaces" [isLoading]="isLoading" [isAll]="true"></spaces-list>
+    </div>
+  </div>  
+</ion-content>

@@ -1,0 +1,24 @@
+case-comment-modal {
+    .is-iphone-x.header-ios,  {
+        padding-top: 50px !important;
+        background-color: #f8f8f8 !important;
+    }
+    ion-header.header.header-ios{
+        padding-top: 20px;
+        background-color: #f8f8f8;
+    }
+    ion-content {
+        .fixed-content {
+            background-color: #fff !important;
+        }
+    }
+    ion-textarea {
+        textarea {
+            color: black !important;
+        }
+        min-height: 200px;        
+    }
+    ion-footer {
+        background-color: #fff;
+    }
+}

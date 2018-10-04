@@ -1,0 +1,33 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar color="blue">
+    <ion-title>{{ "EXTRA.SELECTFOLDER" | translate }}</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        {{ "CREATE.BACK" | translate }}
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button end add-button ion-button clear (click)="choose()">
+        {{"EXTRA.CHOOSE" | translate}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>  
+</ion-header>
+
+<ion-content no-margin>
+  <div *ngIf="isLoadingFolders">
+    <loader *ngIf="isLoadingFolders"></loader>
+  </div>  
+  <ion-item class="pt-10" *ngIf="folders.length != 0">
+    <h2>{{"EXTRA.FOLDERS" | translate}}</h2>
+  </ion-item>  
+  <ion-list  class='folders'>
+    <ion-item *ngIf="(previousIds.length >= 2) && !isLoadingFolders">
+      <span (click)="gotoParentFolder()">{{ "EXTRA.UPFOLDER" | translate }}</span>
+    </ion-item>
+    <no-results-found *ngIf="folders.length == 0 && !isLoadingFolders"></no-results-found>
+    <ion-item *ngFor="let item of folders">      
+      <span (click)="gotoFolder(item)">{{item.title}}</span>
+    </ion-item>
+  </ion-list>
+</ion-content>

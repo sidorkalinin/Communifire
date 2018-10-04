@@ -1,0 +1,17 @@
+<!-- <ion-item>
+  <ion-label>{{ "COMMONS.STATUS" | translate }}</ion-label>
+  <ion-select select interface="popover" [(ngModel)]="currentStatus" (ionChange)="onChange()">
+    <ion-option *ngFor="let status of statuses" [value]="status?.IssueStatusID">{{ status?.IssueStatusName }}</ion-option>
+  </ion-select>
+</ion-item> -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{ "COMMONS.STATUS" | translate }}
+  </ion-label>
+  <div item-content>
+    <span *ngIf="!currentStatus && !isComment">{{ "COMMONS.VIEW_ALL" | translate }}</span>
+    <span *ngIf="!currentStatus && isComment">{{ "COMMONS.NOT_SET" | translate }}</span>
+    <span *ngIf="currentStatus">{{ status?.IssueStatusName }}</span>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

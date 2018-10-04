@@ -1,0 +1,23 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "TITLES.Milestone" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list radio-group [(ngModel)]="milestoneSelect.MilestoneID">
+    <ion-item *ngIf="!isComment">
+      <ion-label>{{ "COMMONS.VIEW_ALL" | translate }}</ion-label>
+      <ion-radio [value]="0" (ionSelect)="selectMilestone(null)"></ion-radio>
+    </ion-item>
+    <ion-item *ngFor="let milestone of milestones">
+      <ion-label>{{ milestone?.MilestoneTitle }}</ion-label>
+      <ion-radio [value]="milestone.MilestoneID" (ionSelect)="selectMilestone(milestone)"></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-content>

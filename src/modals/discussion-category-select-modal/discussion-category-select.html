@@ -1,0 +1,31 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar>
+    <ion-title>{{ "MODAL.CATEGORY" | translate}}</ion-title>
+    <back-button (click)='back()'></back-button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchString" (input)="search()" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+
+  <no-results-found *ngIf="categories.length == 0 && !isLoading"></no-results-found>
+<!-- 
+  <div *ngIf="isLoading">
+    <empty-discussion-card *ngFor="let item of [1,2,3,4,5]"></empty-discussion-card>
+  </div> -->
+  
+  <div class='item-wrapper' (click)='notifySelect(category)' *ngFor='let category of categories'>
+    <span for="">{{category.ContentTitle}}</span>
+    <ion-icon name="md-checkmark" [hidden]='!(category.ContentID == id)'></ion-icon>
+  </div>
+  <loader *ngIf="isLoading"></loader>
+  <!-- <discussion-category-select-item [discussion]="category" *ngFor="let category of categories" (select)='notifySelect($event)'></discussion-category-select-item> -->
+
+  <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="doInfinite($event)" threshold="1000px">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,48 @@
+page-article-detail {
+  // ion-header.header.header-ios{
+  //   padding-top: 20px;
+  //   background-color: #f8f8f8;
+  // } 
+  
+  .banner {
+    min-height: 150px;
+  }
+  a {
+    text-decoration: none;
+    color: $linkColor;
+  }
+  .article-desc {
+    p {
+      margin: 0px;
+    }
+  }
+
+  .alert-info {
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    padding: 3px;
+  }
+}
+
+.article {
+  &-title-detail {
+    position: relative;
+    .profile-img {
+      border-radius: 50%;
+      border: 4px solid #fff;
+      background-color: #e1e1e1;
+      &.hasCover {
+        margin-top: -60px;
+      }
+    }
+  }
+  &-response {
+    img { border-radius: 50%; }
+  }
+}
+
+.primary-details {
+  margin: 30px 0;
+  ion-segment { margin: 30px 0 }
+}

@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title (click)="navToList()" *ngIf='!contentDetail'>{{ getTitle() | translate}}</ion-title>
+    <ion-title (click)="navToList()" *ngIf='contentDetail'>{{ contentDetail?.ContentTitle }}</ion-title>
+    <ion-buttons right>
+      <button end add-button ion-button clear (click)="clickOption()">
+        {{ "EXTRA.OPTIONS" | translate}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="banner" *ngIf="contentDetail?.ContentFeaturedImageFullURL">
+    <img [src]="contentDetail?.ContentFeaturedImageFullURL | secure | async">
+  </div>
+
+  <div class="article-content" padding>
+    <div class="article-title-detail" text-center>
+      <!-- <img class="profile-img" [class.hasCover]="!!contentDetail?.ContentFeaturedImageFullURL" *ngIf="contentDetail?.AuthorAvatarImageUrl"
+        [src]="contentDetail?.AuthorAvatarImageUrl"> -->
+      <ion-item [style.cursor]="'pointer'">
+        <ion-thumbnail item-start>
+          <ng-container>
+            <img [src]="'assets/icon/'+ getIconName(contentDetail?.ContentTitle) | secure | async">
+          </ng-container>
+        </ion-thumbnail>
+        <h2 [innerHTML]="contentDetail?.ContentTitle"></h2>
+        <p>
+          <span>{{ "EXTRA.MODIFIED" | translate}} </span>
+          <span [innerHtml]="contentDetail?.DateCreatedString"></span>
+        </p>
+      </ion-item>
+    </div>
+
+    <div style="text-align: center; margin: -16px;">
+      <img [style.paddingTop]="'16px'" [src]="i_url | secure | async" *ngIf="isImage()">
+    </div>
+    <div *ngIf="isLoadingImage">
+      <loader></loader>
+    </div>
+    <ion-row [style.paddingTop]="'20px'" style='text-align: center;' *ngIf="contentDetail?.ContentBody != ''">
+      <span>{{contentDetail?.ContentBody}}</span>
+    </ion-row>
+    <ion-row [style.paddingTop]="'20px'" style='text-align: center;' *ngIf="contentDetail?.AuthorDisplayName != ''">
+      {{ "EXTRA.CRATEDBY" | translate }}
+    </ion-row>
+    <ion-row style='text-align: center; font-family: sans-serif; font-size: 1.1em;' *ngIf="contentDetail?.AuthorDisplayName != ''">
+      <span [innerHTML]="contentDetail?.AuthorDisplayName"></span>
+    </ion-row>
+    <!-- <iframe *ngIf="isPdf" [src]="pdfLink" width="100%" height="100%" frameborder="0" ></iframe> -->
+    <!-- <ion-row [style.paddingTop]="'20px'" style='text-align: center;'>
+      <ion-col no-padding>
+        <h6 (click)="downloadFile(contentDetail?.ContentMediaUrl)">{{ contentDetail?.ContentTitle }} <fa-icon name="external-link" item-end></fa-icon></h6>
+      </ion-col>
+    </ion-row> -->
+  </div>
+  <ion-row class="article-likes-comments" padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding (click)="openModal()">
+      <p text-right *ngIf="contentDetail?.CommentCount == 1">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+      <p text-right *ngIf="contentDetail?.CommentCount > 1 || contentDetail?.CommentCount == 0">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</p>
+    </ion-col>
+  </ion-row>
+  <div class="article-response like-button-section" padding-horizontal>
+    <single-content-like *ngIf="!isRefreshing" (getCount)="setCount($event)" [contentID]="contentDetail?.ContentID" [entityType]="14"></single-content-like>
+  </div>
+  <!-- <ion-list no-margin class="article-tags" padding-horizontal *ngIf="contentDetail?.TagsCSV" no-lines> 
+    <ion-item>
+      <h6>{{"ARTICLE.TAGS" | translate}}</h6>
+      <h6>{{contentDetail?.TagsCSV}}</h6>
+    </ion-item>
+  </ion-list>
+
+  <ion-row class="article-likes-comments" padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding>
+      <p text-right *ngIf="contentDetail?.CommentCount == 1">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+      <p text-right *ngIf="contentDetail?.CommentCount > 1 || contentDetail?.CommentCount == 0">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</p>
+    </ion-col>
+  </ion-row>
+  <div class="article-response like-button-section" padding-horizontal>
+    <single-content-like *ngIf="!isRefreshing" (getCount)="setCount($event)" [contentID]="contentDetail?.ContentID" [entityType]="14"></single-content-like>
+  </div>
+  <div class="article-response write-comment-section" padding-horizontal>
+    <write-comment (click)="openModal()"></write-comment>
+  </div>
+  <div class="article-comments">
+    <comment [comments]="comments" (sendParent)="openModal($event)" [step]="0"></comment>
+    <ion-infinite-scroll (ionInfinite)="getComments($event)" threshold="1000px">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div> -->
+
+</ion-content>

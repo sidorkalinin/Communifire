@@ -1,0 +1,36 @@
+<ion-split-pane>
+  <ion-menu [ngClass]="{ 'is-iphone-x': isIphoneX, 'android-padding-top': isAndroid, 'is-ipad-x': isIpad }" [content]="content"
+    id="authenticated" class="menu-v1" type="reveal" (ionOpen)="menuOpened()" (ionClose)="menuClosed()">
+    <ion-header>
+      <ion-toolbar id="menu-toolbar">
+        <div class="header-content" style='padding-bottom: 25px; padding-top:20px;'>
+          <div class="photo inline" (click)="goToProfile()" menuClose>
+            <img *ngIf="userInfo.AvatarImageURL" [src]="userInfo?.AvatarImageURL | secure | async">
+            <div *ngIf="!userInfo.AvatarImageURL" class="photo-grey"></div>
+          </div>
+          <div class='inline' style='margin-left: 10px;'>
+            <div class="name" (click)="goToProfile()" menuClose>
+              <p [innerHtml]="userInfo?.UserInfoDisplayName"></p>
+              <div *ngIf="!userInfo.UserInfoDisplayName" class="username-grey"></div>
+            </div>
+            <div class="email">
+              <p>{{ userInfo?.Email }}</p>
+              <div *ngIf="!userInfo.Email" class="email-grey"></div>
+            </div>
+          </div>
+        </div>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content no-margin>
+      <ion-list no-lines [style.marginTop]="'15px'">
+        <button detail-none menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="custom-menu-item">
+          <fa-icon [name]="p.icon"></fa-icon>
+          <span padding>{{p.title | translate}}</span>
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [ngClass]="{ 'is-iphone-x': isIphoneX, 'android-padding-top': isAndroid  }" [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>
+</ion-split-pane>

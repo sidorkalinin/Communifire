@@ -1,0 +1,36 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="!isImgLoaded" [src]="avatarImageURL">
+      <img [hidden]="!isImgLoaded" (load)="isImgLoaded = true" *ngIf="case?.UserAvatarFullUrl" [src]="case?.UserAvatarFullUrl | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="case?.UserDisplayName"></strong>
+      <ng-container>
+        <span [innerHtml]="case?.ActionText"></span>
+        <span *ngIf="case?.SpaceName">{{ "ARTICLE.IN" | translate }} {{ case.SpaceName }}</span>
+      </ng-container>
+    </h4>
+    <p>{{case?.DateTimeSpan}}</p>
+  </ion-item>
+
+  <ion-card (click)="goToCase()">
+    <img *ngIf="case?.ContentThumbImageFullURL" [src]="case?.ContentThumbImageFullURL | secure | async">
+    <img *ngIf="case?.TitleImageURL" [src]="case?.TitleImageURL | secure | async">
+    <ion-card-content>
+      <h2 [innerHtml]="case?.Subject"></h2>
+      <p [innerHtml]="case?.Summary"></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding text-right (click)='openComment()'>
+      <comments-count *ngIf="case?.EntityCommentCount >= 0 && case.CanBeCommented !== false" [comments]="case?.EntityComments?.length"></comments-count>
+    </ion-col>
+  </ion-row>
+
+  <like-comment-actions (likeCount)="setCount($event)" [entity]="case"></like-comment-actions>
+</ion-card>

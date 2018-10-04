@@ -1,0 +1,16 @@
+comments-count {
+    span {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    span p {
+        font-size: 1em !important;
+        color: $greyText !important;
+        font-weight: 400 !important;
+        height: 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}

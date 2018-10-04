@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title><span [innerHtml]="title"></span></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card card-title>
+    <ion-card-content>
+      <span *ngIf="!subTitle">
+        {{ "TITLES.BUGS_AND_ISSUES" | translate }}        
+      </span>
+      <span *ngIf="subTitle">{{ subTitle | translate }}</span>
+      <ion-buttons>
+        <button end add-button ion-button clear (click)="createDiscussion()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button end ion-button clear (click)="showSearchBar()">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-searchbar [(ngModel)]="searchfilter" *ngIf="bsearchbar" (keydown)="isLoadingSearch = true; items = []" (ionInput)="search()" (ionCancel)="onCancel($event)" showCancelButton="true" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+
+  <ion-list no-margin>
+    <ion-item>
+      <ion-label>{{ filterModel | translate }}</ion-label>
+      <ion-select (ionChange)="setFilter()" interface="popover" [(ngModel)]="sort" [style.paddingLeft]="'0px'">
+        <ion-option [value]="item.value" *ngFor="let item of filterItems">{{ item.name | translate }}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <no-results-found *ngIf="items.length == 0 && !isLoading && !isLoadingSearch &&  bsearchbar && searchfilter.length > 0"></no-results-found>  
+  <searching-for *ngIf="isLoadingSearch && searchfilter.length != 0" [text]="searchfilter"></searching-for>
+  <div *ngIf="isLoading">
+    <empty-discussion-category-card *ngFor="let item of [1,2,3,4,5]"></empty-discussion-category-card>
+  </div>
+  <bug-item *ngFor="let item of items" [item]="item"></bug-item>
+
+  <ion-infinite-scroll (ionInfinite)="getContent($event)" threshold="1000px">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

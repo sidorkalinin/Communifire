@@ -1,0 +1,40 @@
+<ion-card no-margin>
+  <ion-item (click)="goToProfile(comment)">
+    <ion-avatar item-start>
+      <img [src]="comment?.AuthorAvatarImageUrl | secure | async">
+    </ion-avatar>
+    <h2 [innerHtml]="comment?.AuthorDisplayName"></h2>
+    <p>{{ comment?.DateCreated | amTimeAgo }}</p>
+  </ion-item>
+  <ion-card-content>
+    <p class="forum-comment-content" [innerHTML]="comment?.ContentBody | safeHtml"></p>
+  </ion-card-content>
+  <ion-scroll scrollX="true" style="width:100vw; height:140px" *ngIf="attachments && attachments.length > 0">
+    <ion-row nowrap>
+      <div *ngFor="let item of attachments" class="attachment-item" [ngClass]="{ 'isImage': item.IsImage}">
+        <img [src]="item.MediaServerRootURL + '/' + item.FileName | secure | async" *ngIf="item.IsImage">
+        <p *ngIf="!item.IsImage" [innerHtml]="item?.Caption"></p>
+        <div class="size" *ngIf="!item.IsImage">
+          <ion-icon name="document"></ion-icon>
+          <span>{{ item.FileSizeText }}</span>
+        </div>
+      </div>
+    </ion-row>
+  </ion-scroll>
+  <ion-list padding-horizontal no-lines *ngIf="comment.TagsCSV">
+    <ion-item no-padding>
+      <ion-row>
+        <ion-col no-padding tags no-lines>
+          {{"ARTICLE.TAGS" | translate}}
+          <div>{{ comment?.TagsCSV }}</div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+  <div class="likes-count">
+    <content-like [likesCount]="likes"></content-like>
+  </div>
+  <div class="forum-comment-like">
+    <single-content-like left (getCount)="setCount($event)" [contentID]="comment?.ContentID" [entityType]="54"></single-content-like>
+  </div>
+</ion-card>

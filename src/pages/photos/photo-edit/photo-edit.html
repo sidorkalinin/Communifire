@@ -1,0 +1,38 @@
+<!--
+  Generated template for the PhotoCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "EDIT.EDITALBUM" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <div class='pb-10 pt-15'>
+      <ion-label>{{ "EDIT.ALBUMNAME" | translate }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+      <ion-input id='headline' placeholder='{{ "EDIT.ALBUMNAME" | translate }}' [(ngModel)]='contentTitle' [ngClass]='titleClass' (ionFocus)='getFocus()'></ion-input>
+    </div>
+    <div class='pb-10'>
+      <ion-label>{{ "EDIT.ALBUMDESCRIPTION" | translate }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+      <ion-textarea id='summary' placeholder="Description" [(ngModel)]='contentSummary' [ngClass]='summaryClass' (ionFocus)='getFocus()'></ion-textarea>
+    </div>
+  </ion-card>
+  <ion-card>
+    <div class='pt-15'>
+      <add-tags [entity]='{tags: tags}' (tags)='setTags($event)'></add-tags>      
+    </div>
+  </ion-card>
+  <ion-card>
+    <meta-information [entity]='{metaTitle: metaTitle, metaDescription: metaDescription}' (meta)='setMetaInformation($event)'></meta-information>
+  </ion-card>
+  <ion-card>
+    <add-photo (files)='setFiles($event)'></add-photo>
+  </ion-card>
+  <ion-card>
+    <button ion-button class='btn-cancel' color="light" (click)='cancel()'>{{ "EDIT.CANCEL" | translate }}</button>
+    <button ion-button class='btn-save' color="secondary" (click)='save()'>{{ "EDIT.SAVE" | translate }}</button>    
+  </ion-card>
+</ion-content>

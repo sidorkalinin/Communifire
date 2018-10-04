@@ -1,0 +1,28 @@
+<ion-scroll scrollX="true" style="width:100vw; height:100px;" *ngIf="filesArray.length > 0 && !isForum">
+  <ion-row nowrap style='margin-top: 10px;'>
+    <div *ngFor="let file of filesArray" class="attachment-item" [ngClass]="{ 'isImage': file.isImage}">
+      <img [src]="DomSanitizer.bypassSecurityTrustUrl(mynormalizeURL(file.path))" *ngIf="file.isImage">
+      <p *ngIf="!file.isImage" [innerHtml]="file?.filename"></p>
+      <div class="size" *ngIf="!file.isImage">
+        <ion-icon [name]="file.icon"></ion-icon>
+        <!-- <span>{{ item.FileSizeText }}</span> -->
+      </div>
+    </div>
+  </ion-row>
+</ion-scroll>
+<div class="add-attachment" *ngIf="!isForum">
+  <button ion-button clear (click)="presentActionSheet()"><fa-icon size="lg" name="paperclip" rotate="flip-horizontal"></fa-icon> <span [style.paddingLeft]="'10px'">{{ "COMMONS.ADD_ATTACHMENT" | translate }}</span></button>
+</div>
+<ion-toolbar *ngIf="isForum">
+  <ion-buttons space-between class="wall-buttons">
+    <button ion-button icon-only outline (click)="presentActionSheetSmall()">
+      <ion-icon name="ios-camera"></ion-icon>
+    </button>
+    <button ion-button icon-only outline (click)="openGallery()">
+      <ion-icon name="ios-images"></ion-icon>
+    </button>
+    <button ion-button icon-only outline (click)="chooseFile()">
+      <ion-icon name="attach"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-toolbar>

@@ -1,0 +1,7 @@
+<ion-searchbar [(ngModel)]="searchfilter" showCancelButton="true" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+<loader *ngIf="isLoading"></loader>
+<ion-list *ngIf="!isLoading">
+  <space [space]="topLevel" [isAll]="isAll"></space>
+  <space [space]="space" *ngFor="let space of spaces | search: searchfilter:'SpaceName' | sortBy: 'SpaceName'" [isAll]="isAll"></space>
+  <space [space]="space" *ngFor="let space of notMe | search: searchfilter:'SpaceName' | sortBy: 'SpaceName'" [isAll]="false"></space>
+</ion-list>

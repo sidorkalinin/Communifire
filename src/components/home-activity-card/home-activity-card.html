@@ -1,0 +1,42 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="activity?.AuthorAvatarImageUrl" [src]="activity?.AuthorAvatarImageUrl | secure | async">
+      <img *ngIf="activity.AuthorUserAvatarImageURL" [src]="activity?.AuthorUserAvatarImageURL | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.AuthorDisplayName"></strong>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.AuthorUserDisplayName"></strong>
+      <ng-container>{{ "ARTICLE.HASCREATED" | translate }} {{ getArticle(activity.EntityType) | translate }} {{ types[activity.EntityType]
+        | lowercase }}
+        <span *ngIf="activity?.SpaceName">{{ "ARTICLE.IN" | translate }} {{ activity.SpaceName }}</span>
+      </ng-container>
+    </h4>
+    <p>{{activity?.DateCreatedString}}</p>
+  </ion-item>
+
+  <ion-card tappable (click)="goToEntity()">
+    <img *ngIf="activity?.ContentThumbImageFullURL" [src]="activity?.ContentThumbImageFullURL | secure | async">
+    <img *ngIf="activity?.ContentImageURL" [src]="activity?.ContentImageURL | secure | async">
+    <ion-card-content>
+      <h2>{{ activity?.ContentTitle }}</h2>
+      <h2 [innerHtml]="activity?.Title"></h2>
+      <p>{{ activity?.ContentSummary }}</p>
+      <p [innerHtml]="activity?.Summary"></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col text-right no-padding>
+      <button ion-button clear small text-right no-padding text-capitalize no-margin *ngIf="activity?.CommentCount" (click)="openModal()">
+        <p *ngIf="activity.CommentCount == 1" class="comment-color">{{activity?.CommentCount}} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+        <p *ngIf="activity.CommentCount > 1" class="comment-color">{{activity?.CommentCount}} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</p>
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <like-comment-actions [isStream]="false" (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions>
+</ion-card>

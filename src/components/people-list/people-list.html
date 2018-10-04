@@ -1,0 +1,10 @@
+<ion-searchbar (keyup)="keyUp()" [(ngModel)]="searchText" (ionInput)="search($event)" (ionCancel)="onCancel($event)" showCancelButton="true"  placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+<!-- <loader *ngIf="isLoading && !isLoadingSearch"></loader> -->
+<ion-list  *ngIf="isLoading && !isLoadingSearch">
+  <empty-people *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></empty-people>
+</ion-list>
+<no-results-found *ngIf="peoples.length == 0 && !isLoading && !isLoadingSearch"></no-results-found>
+<searching-for *ngIf="isLoadingSearch" [text]="searchText"></searching-for>
+<ion-list *ngIf="!isLoadingSearch && peoples.length > 0">
+  <person [invited]="isInvited(people)" [selected]="isSelected(people)" (checkPress)="addToArray($event)" [person]="people" *ngFor="let people of peoples" [hascheckbox]="hascheckbox"></person>
+</ion-list>

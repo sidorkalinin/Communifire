@@ -1,0 +1,58 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only clear (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ 'MYACCOUNTCARD.CARDCONTENT.COMMENTBUTTON' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="!parentId">
+    <ion-card-content>
+        {{ "COMMONS.COMMENTING_ON" | translate }}:
+    </ion-card-content>
+
+    <ion-card-header [style.paddingTop]="'0'" [style.whiteSpace]="'normal'">
+      <span [innerHtml]="entity?.Entity?.Title" *ngIf="entity.Entity?.EntityType!=10"></span>
+      <span>{{ entity?.ContentTitle }}</span>
+      <span [innerHtml]="entity?.Title"></span>
+      <span [innerHtml]="entity?.WallTextHtmlFormatted"></span>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngIf="parentId">
+    <ion-card-content>
+        {{ "COMMONS.REPLYING_TO" | translate }} <span [innerHtml]="parentComment?.UserDisplayName"></span>{{ "COMMONS.S" | translate }} {{ "COMMONS.COMMENT" | translate }}
+    </ion-card-content>
+
+    <ion-card-header [style.paddingTop]="'0'" [style.whiteSpace]="'normal'">
+      <span [innerHtml]="parentComment?.CommentTextFormatted"></span>
+    </ion-card-header>
+  </ion-card>
+
+  <comment [comments]="comments" [step]="0" (sendParent)="prepareComment($event)"></comment>
+  <ion-infinite-scroll *ngIf="!entity.WallComment || entity.WallComment.length == 0" (ionInfinite)="getComments($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons left>
+      <img class="profile-img" [style.height]="'50px'" [src]="user.AvatarImageURL">
+    </ion-buttons>
+    <ion-textarea #textarea placeholder="{{ 'COMMONS.WRITE_A_RESPONCE' | translate }} ..." [(ngModel)]="commentText"></ion-textarea>
+    <ion-buttons right>
+      <button ion-button icon-only clear *ngIf="!isLoading" (click)="createComment()">
+        <ion-icon name="send"></ion-icon>
+      </button>
+      <button ion-button icon-only clear disabled *ngIf="isLoading" (click)="createComment()">
+          <ion-icon name="send"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

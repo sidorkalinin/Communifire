@@ -1,0 +1,36 @@
+page-discussion-category {
+    [card-title] {
+        width: 100%;
+        margin: 0;        
+        ion-card-content {
+            padding: 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0 0 16px !important;
+            ion-icon {
+                font-size: 2.5rem;
+            }
+            [add-button]{
+                padding: 0 0.5rem 0 1rem;
+                ion-icon {
+                    font-size: 3rem;
+                    font-weight: bold;
+                }
+                height: 40px;
+            }
+        }
+    }
+    ion-select {
+        // max-width: 100% !important;
+        // width: 100%;
+        // justify-content: space-between;
+        .select-text {
+             display: none;
+        }
+    }
+}
+
+discussion-category-item ion-row.row {
+    border-bottom: solid 1px #ececec;
+}

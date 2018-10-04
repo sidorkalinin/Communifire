@@ -1,0 +1,48 @@
+empty-discussion-card {
+    [item] .label{
+        display: flex;
+        white-space: normal;
+        .icon-item {
+            flex: 1 1 10%;
+            font-size: 2em;
+            display: flex;
+            padding-right: 16px;
+            // justify-content: center;
+            align-items: flex-start;
+            color: $greyText
+        }
+        .content {
+            flex: 1 1 85%;
+            .title {
+                font-weight: 500;
+                padding-bottom: 5px;
+                height: 21px;
+                width: 30%;
+                background-color: $emptyColor;
+                border-radius: 4px;
+                margin-bottom: 3px;
+            }
+            .sub-title{
+                height: 21px;
+                width: 100%;
+                background-color: $emptyColor;
+                border-radius: 4px;
+                margin-bottom: 3px;
+            }
+            .line {
+                display: flex;
+                .posts {
+                    margin-right: 10px;
+                    font-size: 0.8em;
+                    padding-top: 10px;
+                    color: $greyText;
+                    white-space: normal;
+                    height: 13px;
+                    width: 100%;
+                    background-color: $emptyColor;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+<!-- <default-header [title]="'LOGIN.HEADING'"></default-header> -->
+
+<ion-content>
+  <img [style.width]="'100%'" src="assets/images/login.png" alt="">
+
+  <button *ngIf="urlSet" (click)="backToUrl()" class="back-button-default" [style.color]="'white'" ion-button clear>
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+
+  <form [formGroup]="urlForm" (ngSubmit)="checkIfDomainExists()" *ngIf="!urlSet">
+
+    <ion-item padding-horizontal>
+      <ion-label stacked>{{ "LOGIN.COMMUNITY_URL" | translate }}</ion-label>
+      <ion-input placeholder="{{ 'LOGIN.DOMAIN_EXAMPLE' | translate }}" type="url" formControlName="domain" autocomplete="off"
+        autocapitalize="none"></ion-input>
+    </ion-item>
+
+    <div padding>
+      <button padding-horizontal class="login-button" ion-button color="primary" block *ngIf="!domainCheckInProgress">{{'LOGIN.NEXT' | translate}}</button>
+      <button class="login-button" ion-button color="primary" block disabled *ngIf="domainCheckInProgress">{{'LOGIN.WAIT' | translate}}</button>
+    </div>
+
+  </form>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()" *ngIf="urlSet">
+
+    <ion-item padding-horizontal>
+      <ion-label stacked>{{ "LOGIN.LOGIN_INFORMATION" | translate }}</ion-label>
+      <ion-input placeholder="{{ 'LOGIN.USERNAME' | translate }}" type="email" formControlName="UserName" autocomplete="off" autocapitalize="none"></ion-input>
+    </ion-item>
+
+    <ion-item padding-horizontal>
+      <ion-input placeholder="{{ 'LOGIN.PASSWORD' | translate }}" type="password" formControlName="Password" autocomplete="off"
+        autocapitalize="none"></ion-input>
+    </ion-item>
+
+
+    <div padding>
+      <button type="submit" class="login-button" ion-button color="primary" block *ngIf="!loginInProgress">{{'LOGIN.NEXT' | translate}}</button>
+      <button type="button" class="login-button" ion-button color="primary" block *ngIf="isSamlEnabled && !loginInProgress" (click)='loginWithAD()'>{{'LOGIN.ACTIVE_DIRECTORY_LOGIN' | translate}}</button>
+      <button class="login-button" ion-button color="primary" block disabled *ngIf="loginInProgress">{{'LOGIN.WAIT' | translate}}</button>
+    </div>
+  </form>
+
+</ion-content>

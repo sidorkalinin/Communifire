@@ -1,0 +1,27 @@
+add-stage {
+  .stage-group{
+    ion-item{
+      min-height: 2rem !important;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      font-size: 1em !important;
+      ion-label{
+        margin: 0px !important;
+      }
+    }
+    ion-item:hover{
+      background: #d8d8d8;
+    }
+  }
+  button{
+    width: 100%;
+    border-radius: 2px;
+    background: #eaeaea;
+    text-align: left;
+    border: solid 1px gray;
+    .fa-down{      
+      position: absolute;
+      right: 30px;
+    }
+  }
+}

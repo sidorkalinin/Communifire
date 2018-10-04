@@ -1,0 +1,13 @@
+<!-- Generated template for the PeopleRequestComponent component -->
+<ion-list class='files' *ngIf="peoples.length != 0">
+  <ion-item *ngFor="let person of peoples">
+    <ion-avatar item-start (click)="goToDetails(person)">
+      <img [src]="person.AvatarImageURL | secure | async">
+    </ion-avatar>
+    <ion-label (click)="goToDetails(person)">
+      <h2 [innerHtml]="person.FirstName + ' ' + person.LastName"></h2>
+      <p [innerHtml]="person?.RankName"></p>
+    </ion-label>
+    <ion-icon grey-color ios="ios-arrow-down" md="md-arrow-down" item-end (click)='opensheet(person)'></ion-icon>
+  </ion-item>
+</ion-list>

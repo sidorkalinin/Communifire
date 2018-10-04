@@ -1,0 +1,48 @@
+page-task-list-create {
+  .pb-10{
+    padding-bottom: 10px;
+  }
+  .pt-10{
+    padding-top: 10px;
+  }
+  .pt-15{
+    padding-top: 15px;
+  }
+  .pt-20{
+    padding-top:20px;
+  }
+  ion-input{
+    input{
+      margin-left:0px !important;
+      border-bottom: solid 1px !important;
+      border-color: #b9b9b9 !important;
+      width: calc(100% - 8px) !important;
+    }
+  }
+  ion-textarea{
+    textarea{
+      margin-left:0px !important;
+      border-bottom: solid 1px !important;
+      border-color: #b9b9b9 !important;
+      width: calc(100% - 8px) !important;
+    }
+  }
+  ion-card{
+    padding:20px;
+    margin: 0px !important;    
+    width: 100% !important;
+    .btn-save{
+      height: 2.2em;
+      position: absolute;
+      right: 20px;      
+    }
+    .btn-cancel{
+      height: 2.2em;
+    }    
+  }
+  drop-down-select{
+    i {
+      right: 30px !important;
+    }
+  }
+}

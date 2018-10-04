@@ -1,0 +1,43 @@
+<div *ngFor="let comment of comments" end [id]="'comment' + comment?.CommentID">
+  <ion-card [style.margin]="'6px 10px'" [style.width]="'calc(100% - ' + (step * 3) + '% - 20px)'">
+    <ion-item (click)="goToProfile(comment)">
+      <ion-avatar item-start>
+        <img *ngIf="comment.UserAvatarVirtualPath" [src]="comment?.UserAvatarVirtualPath">
+        <img *ngIf="!comment.UserAvatarVirtualPath" [src]="comment?.FromUserAvatarVirtualPath">
+      </ion-avatar>
+      <h2 *ngIf="comment.UserDisplayName" [innerHtml]="comment?.UserDisplayName"></h2>
+      <h2 *ngIf="!comment.UserDisplayName" [innerHtml]="comment?.FromUserDisplayName"></h2>
+      <p>{{ comment?.DateCommentedText }}</p>
+      <p>{{ comment?.DateTimeSpan }}</p>
+    </ion-item>
+    <ion-card-content>
+      <p [innerHTML]="comment?.CommentTextHtmlFormatted | safeHtml"></p>
+    </ion-card-content>
+    <ion-list padding-horizontal>
+      <ion-item no-padding>
+        <ion-row>
+          <ion-col>
+            <content-like [likesCount]="comment?.likeCount"></content-like>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+    <ion-list padding-horizontal [style.marginTop]="'1px'">
+      <ion-item no-padding no-lines>
+        <ion-row>
+          <ion-col no-padding>
+            <single-content-like [isComment]="true" [isCard]="true" *ngIf="entityType" (getCount)="setCount($event)" [contentID]="comment?.CommentID" [entityType]="entityType"></single-content-like>
+          </ion-col>
+          <ion-col no-padding>
+            <button [hidden]="comment.WallID" no-padding color="dark" text-capitalize ion-button no-margin icon-left clear small (click)="createChildComment(comment)">
+              <ion-icon name="text"></ion-icon>
+              <div>{{"ARTICLE.COMMENT" | translate}}</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <comment [style.width]="'100%'" [step]="step + 1" *ngIf="comment.children" [comments]="comment.children" (sendParent)="createChildComment($event)"></comment>
+</div>
+

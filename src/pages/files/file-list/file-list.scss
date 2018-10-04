@@ -1,0 +1,74 @@
+page-file-list {
+  ion-content.content {
+    background-color: white;
+  }
+  .item > ion-icon, .item-inner > ion-icon {
+    font-size: 2.2rem;
+    cursor: pointer;
+  }
+  ion-list.folders {
+    margin-bottom: 0px !important;
+    ion-item {
+      ion-label {
+        padding-left: 34px !important;
+      }      
+    }    
+  }
+  .mt-10 {
+    margin-top: 10px;
+  }
+  ion-item {
+    h2 {
+      font-size: 1.5rem !important;
+      color: lightslategrey;
+    }
+    p {
+      width: 100%;
+      color: #000 !important;
+      font-size: inherit !important;
+      line-height: normal !important;
+      font-weight: normal !important;
+      cursor: pointer;
+      font-family: sans-serif;
+    }
+  }
+  ion-list.files {
+    .item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
+      width: 30px;
+      height: 30px; 
+    }
+    .item-ios ion-thumbnail {
+      min-width: initial;
+      min-height: initial;
+      margin: 0px 10px 0px 0px !important;
+    }
+    ion-item {
+      margin-left: 16px;
+      padding-left: 16px !important;
+      border-top: 0.55px solid #c8c7cc;
+      .item-inner {
+        border-bottom: initial !important;
+        padding-right: 8px !important;
+      }      
+    }
+    .item-block:first-child {
+      border-top: 0.55px solid #c8c7cc;
+      margin-left: 0px !important;
+      padding-left: 16px !important;
+      .item-inner {
+        padding-right: 8px !important;
+      }      
+    }
+  }  
+
+  [add-button]{
+    background-color: transparent;
+    color: #327eff;
+    padding: 0 0.5rem 0 1rem;
+    ion-icon {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+  }
+  
+}

@@ -1,0 +1,23 @@
+resource-multi-select{
+  .is-iphone-x.header-ios,  {
+    padding-top: 25px !important;
+    background-color: #f8f8f8 !important;
+  }
+  ion-header.header.header-ios{
+    padding-top: 20px;
+    background-color: #f8f8f8;
+  }
+  .item-wrapper:hover{
+    cursor: pointer;
+  }
+  ion-avatar{
+    width: 40px;
+    height: 40px;
+    img{
+      border-radius: 5px !important;
+    }
+  }
+  .note-ios {
+    color: #3e86ff;
+  }
+}

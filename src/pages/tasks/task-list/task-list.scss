@@ -1,0 +1,156 @@
+page-task-list {
+  .fa-red{
+    color:red;
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+  }
+  .pb-10{
+    padding-bottom: 10px;
+  }
+  .pt-10{
+    padding-top: 10px;
+  }
+  .pt-15{
+    padding-top: 15px;
+  }
+  .pt-20{
+    padding-top:20px;
+  }
+  ion-content{
+    .scroll-content{
+      padding: 0px !important;
+    }    
+  }
+  ion-input{
+    input{
+      margin-left:0px !important;
+      border-bottom: solid 1px !important;
+      border-color: #b9b9b9 !important;
+    }
+  }
+  ion-textarea{
+    textarea{
+      margin-left:0px !important;
+      border-bottom: solid 1px !important;
+      border-color: #b9b9b9 !important;
+    }
+  }
+  .red{
+    input{
+      border-color: #ff0000 !important;
+    }
+    textarea{
+      border-color: #ff0000 !important;
+    }
+    
+  }
+  .red-category{
+    border-bottom: solid 1px !important;
+    border-color: red !important;
+  }
+  #articleBody.red{
+    border-bottom-color: red !important;
+    border-bottom-width: 1px !important;
+    border-bottom: solid;
+  }
+  .inline{
+    display: inline-block;
+  }
+  // .add-task-list{
+  //   display: inline-block;
+  //   width: 30px;
+  //   height: 30px;
+  //   color: #327eff;
+  //   background: white;
+  // }
+  // .add-task-list:active{
+  //   color: white;
+  //   background: #327eff;
+  // }
+  .add-button{
+    position: absolute;
+    right: 10px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-color: white;
+    padding: 4px 12px;
+    border: 1px solid #dfdfdf;
+    top: 8px;
+    cursor: pointer;
+  }
+  .add-task-button{
+    margin-left: auto;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-color: white;
+    padding: 4px 12px;
+    border: 1px solid #dfdfdf;
+    cursor: pointer;    
+  }
+  ion-card{    
+    padding:10px;
+    width: 100% !important;
+    margin: 0px !important;
+    button{
+      height: 2.2em;
+      font-size: 1.4rem;
+    }
+    .btn-save{
+      position: absolute;
+      right: 20px;      
+    }
+  }
+  .task-list, .task{
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    margin-left: 30px;
+    text-align: center;
+  }  
+  .add-task{
+    width: 30px;
+    height: 30px;
+    color: #327eff;
+    display: inline-block;
+    background: white;
+  }
+  .add-task:active{
+    background: #327eff;
+    color: white;
+  }
+  
+  .task-wrapper{
+    border-bottom: solid 1px gainsboro;
+    padding-top: 5px;
+    .task-title{
+      margin: 0 0 2px;
+      font-size: 1.7rem;
+      font-weight: normal;
+      cursor: pointer;
+    }
+  }
+  ul{
+    list-style: none;
+    padding: 0;
+    margin: auto auto 10px auto;    
+    border: solid 1px #327eff;
+    border-radius: 5px;
+    li{
+      cursor: pointer;
+      display: table-cell;
+      margin-bottom: 0;
+      text-align: center;
+      width: auto;
+      line-height: 2.6rem;      
+      a{
+        color: #327eff;
+        //background-color: #327eff;
+        transition: 100ms all linear;
+        padding: 3px 15px 4px;
+        text-align: center;
+        min-width: 45px;
+      }
+    }
+    .all, .duetoday{
+      border-right: solid 1px #327eff;
+    }
+  }
+}

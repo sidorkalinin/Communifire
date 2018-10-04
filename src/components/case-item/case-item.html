@@ -1,0 +1,28 @@
+<ion-row tappable (click)="navigateToCase()">
+  <ion-item no-lines>
+    <div item>
+      <div class="status"><ion-badge item-start [ngClass]="case?.StatusColorCssClass">{{ case?.IssueStatusName }}</ion-badge></div>
+      <div class="title" [innerHtml]="case?.IssueTitle"></div>
+      <div class="updated" *ngIf="case?.DateCreated == case?.DateUpdated; else updated">
+        {{ "COMMONS.CREATED" | translate }} {{ case?.DateCreatedWithRespectToUser | amTimeAgo }} {{ "ARTICLE.BY" | translate }}&nbsp;<span [innerHtml]="case?.ReportedByUserDisplayName"></span>
+      </div>
+      <ng-template #updated>
+        <div class="updated">
+          {{ "COMMONS.UPDATED" | translate }} {{ case?.DateUpdatedWithRespectToUser | amTimeAgo }} {{ "ARTICLE.BY" | translate }}&nbsp;<span [innerHtml]="case?.ReportedByUserDisplayName"></span>
+        </div>
+      </ng-template>
+      <div class="info">
+        <span class="comments">
+          {{ case?.CommentCount }}
+          <ion-icon name="ios-text"></ion-icon>
+        </span>
+        <span class="priority">
+          {{ "COMMONS.PRIORITY" | translate }}: {{ case?.IssuePriorityName }}
+        </span>
+        <span class="assigned" *ngIf="case.AssignedToUserID != 0"> 
+          {{ "COMMONS.ASSIGNED" | translate }}: &nbsp;<span [innerHtml]="case?.AssignedToUserDisplayName"></span>
+        </span>
+      </div>
+    </div>
+  </ion-item>
+</ion-row>

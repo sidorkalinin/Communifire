@@ -1,0 +1,8 @@
+<!-- Generated template for the ContentCategoryComponent component -->
+<ion-item id='articleCategory' class='category'>
+  <ion-label> {{"CREATE.PARENTCATEGORY" | translate}} <i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+  <ion-select [(ngModel)]="selectCategory" (ngModelChange)='returnCategory()'>        
+    <ion-option selected disabled>{{"CREATE.SELECTCATEGORY" | translate}}</ion-option>
+    <ion-option *ngFor='let category of categories' value='{{category.CategoryID}}'>{{category.CategoryName}}</ion-option>        
+  </ion-select>
+</ion-item>

@@ -1,0 +1,14 @@
+wall-card {
+    [item-top]{
+        margin-top: 16px !important;
+    }
+    [start] {
+        align-items: flex-start;
+    }
+    .text-capitalize {
+        display: block;
+    }
+    .text-capitalize::first-letter {
+        text-transform: uppercase;
+    }
+}

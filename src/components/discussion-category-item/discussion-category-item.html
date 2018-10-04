@@ -1,0 +1,22 @@
+<ion-row tappable (click)="goToDiscussion()">
+  <ion-item no-lines item>
+    <div class="icon-item">
+      <ion-icon name="ios-chatbubbles"></ion-icon>
+    </div>
+    <div class="content">
+      <div class="title">
+        {{discussion?.ContentTitle}}        
+      </div>      
+      <div class="sub-title" [innerHtml]="discussion?.ContentBody">
+      </div>
+      <div class="line">
+        <div class="posts">
+          {{ "COMMONS.POSTS" | translate }}: {{ discussion?.TotalChildRecords }}
+        </div>
+        <div class="posts">
+          {{ "COMMONS.LAST_POST" | translate }}: <span *ngIf="discussion?.LastGrandChildPostDateText">{{ discussion?.LastGrandChildPostDateText }}</span><span *ngIf="!discussion?.LastGrandChildPostDateText">{{ "COMMONS.NO_POSTS_IN_FORUM" | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </ion-item>
+</ion-row>

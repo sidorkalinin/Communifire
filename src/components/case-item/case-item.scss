@@ -1,0 +1,66 @@
+case-item {
+    .title {
+        white-space: normal;
+    }
+
+    .updated {
+        white-space: normal;
+        font-size: 0.8em;
+        color: $greyText;
+    }
+    .info {
+        white-space: normal;
+        font-size: 0.8em;
+        color: $greyText;
+        .comments {
+            padding-right: 15px;
+            display: flex;
+            flex-direction: row;
+            ion-icon {
+                margin-left: 3px;
+            }
+        }
+        display: flex;
+        .priority {
+            white-space: nowrap;
+            padding-right: 15px;
+            display: flex;
+            flex-direction: row;
+        }
+        .assigned {
+            white-space: nowrap;
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    ion-badge {
+        min-width: 126px;
+        padding-top: 5px !important; 
+        padding-bottom: 5px !important; 
+    }
+
+    .case-status-label-new {
+        background-color: #FFBD0C;
+    }
+
+    .case-status-label-closed {
+        background-color: #333;
+    }
+
+    .case-status-label-feedbackrequired {
+        background-color: #5A38A3;
+    }
+
+    .case-status-label-fixed {
+        background-color: #0076C0;
+    }
+
+    .case-status-label-inprogress {
+        background-color: #459D3E;
+    }
+
+    .case-status-label-reopened {
+        background-color: #D90B01;
+    }
+}

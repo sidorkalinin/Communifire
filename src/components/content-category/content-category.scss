@@ -1,0 +1,15 @@
+content-category {
+  ion-select{
+    padding-left:0px !important;
+    .item-cover {
+      width: 0;
+      height: 0;
+    }
+  }
+  .category{
+    font-size:inherit;
+    padding-left:0px;
+    border-bottom: solid 1px !important;
+    border-color: #b9b9b9 !important;
+  }  
+}

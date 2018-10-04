@@ -1,0 +1,28 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar color="blue">
+    <ion-title>{{ "MODAL.ADDRESOURCE" | translate}}</ion-title>
+    <back-button (click)='back()'></back-button>
+  </ion-navbar>  
+</ion-header>
+
+<ion-content no-margin>
+  <ion-searchbar [(ngModel)]="searchString" (input)="search()" placeholder="{{'MODAL.SEARCH...' | translate}}" ></ion-searchbar>
+  <div class='item-wrapper' *ngFor='let item of tmpItems'>
+    <ion-item>
+      <ion-checkbox [(ngModel)]="item.selected"></ion-checkbox>
+      <ion-avatar item-start>
+        <img [src]="item.src">
+      </ion-avatar>
+      <ion-label>
+        <h2 [innerHtml]="item.name"></h2>
+        <p [innerHtml]="item.name"></p>
+      </ion-label>
+      <ion-note item-end (click)='select(item)' [hidden]='item.selected'>
+        {{ "MODAL.ADD" | translate}}
+      </ion-note>
+      <ion-note item-end (click)='select(item)' [hidden]='!item.selected'>
+        {{ "MODAL.REMOVE" | translate}}
+      </ion-note>
+    </ion-item>  
+  </div>  
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="activity?.UserAvatarFullUrl" [src]="activity?.UserAvatarFullUrl | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.UserDisplayName"></strong>
+      <ng-container>
+        <span [innerHtml]="activity?.ActionText"></span>
+        <span *ngIf="activity?.SpaceName">{{ "ARTICLE.IN" | translate }} {{ activity.SpaceName }}</span>
+      </ng-container>
+    </h4>
+    <p>{{activity?.DateTimeSpan}}</p>
+  </ion-item>
+
+  <ion-card (click)="goToVideo()">
+    <img *ngIf="activity?.ContentThumbImageFullURL" [src]="activity?.ContentThumbImageFullURL | secure | async">
+    <img *ngIf="activity?.TitleImageURL" [src]="activity?.TitleImageURL | secure | async">
+    <ion-card-content>
+      <h2 [innerHtml]="activity?.Subject"></h2>
+      <p text-justify [innerHtml]="activity?.Summary"></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding text-right (click)='openComment()'>
+      <comments-count *ngIf="activity?.EntityCommentCount >= 0 && activity.CanBeCommented !== false" [comments]="activity?.EntityCommentCount"></comments-count>
+    </ion-col>
+  </ion-row>
+
+  <like-comment-actions (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions>
+</ion-card>

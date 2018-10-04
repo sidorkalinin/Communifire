@@ -1,0 +1,76 @@
+<ion-card *ngIf="activity?.AwardContentTitle == undefined">
+  <ion-item text-wrap start>
+    <ion-avatar item-start item-top>
+      <img *ngIf="activity?.UserAvatarFullUrl" [src]="activity?.UserAvatarFullUrl | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.UserDisplayName"></strong>
+    </h4>
+    <p (click)="goToWallPost()" [style.color]="'#000'" [innerHTML]="activity?.WallTextHtmlFormatted"></p>
+  </ion-item>
+  <ion-card padding (click)="goToWallPost()" *ngIf="(activity?.ChildNewsFeed?.Subject) ||( activity?.ChildNewsFeed?.Files) || (activity?.Subject) || (activity?.Summary)">
+    <p>
+      <span class="text-capitalize" [innerHtml]="activity?.ChildNewsFeed?.ActionText"></span>&nbsp;
+      <span [style.textWeight]="'bold'" [innerHtml]="activity?.ChildNewsFeed?.Subject"></span>
+    </p>
+    <div padding-top>
+      <p>
+        <ion-row *ngFor="let file of activity?.ChildNewsFeed?.Files">
+          {{ file.ContentTitle }}
+        </ion-row>
+      </p>
+      <ion-slides pager *ngIf="activity.ChildNewsFeed.Photos">
+        <ion-slide *ngFor="let photo of activity.ChildNewsFeed.Photos">
+          <img [src]="photo.ContentThumbImageFullURL | secure | async" alt="">
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <ion-card-content>
+      <h2 (click)="goToEntity()" [innerHtml]="activity?.Subject"></h2>
+      <p text-justify [innerHtml]="activity?.Summary"></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding text-right (click)='openComment()'>
+      <comments-count *ngIf="activity?.WallComment.length >= 0 && activity.CanBeCommented !== false" [comments]="activity?.WallComment.length"></comments-count>
+    </ion-col>
+  </ion-row>
+
+  <like-comment-actions (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions>
+</ion-card>
+<ion-card *ngIf="activity?.AwardContentTitle != undefined">
+    <ion-item text-wrap start>
+      <ion-avatar item-start item-top>
+        <img *ngIf="activity?.ToUserAvatarVirtualPath" [src]="activity?.ToUserAvatarVirtualPath | secure | async">
+      </ion-avatar>
+      <h4>
+        <strong (click)="goToProfile()" [innerHTML]="activity?.ToUserDisplayName"></strong>
+        <ng-container>
+            <span (click)="goToWallPost()" [style.color]="'#000'" [innerHTML]="activity?.ActionText"></span>
+        </ng-container>
+      </h4>      
+      <p>{{activity?.DateTimeSpan}}</p>
+    </ion-item>
+    <ion-card padding (click)="goToWallPost()">
+      <ion-card-content>
+        <img  [src]="activity?.AwardContentImageURL | secure | async" alt="">
+        <h2 (click)="goToEntity()">{{ "EXTRA.BADGE" | translate }}</h2>
+        <p text-justify>{{ "EXTRA.BADGE" | translate }}</p>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-row padding-horizontal>
+      <ion-col no-padding>
+        <content-like [likesCount]="likesCount"></content-like>
+      </ion-col>
+      <ion-col no-padding text-right (click)='openComment()'>
+        <comments-count *ngIf="activity?.WallComment.length >= 0 && activity.CanBeCommented !== false" [comments]="activity?.WallComment.length"></comments-count>
+      </ion-col>
+    </ion-row>
+  
+    <like-comment-actions (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions>
+</ion-card>

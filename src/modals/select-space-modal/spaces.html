@@ -1,0 +1,29 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar color="blue">
+    <ion-title>{{"MODAL.CHOOSESPACES" | translate}}</ion-title>
+    <back-button (click)='back()'></back-button>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="spaces">
+      <ion-segment-button value="my-spaces">
+        {{"COMMONS.MYSPACES" | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="all-spaces">
+        {{"COMMONS.ALLSPACES" | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-margin>
+  <div [ngSwitch]="spaces">
+    <div *ngSwitchCase="'my-spaces'">
+      <space-list-for-modal [spaces]="mySpaces" [isLoading]="isLoading"></space-list-for-modal>
+    </div>
+
+    <div *ngSwitchCase="'all-spaces'">
+      <space-list-for-modal [spaces]="mySpaces" [notMe]="allSpaces" [isLoading]="isLoading" [isAll]="true"></space-list-for-modal>
+    </div>
+  </div>  
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="space?.UserAvatarFullUrl" [src]="space?.UserAvatarFullUrl | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="space?.UserDisplayName"></strong>
+      <ng-container>
+        <span [innerHtml]="space?.ActionText"></span>
+        <span *ngIf="space?.SpaceName">{{ "ARTICLE.IN" | translate }} {{ space.SpaceName }}</span>
+      </ng-container>
+    </h4>
+    <p>{{space?.DateTimeSpan}}</p>
+  </ion-item>
+
+  <ion-card (click)="goToSpace()">
+    <img *ngIf="space?.ContentThumbImageFullURL" [src]="space?.ContentThumbImageFullURL | secure | async">
+    <img *ngIf="space?.TitleImageURL" [src]="space?.TitleImageURL | secure | async">
+    <ion-card-content>
+      <h2 [innerHtml]="space?.Subject"></h2>
+      <p [innerHtml]="space?.Summary"></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding text-right>
+      <comments-count *ngIf="space?.EntityCommentCount >= 0 && space.CanBeCommented !== false" [comments]="space?.EntityCommentCount"></comments-count>
+    </ion-col>
+  </ion-row>
+
+  <like-comment-actions (likeCount)="setCount($event)" [entity]="space"></like-comment-actions>
+</ion-card>

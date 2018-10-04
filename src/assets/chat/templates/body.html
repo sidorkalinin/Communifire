@@ -1,0 +1,232 @@
+    
+<div id="connection-status"><span class="connection-message"></span></div>
+    <div id="loadingRoomHistory" class="loading-room-history alert alert-info">
+        <i class="fa fa-spinner fa-spin"></i> ${r.LoadingPreviousMessagesText}
+    </div>
+    <div id="outer-wrapper">
+        <div id="inner-wrapper">
+            <nav id="right-menu" class="right-canvas-menu">
+                
+                <a id="close-right-menu" class="close-right-menu" href="#" title='${r.GlobalCloseText}'><i class="fa fa-close"></i></a>
+                <div id="ch-users" class="ch-users"></div>
+                <div>
+                    <!-- logged in user -->
+                </div>
+            </nav>
+            <nav id="left-menu" class="off-canvas-menu">
+                <div class="ch-channel-header">
+
+                    <div class="company-name">
+                        <a id="brand" class="brand" href="${homeUrl}" ><img id="imgLogo" alt="${appName}" src="${appLogoUrl}"  /></a>
+                    </div>
+                    <div class="start-chat">
+                        <a id="create-room" class="btn" href="#" data-toggle="modal" title="${r.StartANewChatText}"><i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+
+                <div id="tabs" class="ch-channels ch-channels-messages">
+                    <div class="thread-section-label favorite-thread-section-label"><span>${r.FavoritesText}</span></div>
+                    <ul id="favorite-threads" class="filtered favorite-threads"></ul>
+                    <div class="thread-section-label recent-thread-section-label"><span>${r.RecentText}</span></div>
+                    <ul id="recent-threads" class="filtered recent-threads"></ul>
+                    <ul id="threads-history"></ul>
+                </div>
+
+                <div class="column-avatar">
+
+                    <!-- logged in user -->
+                    <div class="ch-window-avatar">
+                        <div class="ch-user-avatar">
+                            <a onclick="return false;" href="#" title="${currentUserDisplayName}"><img src="${currentUserAvatar}"></a>
+                        </div>
+                        <div class="ch-user-status dropup">
+                            <a class="dropdown-toggle" id="chat-user-status" data-toggle="dropdown" href="#"><i data-userid="${currentUserID}" class="fa fa-circle ${currentUserPresenceClass}"></i></a>
+                            <ul class="dropdown-menu">
+                                <li data-status="1"><a href="#"><i class="fa fa-circle status-online"></i> ${r.ChatStatusOnline}</a></li>
+                                <li data-status="5"><a href="#"><i class="fa fa-circle status-away"></i> ${r.ChatStatusAway}</a></li>
+                                <li data-status="4"><a href="#"><i class="fa fa-circle status-disturb"></i> ${r.ChatStatusDND}</a></li>
+                                <li data-status="3"><a href="#"><i class="fa fa-circle status-offline"></i> ${r.ChatStatusInvisible}</a></li>
+                                <li><a id="LogoutLink" href="${logoutUrl}" class="logout"> ${r.HeaderLogoutText}</a></li>
+                            </ul>
+                        </div>
+                        <div class="ch-user-option-notification pull-right"><a id="SetNotifications" class="notifications-manage-link"><i class="fa fa-bell-o"></i></a></div>
+                    </div>
+                </div>
+            </nav>
+            <div class="navbar navbar-inverse navbar-fixed-top">
+            <div id="romm-topics-container" class="navbar-inner">
+                <div class="pull-left">
+                    <button style="" type="button" id="rooms-menu-toggle" class="btn btn-navbar off-canvas-menu-toggle">
+                        {{if isMobile == true}}
+                            <i class="fa fa-comments-o"></i>
+                        {{else}}
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        {{/if}}
+                    </button>
+                </div>
+            </div>
+        </div>
+            <div id="chat-area">
+                
+            </div>
+            <div id="ch-message-input" class="ch-message-input" style="visibility: hidden;">
+            <div id="ch-typingIndicator" class="ch-typing-indicator">&nbsp;</div>
+            
+	        <div class="ch-message-options">
+                <div id="file-uploader"></div>
+	        </div>
+
+            <div class="ch-message-send">
+                <a id="send" href="#" class="btn reply-button"><i class="fa fa-caret-right"></i></a>
+            </div>
+
+            <div class="ch-input-container">
+		        <div class="ch-message-box">
+                    <textarea id="new-message" rows="1" placeholder='${r.ChatInputPlaceHolderText}'></textarea>
+		        </div>
+            </div>
+                    
+        </div>
+        </div>
+
+        <div id="upload-message" class="drag-files-container hide">
+            <div class="upload-container">
+                <div class="text">
+                    <h2>
+                        ${r.GlobalDropFilesUploadText}
+                    </h2>
+                </div>
+            </div>
+            <div class="bg"></div>
+        </div>
+    </div>
+    
+<!-- Create Private Group Modal -->
+<div id="create-room-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">${r.StartANewChatText}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form-section hide">
+            <label>${r.GlobalTitleText}</label>
+            <input id="ThreadTitleTextBox" type="text" class="input-block-level">
+        </div>
+        <div class="modal-form-section">
+            <label>${r.InviteOthersToJoin}</label>
+            <select id="StartDiscussionUsersDropdownList" multiple="multiple" class="input-block-level"></select>
+            <span class="help-block">${r.ChatFindPeopleTypeName}</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">${r.GlobalCancelText}</button>
+        <button id="StartDiscussionButton" class="btn btn-success">${r.ChatStartConversation}</button>
+    </div>
+</div>
+
+<!-- Add people modal -->
+<div id="add-people-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="addPeopleModalLabel">${r.InboxAddPeopleText}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form-section">
+            <label>${r.ChatAddOthers}</label>
+            <select id="AddPeopleDropdownList" multiple="multiple" class="input-block-level"></select>
+            <span class="help-block">${r.ChatAddPeopleTypeName}</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">${r.GlobalCancelText}</button>
+        <button id="AddPeopleButton" class="btn btn-success">${r.InboxAddPeopleText}</button>
+    </div>
+</div>
+
+<!-- Add people to group modal -->
+<div id="add-people-to-group-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="addPeopleToGroupModalLabel">${r.InboxAddPeopleText}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form-section">
+            <label>${r.ChatAddOthers}</label>
+            <select id="AddPeopleToGroupDropdownList" multiple="multiple" class="input-block-level"></select>
+            <span class="help-block">${r.ChatAddPeopleTypeName}</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">${r.GlobalCancelText}</button>
+        <button id="AddPeopleToGroupButton" class="btn btn-success">${r.InboxAddPeopleText}</button>
+    </div>
+</div>
+
+<!-- Group message setings modal -->
+<div id="ManageMessageThreadModal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3>${r.ChatConversationSettings}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form-section">
+            <label>${r.ConversationTitleTopic}</label>
+            <input id="ManageMessageThreadModalTitleTextBox" type="text" class="input-block-level">
+        </div>
+        <div class="modal-form-section">
+            <label>${r.ITTicketPeopleText}</label>
+            <select id="ManageMessageThreadModalParticipantsDropdownList" multiple="multiple" class="input-block-level"></select>
+            <span class="help-block">${r.ChatFindPeopleTypeName}</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">${r.GlobalCancelText}</button>
+        <button id="ManageMessageThreadModalSaveButton" class="btn btn-success">${r.SpaceSaveSettingText}</button>
+    </div>
+</div>
+
+<!-- Edit message modal -->
+<div id="EditMessageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3>${r.ChatEditMessageText}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="modal-form-section">
+            <textarea id="EditMessageTextBox" class="input-block-level" rows="10" placeholder=""></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">${r.GlobalCancelText}</button>
+      <button id="EditMessageButton" class="btn btn-success">${r.GlobalSaveText}</button>
+    </div>
+</div>
+
+<div class="wdt-emoji-popup">
+    <a href="#" class="wdt-emoji-popup-mobile-closer"> &times; </a>
+    <div class="wdt-emoji-menu-content">
+        <div id="wdt-emoji-menu-header">
+            <span class="hide"><a class="wdt-emoji-tab active" data-group-name="Recent"></a></span>
+            <a class="wdt-emoji-tab" data-group-index=0 data-group-name="People"></a>
+            <a class="wdt-emoji-tab" data-group-index=1 data-group-name="Nature"></a>
+            <a class="wdt-emoji-tab" data-group-index=2 data-group-name="Foods"></a>
+            <a class="wdt-emoji-tab" data-group-index=3 data-group-name="Activity"></a>
+            <a class="wdt-emoji-tab" data-group-index=4 data-group-name="Places"></a>
+            <a class="wdt-emoji-tab" data-group-index=5 data-group-name="Objects"></a>
+            <a class="wdt-emoji-tab" data-group-index=6 data-group-name="Symbols"></a>
+            <a class="wdt-emoji-tab" data-group-index=7 data-group-name="Flags"></a>
+            <span class="hide"><a class="wdt-emoji-tab" data-group-name="Custom"></a></span>
+        </div>
+        <div class="wdt-emoji-list-container">
+            <div class="wdt-emoji-scroll-wrapper">
+                <div id="wdt-emoji-menu-items">
+                    <h3 id="wdt-emoji-search-result-title">${r.GlobalSearchResultHeaderText}</h3>
+                    <div class="wdt-emoji-sections"></div>
+                    <div id="wdt-emoji-no-result">${r.NoEmojiFoundText}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

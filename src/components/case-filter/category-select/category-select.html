@@ -1,0 +1,17 @@
+<!-- <ion-item>
+  <ion-label>{{ "COMMONS.CATEGORY" | translate }}</ion-label>
+  <ion-select select  interface="popover" [(ngModel)]="currentCategory" (ionChange)="onChange()">
+      <ion-option *ngFor="let category of categories" [value]="category?.ProjectSectionID">{{ category?.ProjectSectionName }}</ion-option>
+  </ion-select>
+</ion-item> -->
+<ion-item (click)="openModal()">
+    <ion-label>
+      {{ "COMMONS.CATEGORY" | translate }}
+    </ion-label>
+    <div item-content>
+      <span *ngIf="!currentCategory && !isComment">{{ "COMMONS.VIEW_ALL" | translate }}</span>
+      <span *ngIf="!currentCategory && isComment">{{ "COMMONS.NOT_SET" | translate }}</span>
+      <span *ngIf="currentCategory">{{ category?.ProjectSectionName }}</span>
+      <ion-icon name="arrow-forward"></ion-icon>
+    </div>
+  </ion-item>

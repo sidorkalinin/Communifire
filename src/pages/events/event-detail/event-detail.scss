@@ -1,0 +1,93 @@
+page-event-detail {
+  // ion-header.header.header-ios{
+  //   padding-top: 20px;
+  //   background-color: #f8f8f8;
+  // } 
+  
+  .banner {
+    min-height: 150px;
+    background-color: #e1e1e1;
+  }
+  .segment-button {
+    color: #000 !important;
+    height: 4.2rem !important;
+    line-height: 4rem !important;
+  }
+
+  .segment-md .segment-activated {
+    color: #32db64 !important;
+  }
+
+  .segment-ios .segment-button {
+    border-radius: 0px !important;
+    background-color: #EFEFF4;
+    border-color: #fff !important; 
+  }
+
+  .segment-ios .segment-activated {
+    color: #fff !important;
+  }
+
+  .info-list {
+    h6 {
+      font-weight: 600;
+    }
+    p {
+      color: #000;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: $linkColor;
+  }
+
+}
+
+.event-date {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: relative;
+  &.hasCover {
+    margin-top: -60px;
+  }
+  h4, h2 {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.primary-details {
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.article-title-detail {
+  p{
+    margin: 0;
+    font-size: 14px;
+    color: #9a9a9a;
+  }
+
+  h4 {
+    color: red;
+  }
+
+  .edit {
+    
+    right: 0px !important;
+  }
+  h3{
+    font-weight: 450;
+  }
+}

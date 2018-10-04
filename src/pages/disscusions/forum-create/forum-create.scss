@@ -1,0 +1,63 @@
+page-forum-create {
+  .fa-red{
+    color:red;
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+  }
+  .pb-10{
+    padding-bottom: 10px;
+  }
+  .pt-10{
+    padding-top: 10px;
+  }
+  .pt-15{
+    padding-top: 15px;
+  }
+  .pt-20{
+    padding-top:20px;
+  }
+  ion-content{
+    .scroll-content{
+      padding: 0px !important;
+    }    
+  }
+  ion-card{
+    padding: 10px 20px;
+    margin: 0px !important;    
+    width: 100% !important;
+  }
+  ion-input{
+    input{
+      margin-left:0px !important;
+      border-bottom: solid 1px !important;
+      border-color: #b9b9b9 !important;
+    }
+  }
+  ion-textarea{
+    textarea{
+      margin-left:0px !important;
+      border-bottom: solid 1px !important;
+      border-color: #b9b9b9 !important;
+    }
+  }
+  .red{
+    input{
+      border-color: #ff0000 !important;
+    }
+    textarea{
+      border-color: #ff0000 !important;
+    }
+    
+  }
+  ion-card{
+    button{
+      height: 2.2em !important;
+      font-size: 1.4rem;
+    }
+    .btn-save{
+      position: absolute;
+      right: 20px;      
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<!-- Generated template for the UploadVideoComponent component -->
+
+<div (click)='presentActionSheet($event)' style='padding-top: 15px;'>
+  <label for="">
+    {{"CREATE.CHOOSEVIDEO" | translate}}
+  </label>
+  <div class='pt-10 upload' *ngIf='file.filename == ""' (click)='presentActionSheet($event)'>
+    <ion-icon ios="md-cloud-upload" md="md-cloud-upload"></ion-icon>
+  </div>
+  <div class='pt-10 pb-10' *ngIf='file.filename != ""' (click)='presentActionSheet($event)' style='text-align: center;'>
+    <!-- <video controls class="video" [src]="file.path"></video> -->
+    <img [src]="thumburl | secure | async" style='width: 240px; margin:auto; '>
+    <!-- <span style='padding-left: 15px; margin-top: 15px; margin-bottom: 10px;'>{{"COMPONENT.FILESELECTED" | translate}}</span> -->
+  </div>
+</div>

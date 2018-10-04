@@ -1,0 +1,13 @@
+content-like {
+    .like-button {
+            display: flex;
+            align-items: baseline;
+            font-weight: 400;
+        p {
+            color: $greyText !important;
+            font-weight: 400;
+            padding-left: 5px;
+        }
+        color: $greyText !important;
+    }
+}

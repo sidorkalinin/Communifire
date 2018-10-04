@@ -1,0 +1,17 @@
+<!-- <ion-item>
+  <ion-label>{{ "COMMONS.PROJECT" | translate }}</ion-label>
+  <ion-select select interface="popover" [(ngModel)]="currentProject" (ionChange)="onChange()">
+      <ion-option *ngFor="let project of projects" [value]="project?.ProjectID">{{ project?.ProjectTitle }}</ion-option>
+  </ion-select>
+</ion-item> -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{ "COMMONS.PROJECT" | translate }}
+  </ion-label>
+  <div item-content>
+    <span *ngIf="!currentProject && !isComment">{{ "COMMONS.VIEW_ALL" | translate }}</span>
+    <span *ngIf="!currentProject && isComment">{{ "COMMONS.NOT_SET" | translate }}</span>
+    <span *ngIf="currentProject">{{ project?.ProjectTitle }}</span>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

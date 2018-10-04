@@ -1,0 +1,4 @@
+<span no-padding no-margin text-capitalize>
+  <p *ngIf="comments === 1">{{ comments }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+  <p *ngIf="comments > 1 || comments === 0">{{ comments }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</p>
+</span>

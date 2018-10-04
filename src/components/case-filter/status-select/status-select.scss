@@ -1,0 +1,21 @@
+status-select {
+    [select] {
+        max-width: 80%;
+        
+    }
+    [item-content] {
+        display: flex;
+        span {
+            margin-right: 10px;
+        }
+    }
+}
+
+ion-popover {
+    .item-radio.item-ios ion-label {
+        margin-right: 0 !important;
+    }
+    ion-radio {
+        margin-right: 0 !important;
+    }
+}

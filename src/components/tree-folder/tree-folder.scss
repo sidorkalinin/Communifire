@@ -1,0 +1,22 @@
+tree-folder {
+    ion-grid{
+        padding: 0;
+        margin: 0;
+        align-items: left;
+    }
+    .divitem {
+        padding: 0 0 0 10px;
+        margin: 0;
+        button{
+            padding-left: 0px !important;
+            min-height: 3rem !important;
+        }
+        button.select{
+            background: #dcdcdc;
+        }
+    }
+    ion-label{
+        margin: 0px !important;
+        margin-top: 3px !important;
+    }
+}

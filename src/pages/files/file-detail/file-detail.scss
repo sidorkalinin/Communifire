@@ -1,0 +1,33 @@
+page-file-detail {
+  ion-content.content {
+    background-color: white;
+  }
+  .banner {
+    min-height: 150px;
+  }
+  a {
+    text-decoration: none;
+    color: $linkColor;
+  }
+  .item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
+    width: 30px;
+    height: 30px; 
+  }
+  .item-ios ion-thumbnail {
+    min-width: initial;
+    min-height: initial;
+    margin: 0px 10px 0px 0px !important;
+  }
+  ion-item {
+    padding-left: 0px !important;
+    .item-inner {
+      border-bottom: none !important;
+    }
+  }
+  ion-title {
+    .toolbar-title {
+      max-width: 70%;
+      margin: auto;
+    }
+  }
+}

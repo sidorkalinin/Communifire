@@ -1,0 +1,6 @@
+<ion-item *ngIf="folderList.length > 0" no-padding>
+  <ion-label>{{ "COMMONS.DIRECTORY" | translate }}:</ion-label>
+  <ion-select [(ngModel)]="currentFolder" (ionChange)="onChange($event)" interface="action-sheet" [selectOptions]="selectOptions">
+    <ion-option *ngFor="let folder of folderList" [value]="folder">{{ folder.DirectoryName }}</ion-option>
+  </ion-select>
+</ion-item>

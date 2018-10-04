@@ -1,0 +1,145 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>{{ case?.SpaceName }}</ion-title>
+  </ion-navbar>
+</ion-header> -->
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ case?.SpaceName }}</ion-title>
+    <ion-buttons right>
+      <edit-button [entity]='{contentId: id, entityType: "case"}' [hidden]='!canedit'></edit-button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card card-title>
+    <ion-card-content>
+      <div (click)="navToList()">{{ "TITLES.CASES" | translate }}</div>
+      <!-- <span class="edit">Edit</span> -->
+    </ion-card-content>
+  </ion-card>
+  <ion-row>
+    <ion-item no-lines no-wrap>
+      <h3>
+        {{case?.IssueTitle}}
+      </h3>
+    </ion-item>
+  </ion-row>
+  <ion-row border-top>
+    <ion-item no-lines>
+      <div class="line">
+        <div class="status">
+          <ion-badge [ngClass]="case?.StatusColorCssClass">{{ case?.IssueStatusName }}</ion-badge>
+        </div>
+        <div class="comments">
+          {{ comments?.length }}
+          <ion-icon name="ios-text"></ion-icon>
+        </div>
+      </div>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-item no-lines no-wrap>
+      <div class="line">
+        <div class="column">
+          <span>{{ "COMMONS.CREATED" | translate }}</span>
+          <span>{{ case?.DateCreatedWithRespectToUser | date:"d/M/yy" }}</span>
+        </div>
+        <div class="column">
+          <span>{{ "COMMONS.ASSIGNED" | translate }}</span>
+          <span [style.fontStyle]="'italic'" *ngIf="case.AssignedToUserID == 0">{{ "COMMONS.NOT_ASSIGNED" | translate }}</span>
+          <span [innerHtml]="case?.AssignedToUserDisplayName"></span>
+        </div>
+        <div class="column">
+          <span>{{ "COMMONS.PRIORITY" | translate }}</span>
+          <span>{{ case?.IssuePriorityName }}</span>
+        </div>
+      </div>
+    </ion-item>
+  </ion-row>
+  <ion-row border-bottom>
+    <ion-item no-lines no-wrap>
+      <div class="line">
+        <div class="column">
+          <span>{{ "COMMONS.PROJECT" | translate }}</span>
+          <span>{{ case?.ProjectTitle }}</span>
+        </div>
+        <div class="column">
+          <span>{{ "TITLES.Milestone" | translate }}</span>
+          <span [style.fontStyle]="'italic'" *ngIf="case.MilestoneID == 0">{{ "COMMONS.NOT_SET" | translate }}</span>
+          <span>{{ case?.MilestoneTitle }}</span>
+        </div>
+        <div class="column">
+          <span>{{ "COMMONS.CATEGORY" | translate }}</span>
+          <span [style.fontStyle]="'italic'" *ngIf="case.ProjectSectionID == 0">{{ "COMMONS.NOT_SET" | translate }}</span>
+          <span>{{ case?.ProjectSectionName }}</span>
+        </div>
+      </div>
+    </ion-item>
+  </ion-row>
+
+  <ion-card no-margin case-description>
+    <ion-item>
+      <ion-avatar item-start>
+        <img *ngIf="!isImgLoaded" [src]="avatarImageURL">
+        <img [hidden]="!isImgLoaded" (load)="isImgLoaded = true" [src]="case?.ReportedByUserAvatarImageUrl | secure | async">
+      </ion-avatar>
+      <h2 (click)="goToProfile()" [innerHtml]="case?.ReportedByUserDisplayName" class="username-display"></h2>
+      <p class="date-display">{{ case?.DateCreatedWithRespectToUser | amTimeAgo }}</p>
+    </ion-item>
+    <ion-card-content>
+      <span class="case-text" [innerHtml]="case?.IssueDescription"></span>
+    </ion-card-content>
+    <show-attachments [entity]="{id: id, type: 19}"></show-attachments>
+    <!-- <ion-scroll scrollX="true" style="width:100vw; height:140px" *ngIf="case.Attachments">
+      <ion-row nowrap>
+        <div *ngFor="let item of case?.Attachments" class="attachment-item" [ngClass]="{ 'isImage': item.IsImage}" >
+          <img [src]="item.MediaServerRootURL + '/' + item.FileName" *ngIf="item.IsImage">
+          <p *ngIf="!item.IsImage" [innerHtml]="item?.Caption"></p>
+          <div class="size" *ngIf="!item.IsImage">
+            <ion-icon name="document"></ion-icon>
+            <span>{{ item.FileSizeText }}</span>
+          </div>
+        </div>
+      </ion-row>
+    </ion-scroll> -->
+    <ion-list padding-horizontal no-lines *ngIf="case.Tagname">
+      <ion-item no-padding>
+        <ion-row>
+          <ion-col no-padding tags no-lines>
+            {{"ARTICLE.TAGS" | translate}}
+            <div [innerHtml]="case?.Tagname"></div>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+    <div class="likes-count">
+      <content-like [likesCount]="likes"></content-like>
+    </div>
+    <div class="case-detail-like">
+      <single-content-like *ngIf="!isRefreshing" left (getCount)="setCount($event)" [contentID]="case?.IssueID" [entityType]="19"></single-content-like>
+    </div>
+  </ion-card>
+
+  <case-comment [comment]="comment" *ngFor="let comment of comments"></case-comment>
+</ion-content>
+
+<ion-footer (click)="openModal()" *ngIf="hasCaseCommentPermChecked">
+  <ion-toolbar add-comment>
+    <ion-buttons class="comment-icon" left>
+      <ion-icon *ngIf="hasCreateCommentPermission" name="text"></ion-icon>
+      <ion-icon *ngIf="!hasCreateCommentPermission" name="md-settings"></ion-icon>
+    </ion-buttons>
+    <span *ngIf="hasCreateCommentPermission">{{ 'COMMONS.ADD_COMMENT' | translate }} ...</span>
+    <span *ngIf="!hasCreateCommentPermission">{{ 'COMMONS.UPDATE_CASE' | translate }} ...</span>
+  </ion-toolbar>
+</ion-footer>

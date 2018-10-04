@@ -1,0 +1,9 @@
+write-comment {
+    ion-toolbar .toolbar-background  {
+        background-color: #fff !important;
+    }
+    span {
+        color: $greyText;
+        padding-left: 10px;
+    }
+}

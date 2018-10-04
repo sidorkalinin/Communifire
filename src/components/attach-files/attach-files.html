@@ -1,0 +1,12 @@
+<div *ngFor="let file of filesArray" class='attach-file'>
+  <span>{{file.filename}}
+    <i class="fa fa-times fa-1" aria-hidden="true" (click)='removeAttachFile(file.path)'></i>
+  </span>
+</div>
+
+<div class="add-attachment">
+  <button clear (click)="presentActionSheet()">    
+    <span [style.marginLeft]="'-5px'">{{ "CREATE.ATTACHFILES" | translate }}</span>
+    <fa-icon size="lg" name="paperclip" rotate="flip-horizontal"></fa-icon> 
+  </button>
+</div>

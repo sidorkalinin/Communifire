@@ -1,0 +1,19 @@
+<!-- Generated template for the AddPhotoComponent component -->
+<ion-scroll scrollX="true" style="width:100vw; height:100px" *ngIf="filesArray.length >= 0">
+  <ion-row nowrap>
+    <div *ngFor="let file of filesArray" class="attachment-item" [ngClass]="{ 'isImage': file.isImage}">
+      <img [src]="DomSanitizer.bypassSecurityTrustUrl(file.path)" *ngIf="file.isImage">
+      <i class="fa fa-times fa-2" aria-hidden="true" (click)='removeAttachFile(file.path)' *ngIf="file.isImage"></i>
+      <p *ngIf="!file.isImage" [innerHtml]="file?.filename">
+        <i class="fa fa-times fa-2" aria-hidden="true" (click)='removeAttachFile(file.path)'></i>
+      </p>
+      <div class="size" *ngIf="!file.isImage">
+        <ion-icon [name]="file.icon"></ion-icon>
+        <!-- <span>{{ item.FileSizeText }}</span> -->
+      </div>
+    </div>
+  </ion-row>
+</ion-scroll>
+<div class='attch-button-wrapper'>
+  <button ion-button color="dark" (click)='presentActionSheet()'>{{"COMPONENT.ADDPHOTO" | translate}}</button>    
+</div>

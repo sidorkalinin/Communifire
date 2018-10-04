@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="blue">
+    <ion-title>{{ "HOME" | translate }}</ion-title>
+    <button ion-button icon-only button-clear menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+  <ion-card space-filter-home>
+    <ion-list>
+      <ion-item>
+        <ion-select interface="action-sheet" [(ngModel)]="currentSpace" (ionChange)="changeSpace()" [style.maxWidth]="'inherit'"
+          [style.minWidth]="'100px'" [selectOptions]="selectOptions">
+          <ion-option [value]="'null'">All</ion-option>
+          <ion-option [value]="0">Top level community</ion-option>
+          <ion-option *ngFor="let item of spacesList" [value]="item.SpaceID">{{ item.SpaceName }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-header>
+
+<ion-content no-margin>
+  <ion-refresher *ngIf="!isLoadingFirst" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- <loader *ngIf="isLoading"></loader> -->
+  <div *ngIf="isLoading">
+    <empty-card *ngFor="let item of [1, 2, 3]"></empty-card>
+  </div>
+  <home-activity-card [activity]="activities" *ngFor="let activities of activities"></home-activity-card>
+  <ion-infinite-scroll *ngIf="currentSpace == 0 && !isLoading" (ionInfinite)="getNextPage($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-infinite-scroll *ngIf="currentSpace != 0 && !isLoading" (ionInfinite)="getNextPageForSpace($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

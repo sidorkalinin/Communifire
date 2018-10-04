@@ -1,0 +1,92 @@
+photo-modal {
+    .swiper-slide {
+        font-size: inherit !important;
+    }
+    .toolbar-background {
+        background-color: #000;
+    }
+    .toolbar-title {
+        color: white;
+    }
+    .content {
+        background-color: #000;
+    }
+    .photo{
+        padding-top: 30px;
+        height: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        img {
+            max-height: 100%;
+        }
+    }
+    .photo-info {
+        height: 40%;
+        padding: 16px;
+        margin-bottom: 100px;
+        .user {
+            display: flex;
+            flex-direction: row;
+            .img {
+                // display: flex;
+                img {
+                    border-radius: 50%;
+                }
+            }
+            .username {
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                text-align: left;
+                p {
+                    margin: 0 0 2px 10px;
+                    &:first-child {
+                        font-weight: 500;
+                    }
+                    &:last-child {
+                        font-size: 0.9em;
+                    }
+                }
+            }
+        }
+        .description {
+            color: #fff;
+            line-height: 1em;
+            height: 2em;
+            overflow: hidden;
+            margin-top: 15px;
+            text-align: left;
+        }
+        .comment-line {
+            color: #fff;
+            display: flex;
+            .comment {
+                // margin-right: 20px;
+            }
+            .like {
+                margin-right: 30%;
+            }
+        }
+    }
+    ion-header.header-ios {
+        background-color: #000 !important;
+    }
+}
+
+[modal-inside]{
+    background-color: #000;
+    ion-item {
+        background-color: #000;
+    }
+    ion-list {
+        padding-left: 0 !important;
+    }
+    ion-col {
+        background-color: #000;
+    }
+    button {
+        color: #fff !important;
+    }
+}

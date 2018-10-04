@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height" />
+</head>
+
+<body>
+    <div id="splash-screen" class="splash-screen-overlay">
+        <div id="spinner-absolute-center" class="spinner-absolute-center">
+            <div class="loader"></div>
+        </div>
+    </div>
+    <script>
+        var CF_HOST = "",
+            CF_VD = "..",
+            CF_REMOTE_HOST = localStorage.getItem("community_url"),
+            CF_API_TOKEN = localStorage.getItem("communifire_token"),
+            isADEnabled = (localStorage.getItem('adenabled') != null),
+            CF_AuthorizationHeader,
+            doDomProcessing;
+
+        if (isADEnabled) {
+            CF_AuthorizationHeader = "Basic " + btoa(localStorage.getItem("username") + ":" + localStorage.getItem("password"));
+        }
+
+
+    </script>
+    <script type="text/javascript" src=" ../assets/chat/scripts/jquery-2.0.3.min.js"></script>
+    <script>
+
+
+        if (isADEnabled) {
+
+            // For AD we need to send Authorization header with each call with jquery.
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (isADEnabled) {
+                        xhr.setRequestHeader('Authorization', CF_AuthorizationHeader);
+                    }
+                    xhr.setRequestHeader('Rest-Api-Key', CF_API_TOKEN);
+                }
+            });
+
+            // For AD we need to send Authorization header with each image xhr by passing authorization header
+            // and show it as blob
+            function toDataUrl(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    var reader = new FileReader();
+                    reader.onloadend = function () {
+                        callback(reader.result);
+                    }
+                    reader.readAsDataURL(xhr.response);
+                };
+
+                xhr.open('GET', url);
+                xhr.setRequestHeader('Authorization', CF_AuthorizationHeader);
+                xhr.responseType = 'blob';
+                xhr.send();
+            }
+
+            // For AD we need to send Authorization header with each image xhr by passing authorization header
+            // and show it as blob
+            function doDomProcessing(dom) {
+                $.each(dom.find('img'), function (index, item) {
+                    item = $(item);
+                    var src = item.attr('src');
+
+                    toDataUrl(src, function (myBase64) {
+                        // console.log(myBase64); // myBase64 is the base64 string
+
+                        // console.log('Setting image src for url: ', src);
+                        item.attr('src', myBase64);
+
+                    });
+
+                });
+            }
+        }
+
+        document.write('\x3Cscript type="text/javascript" src="' + CF_VD + '/assets/chat/chat.globals.js">\x3C/script>');
+    </script>
+</body>
+
+</html>

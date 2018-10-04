@@ -1,0 +1,38 @@
+<!--
+  Generated template for the ManageFriendPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ "EXTRA.CONNECTIONS" | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <button-group [buttons]="buttons" [selected]="friendView" (changed)="switchFriendView($event)"></button-group>
+  <ng-container [ngSwitch]="friendView">
+    <div class="space-people" *ngSwitchCase="0">
+      <people-list [isLoading]="isLoadingFriends" [isLoadingSearch]="issearch" [peoples]="searchFriends" (doSearch)="search($event)"></people-list>
+      <ion-infinite-scroll *ngIf="!isLoadingFriends" (ionInfinite)="getFriends($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+    <div class="space-people" *ngSwitchCase="1">      
+      <ng-container *ngIf="isLoadingRequests">
+        <empty-people *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></empty-people>
+      </ng-container>
+      <people-request [peoples]="friendRequestUsers" (approve)='approve($event)' (decline)='decline($event)' *ngIf="friendRequestUsers.length > 0"></people-request>
+      <div *ngIf="friendRequestUsers.length == 0 && !isLoadingRequests" style="margin: 10px; text-align: center;">
+        {{ "EXTRA.NO_FRIEND_REQUESTS_FOUND" | translate }}
+      </div>
+      <ion-infinite-scroll *ngIf="!isLoadingRequest" (ionInfinite)="getRequests($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>          
+    </div>
+  </ng-container>      
+</ion-content>

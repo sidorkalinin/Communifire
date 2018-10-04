@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="activity?.UserAvatarFullUrl" [src]="activity?.UserAvatarFullUrl | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.UserDisplayName"></strong>
+      <ng-container>
+        <span [innerHtml]="activity?.ActionText"></span>
+      </ng-container>
+    </h4>
+    <p>{{activity?.DateTimeSpan}}</p>
+  </ion-item>
+
+</ion-card>

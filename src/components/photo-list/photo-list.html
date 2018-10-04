@@ -1,0 +1,10 @@
+<!-- <div class="photo-items">
+  <img [src]="photo?.ContentThumbImageFullURL" *ngFor="let photo of photos" (click)="openModal(photo)">
+</div> -->
+<ion-grid>
+  <ion-row>
+    <ion-col clickable col-6 col-md-4 col-xl-3 *ngFor="let photo of photos; let i = index" (click)="openModal(i)">
+      <div class="image-container" [style.background-image]="'url(' + photo?.ContentThumbImageFullURL + ')'"></div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

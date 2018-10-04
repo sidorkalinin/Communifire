@@ -1,0 +1,19 @@
+option-search {
+  [select] {
+    max-width: 80%;
+  }
+  [item-content] {
+      text-align: right;
+      display: flex;
+      span {
+          margin-right: 10px;
+          span {
+              margin: 0;
+          }
+      }
+  }
+  ion-label{
+      margin-right: 20px !important;
+      overflow: initial;
+  }
+}

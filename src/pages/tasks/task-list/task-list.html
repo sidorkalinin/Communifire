@@ -1,0 +1,76 @@
+<!--
+  Generated template for the TaskListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="blue">
+    <ion-title>{{ "NAV.TASKS" | translate }}</ion-title>
+    <button ion-button icon-only button-clear menuToggle color="white">
+      <ion-icon name="menu"></ion-icon>
+    </button>    
+  </ion-navbar>  
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-row style='height: 30px;'>      
+      <span class='add-button' (click)="addTaskList()">
+        <i class="fa fa-plus-circle fa-4" aria-hidden="true"></i>
+        Add Tasklist
+      </span>
+    </ion-row>
+    <ion-row>      
+      <ion-col col-6>
+        <drop-down-select [entity]='{allItems: spaces, label: "Space", isRequired: 0}' (select)='setSpace($event)'></drop-down-select>
+      </ion-col>
+      <ion-col col-6>
+        <drop-down-select [entity]='{allItems: tasklist, label: "Task list", isRequired: 0}' (select)='setTaskList($event)'></drop-down-select>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card style='margin-top: 10px !important;'>
+    <ion-row  style='padding-bottom: 10px;'>
+      <!-- <ion-label class='task'>Tasks</ion-label> -->
+      <!-- <button ion-button icon-only button-clear color="white" class='add-task' (click)='addTask()'>
+        <ion-icon name="add"></ion-icon>
+      </button> -->
+      <span class='add-task-button' (click)="addTask()">
+        <i class="fa fa-plus-circle fa-4" aria-hidden="true"></i>
+        Add Task
+      </span>
+    </ion-row>
+    <ion-row  style='border-bottom: solid 1px gainsboro; height: 35px; padding-bottom: 10px;'>
+      <ul class="nav nav-tabs">
+        <li class="all" (click)='filter("All")'>
+          <a class="btn-filter">
+            <span class="title">All</span>            
+          </a>
+        </li>
+        <li class="duetoday" (click)='filter("Today")'>
+          <a class="btn-filter">
+            <span class="title">Due today</span>            
+          </a>
+        </li>
+        <li class="custom-filter" (click)='filter("Mine")'>
+          <a class="btn-filter">
+            <span class="title">Assigned to me</span>            
+          </a>
+        </li>
+      </ul>
+    </ion-row>
+    <loader *ngIf="isLoadingTasks"></loader>
+    <ion-row class='task-wrapper' *ngFor='let task of filteredtasks' [hidden]='isLoadingTasks'>      
+      <ion-col col-3>
+        <div class='task-date'>2018-09-01</div>
+      </ion-col>
+      <ion-col col-9>
+        <div class='task-title' (click)='edit(task)'>{{task.TaskName}}</div>
+        <div class='task-description'>{{task.TaskDescription}}</div>
+      </ion-col>        
+      <div class='task-divide'></div>
+    </ion-row>    
+  </ion-card>
+</ion-content>

@@ -1,0 +1,14 @@
+<!-- Generated template for the AddStageComponent component -->
+
+<div>
+    <ion-label>{{"TITLES.STAGE" | translate }}</ion-label>
+    <button clear (click)="focus()">
+        <span [style.paddingLeft]="'10px'">{{ searchStageString }}</span>
+        <i class="fa fa-sort-desc fa-down" aria-hidden="true" fa-1></i>
+    </button>
+    
+</div>
+<ion-item-group class='stage-group' [hidden]='isSearch'>
+    <ion-searchbar [(ngModel)]="searchStageString" (input)="searchCountry()" placeholder="{{'TITLES.STAGE' | translate}}" (ionBlur)="checkBlur()"  cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+    <ion-item *ngFor='let stage of tmpStages' (click)='chooseCountry(stage)'>{{stage.StageName}}</ion-item>
+</ion-item-group>

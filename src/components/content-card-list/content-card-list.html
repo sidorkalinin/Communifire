@@ -1,0 +1,15 @@
+<div *ngFor="let activity of activities">
+  <article-card *ngIf="isArticle(activity)" [activity]="activity"></article-card>
+  <blog-card *ngIf="isBlog(activity)" [activity]="activity"></blog-card>
+  <wiki-card *ngIf="isWiki(activity)" [activity]="activity"></wiki-card>
+  <photo-card *ngIf="isPhoto(activity)" [activity]="activity"></photo-card>
+  <file-card *ngIf="isFile(activity)" [activity]="activity"></file-card>
+  <wall-card *ngIf="isWall(activity)" [activity]="activity"></wall-card>
+  <user-card *ngIf="isUser(activity)" [activity]="activity"></user-card>
+  <idea-card *ngIf="isIdea(activity)" [activity]="activity"></idea-card>
+  <event-card *ngIf="isEvent(activity)" [activity]="activity"></event-card>
+  <video-card *ngIf="isVideo(activity)" [activity]="activity"></video-card>
+  <case-card *ngIf="isCase(activity)" [case]="activity"></case-card>
+  <space-card *ngIf="isSpace(activity)" [space]="activity"></space-card>
+  <forum-post-card *ngIf="isForumTopic(activity)" [activity]="activity"></forum-post-card>
+</div>

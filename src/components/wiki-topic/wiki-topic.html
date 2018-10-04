@@ -1,0 +1,7 @@
+<!-- Generated template for the WikiTopicComponent component -->
+<div>
+  <ion-input placeholder="Parent topic..." [(ngModel)]='parentTopic' (keyup)='changeTopic()' (ionBlur)="checkBlur()"></ion-input>
+</div>
+<ion-item-group class='topic-group'  [hidden]='filterTopics.length==0'>
+  <ion-item *ngFor='let topic of filterTopics' (click)='chooseTopic(topic.ContentID)'>{{topic.ContentTitle}}</ion-item>
+</ion-item-group>

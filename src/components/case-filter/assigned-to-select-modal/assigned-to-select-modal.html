@@ -1,0 +1,28 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ title | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchText" (keydown)="isLoadingSearch = true; users = []" (ionInput)="getUsers()" showCancelButton="true"  placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+  <searching-for *ngIf="isLoadingSearch && searchText.length != 0" [text]="searchText"></searching-for>
+  <ion-list radio-group [(ngModel)]="userSelect.UserID">
+    <ion-item *ngIf="!isComment">
+      <ion-label>{{ "COMMONS.VIEW_ALL" | translate }}</ion-label>
+      <ion-radio [value]="0" (ionSelect)="selectUser(null)"></ion-radio>
+    </ion-item>
+    <ion-item *ngFor="let user of users">
+      <ion-label><span [innerHtml]="user?.UserInfoDisplayName"></span></ion-label>
+      <ion-radio [value]="user?.UserID" (ionSelect)="selectUser(user)"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="getUsers($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

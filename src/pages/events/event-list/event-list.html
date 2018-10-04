@@ -1,0 +1,112 @@
+<ion-header>
+
+  <ion-navbar color="blue">
+    <ion-title>{{ "NAV.EVENTS" | translate }}</ion-title>
+    <button ion-button icon-only button-clear menuToggle color="white">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons right>
+      <button end add-button ion-button clear (click)='addClick()'>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="eventType" (ionChange)="changeEventType()">
+      <ion-segment-button value="attending">
+        {{"EVENT.ATTENDING" | translate}}
+      </ion-segment-button>
+      
+      <ion-segment-button value="invited">
+        {{"EVENT.INVITED" | translate}}
+      </ion-segment-button>
+
+      <ion-segment-button value="all">
+        {{"EVENT.ALL" | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list no-margin *ngIf="eventType === 'all'">
+    <ion-item>
+      <ion-label>{{ filterModel | translate }}</ion-label>
+      <ion-select (ionChange)="setFilter()" interface="popover" [(ngModel)]="sort" [style.paddingLeft]="'0px'">
+        <ion-option [value]="item.value" *ngFor="let item of filterItems">{{ item.name | translate }}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ng-container *ngIf="eventType === 'attending'">
+    <no-results-found *ngIf="keys(attendeesEvents).length == 0 && !isLoadingAttendees"></no-results-found>
+    <ion-item-group *ngFor="let key of keys(attendeesEvents);">
+      <ion-list-header color="light">
+          {{ key | localizedDate: 'EEE MMM dd' }}
+      </ion-list-header>
+      <ion-item tappable *ngFor="let event of attendeesEvents[key]" (click)="goToEvent(event)">
+        <ion-note item-start>
+          <ng-container *ngIf="!event.IsAllDay">
+            <span>{{ event.StartTimeText }}</span>
+            <span>{{ event.EndTimeText }}</span>
+          </ng-container>
+          <span *ngIf="event.IsAllDay">{{"EVENT.ALL_DAY" | translate}}</span>
+        </ion-note>
+        <h2>{{ event.Title }}</h2>
+      </ion-item>
+    </ion-item-group>
+    <ion-infinite-scroll *ngIf="!isLoadingAttendees && keys(attendeesEvents).length != 0 && lengthAttendees >= 10" (ionInfinite)="getAttendeesEvents($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <loader *ngIf="isLoadingAttendees"></loader>
+  </ng-container>
+
+  <ng-container *ngIf="eventType === 'invited'">
+    <no-results-found *ngIf="keys(invitedEvents).length == 0 && !isLoadingInvited"></no-results-found>
+    <ion-item-group *ngFor="let key of keys(invitedEvents);">
+      <ion-list-header color="light">
+          {{ key | localizedDate: 'EEE MMM dd' }}
+      </ion-list-header>
+      <ion-item tappable *ngFor="let event of invitedEvents[key]" (click)="goToEvent(event)">
+        <ion-note item-start>
+          <ng-container *ngIf="!event.IsAllDay">
+            <span>{{ event.StartTimeText }}</span>
+            <span>{{ event.EndTimeText }}</span>
+          </ng-container>
+          <span *ngIf="event.IsAllDay">{{"EVENT.ALL_DAY" | translate}}</span>
+        </ion-note>
+        <h2>{{ event.Title }}</h2>
+      </ion-item>
+    </ion-item-group>
+    <ion-infinite-scroll *ngIf="!isLoadingInvited && keys(invitedEvents).length != 0 && lengthInvited >= 10" (ionInfinite)="getAllEvents($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <loader *ngIf="isLoadingInvited"></loader>
+  </ng-container>
+
+  <ng-container *ngIf="eventType === 'all'">
+    <no-results-found *ngIf="keys(allEvents).length == 0 && !isLoadingAll"></no-results-found>
+    <ion-item-group *ngFor="let key of keys(allEvents);">
+      <ion-list-header color="light">
+          {{ key | localizedDate: 'EEE MMM dd' }}
+      </ion-list-header>
+      <ion-item tappable *ngFor="let event of allEvents[key]" (click)="goToEvent(event)">
+        <ion-note item-start>
+          <ng-container *ngIf="!event.IsAllDay">
+            <span>{{ event.StartTimeText }}</span>
+            <span>{{ event.EndTimeText }}</span>
+          </ng-container>
+          <span *ngIf="event.IsAllDay">{{"EVENT.ALL_DAY" | translate}}</span>
+        </ion-note>
+        <h2>{{ event.Title }}</h2>
+      </ion-item>
+    </ion-item-group>
+    <ion-infinite-scroll *ngIf="!isLoadingAll && keys(allEvents).length != 0 && lengthAll >= 10" (ionInfinite)="getAllEvents($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <loader *ngIf="isLoadingAll"></loader>
+  </ng-container>
+
+</ion-content>

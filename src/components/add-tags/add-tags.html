@@ -1,0 +1,9 @@
+<!-- Generated template for the AddTagsComponent component -->
+<ion-label>{{"CREATE.ADDTAGS" | translate}}</ion-label>
+<span class='tag-group'>
+  <span class='tag' *ngFor='let tag of tagArray'>
+    {{tag}}
+    <i class="fa fa-times fa-1" aria-hidden="true" (click)='removeTag(tag)'></i>
+  </span>        
+</span>
+<ion-input placeholder='Tag' [(ngModel)]='newtag' (keyup)='addTag($event)'></ion-input>

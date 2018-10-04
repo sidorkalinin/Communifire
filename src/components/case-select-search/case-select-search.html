@@ -1,0 +1,12 @@
+<!-- Generated template for the CaseSelectSearchComponent component -->
+<div>
+    <ion-label>{{ label }} <i class="fa fa-star fa-1 fa-red" aria-hidden="true" [hidden]='!isRequired'></i></ion-label>
+    <button clear (click)="focus()" (ionBlur)="checkBlur()">
+        <span [style.paddingLeft]="'10px'">{{ selectedItem?.name }}</span>
+        <i class="fa fa-sort-desc fa-down" aria-hidden="true" fa-1></i>
+    </button>    
+</div>
+<ion-item-group class='stage-group' [hidden]='isSearch'>
+    <ion-searchbar [(ngModel)]="searchString" (input)="search()"  placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}" (ionBlur)="checkBlur()" ></ion-searchbar>
+    <ion-item *ngFor='let item of tmpItems' (click)='choose(item)'>{{item.name}}</ion-item>
+</ion-item-group>

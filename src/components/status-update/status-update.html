@@ -1,0 +1,41 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">{{"STATUSUPDATE.CANCELBTN" | translate}}</button>
+    </ion-buttons>
+    <ion-title>{{"STATUSUPDATE.TITLE" | translate}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="postStatus()">{{"STATUSUPDATE.POST" | translate}}</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content [style.backgroundColor]="'#fff'">
+  <form>
+    <ion-item>
+      <ion-textarea [style.padding]="'10px'" placeholder="{{'MYACCOUNTACTIVITY.WHATSONYOURMIND'|translate}}" [(ngModel)]="content" name="content" rows="8"></ion-textarea>
+    </ion-item>
+  </form>
+</ion-content>
+
+<ion-footer [hidden]="hasPermissionShow" *ngIf="hasPermission" ion-fixed class="status-update-footer" [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar [style.paddingTop]="'1px'">
+    <ion-item no-padding *ngIf="fileUpload.length > 0">
+        {{ fileUpload.length }} <span *ngIf="fileUpload.length == 1">{{ "COMMONS.FILE" | translate }}</span> <span *ngIf="fileUpload.length > 1">{{ "COMMONS.FILES" | translate }}</span> {{ "COMMONS.ATTACHED" | translate }}
+    </ion-item>
+    <folder-select (folderSelected)="changeCurrent($event)" [spaceId]="spaceId"></folder-select>
+  </ion-toolbar>
+  <ion-toolbar >
+    <ion-buttons space-between class="wall-buttons">
+      <button ion-button icon-only outline (click)="presentActionSheet()">
+        <ion-icon name="ios-camera"></ion-icon>
+      </button>
+      <button ion-button icon-only outline (click)="openGallery()">
+        <ion-icon name="ios-images"></ion-icon>
+      </button>
+      <button ion-button icon-only outline (click)="chooseFile()">
+        <ion-icon name="attach"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

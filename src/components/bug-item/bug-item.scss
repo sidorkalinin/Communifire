@@ -1,0 +1,32 @@
+bug-item {
+    [item] .label{
+        display: flex;
+        white-space: normal;
+        .icon-item {
+            flex: 1 1 10%;
+            font-size: 30px;
+            padding-right: 16px;
+            display: flex;
+            // justify-content: center;
+            align-items: flex-start;
+            color: $greyText
+        }
+        [green] {
+            color: #38E06F;
+        }
+        .content {
+            flex: 1 1 85%;
+            .title {
+                font-weight: 500;
+                // padding-bottom: 5px;
+                margin-top: 5px;
+            }
+            .created {
+                // margin-right: 20px;
+                font-size: 0.8em;
+                padding-top: 3px;
+                color: $greyText
+            }
+        }
+    }
+}

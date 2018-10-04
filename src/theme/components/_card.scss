@@ -1,0 +1,20 @@
+.communifire-card {
+  .avatar-box {
+    position: relative;
+    min-height: 150px;
+    background: #ccc no-repeat center /contain;
+    img {
+      width: 150px;
+      height: 150px;
+      position: absolute;
+      bottom: -50px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .avatar-content {
+    margin-top: 70px;
+  }
+}

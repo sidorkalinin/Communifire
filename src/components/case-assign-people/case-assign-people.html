@@ -1,0 +1,10 @@
+<!-- Generated template for the CaseAssignPeopleComponent component -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{label}}
+  </ion-label>
+  <div item-content>    
+    <span>{{selectedItem.name?selectedItem.name:"COMPONENT.NOTASSIGNED" | translate}}</span>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

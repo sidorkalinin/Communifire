@@ -1,0 +1,130 @@
+<!--
+  Generated template for the ArticleCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        {{ "CREATE.CANCEL" | translate }}
+        <!-- <ion-icon name="ios-arrow-back"></ion-icon> -->
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "EDIT.EDITWIKI" | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="save()">
+        {{ "EDIT.SAVE" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding (ionScroll)="onScroll($event)">
+  <ion-card class='mg-0 w-100 title'>
+    <ion-input  id='headline' placeholder='{{ "EDIT.WIKITITLE" | translate }}' [(ngModel)]='contentTitle'></ion-input>
+    <div class='wrapper'>
+      <ion-label (click)="setFocus()">{{ "CREATE.SUMMARY" | translate }}</ion-label>
+      <ion-textarea #summary id='summary' placeholder='{{ "EDIT.WIKISUMMARY" | translate }}' [(ngModel)]='contentSummary'></ion-textarea>
+    </div>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 w-100 editor'>
+    <ion-label>{{ "EDIT.WIKIBODY" | translate }}</ion-label>
+    <div id='contentBody' [froalaEditor]='froalaOption' [(froalaModel)] = 'contentBody'></div>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 pt-10 pb-10 w-100'>
+    <featured-image [entity]='{url: contentFeaturedImageFullURL}' (featurefile)='setFeatureFile($event)'></featured-image>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 w-100 pb-5 pt-5'>
+    <wiki-topic [entity]='{spaceId: spaceId, userId: userId, topic: ParentContentID}' (topic)='setTopic($event)'></wiki-topic>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 w-100 checkgroup'>
+    <ion-item *ngIf="MarkAsFeatured">
+      <ion-label class='inline'>{{ "CREATE.FEATURED" | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="featured"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="MarkContentAsReadRequired">
+      <ion-label class='inline'>{{"CREATE.REQUIREDREADING" | translate}}</ion-label>
+      <ion-toggle [(ngModel)]="requiredreading"></ion-toggle>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class='mt-10 mb-10 w-100 time'>    
+    <ion-item>
+      <ion-label>{{ "CREATE.PUBLICATION" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="pubdate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ "CREATE.EXPIRATION" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="expiredate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label>{{ "CREATE.SHOWAFTER" | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="IsContentAvailablePostExpiry"></ion-toggle>
+    </ion-item> -->
+  </ion-card>
+  <ion-card class='w-100 extra mg-0 pd-0'>
+    <ion-label>{{ "COMMONS.TAGS" | translate }}</ion-label>
+    <div class='wrapper'>
+      <ion-tags-input [(ngModel)]="tags" [placeholder]="' '" [canEnterAdd]="true" (ionFocus)='onTagFocus()' (ionBlur)='onTagBlur()'></ion-tags-input>
+    </div>
+  </ion-card>
+  <ion-card class='mg-0 w-100 mt-10 mb-10'>
+    <add-attachments (files)="setFiles($event)"></add-attachments>
+  </ion-card>
+</ion-content>
+
+<!-- <ion-header>
+
+    <ion-navbar>
+      <ion-title>{{ "EDIT.EDITWIKI" | translate }}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-refresher>
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-card>
+      <div class='pb-10 pt-15'>
+        <ion-label>{{ "EDIT.WIKITITLE" | translate }}<i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+        <ion-input id='headline' placeholder='{{ "EDIT.WIKITITLE" | translate }}' [(ngModel)]='contentTitle' [ngClass]='titleClass' (ionFocus)='getFocus()'></ion-input>
+      </div>
+      <div class='pb-10'>
+        <ion-label>{{ "EDIT.WIKISUMMARY" | translate }}<i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+        <ion-textarea id='summary' placeholder='{{ "EDIT.WIKISUMMARY" | translate }}' [(ngModel)]='contentSummary' [ngClass]='summaryClass' (ionFocus)='getFocus()'></ion-textarea>
+      </div>
+      <div class='pb-10'>
+        <ion-label>{{ "EDIT.WIKIBODY" | translate }}<i class="fa fa-star fa-1 fa-red" aria-hidden="true"></i></ion-label>
+        <div id='articleBody' [froalaEditor] [(froalaModel)] = 'contentBody' [ngClass]='bodyClass' (click)='getFocus()'></div>
+      </div>
+      <wiki-topic [entity]='{spaceId: spaceId, userId: userId, topic: ParentContentID}' (topic)='setTopic($event)'></wiki-topic>
+      <div class='pt-15'>
+        <add-tags [entity]='{tags: tags}' (tags)='setTags($event)'></add-tags>
+      </div>
+    </ion-card>
+    <ion-card>
+      <meta-information [entity]='{metaTitle: metaTitle, metaDescription: metaDescription}' (meta)='setMetaInformation($event)'></meta-information>
+    </ion-card>
+    <ion-card>
+      <featured-image [entity]='{url: contentFeaturedImageFullURL}' (featurefile)='setFeatureFile($event)'></featured-image>
+    </ion-card>
+    <ion-card>
+      <attach-files (files)="setFiles($event)"></attach-files>    
+    </ion-card>
+    <ion-card>
+      <ion-item class='anonymous'>
+        <ion-checkbox [(ngModel)]="anonymous"></ion-checkbox>
+        <ion-label class='inline'>{{ "EDIT.ANONYMOUS" | translate }}</ion-label>    
+      </ion-item>
+      <ion-item class='anonymous'>
+        <ion-checkbox [(ngModel)]="requiredreading"></ion-checkbox>
+        <ion-label class='inline'>{{"EDIT.REQUIREDREADING" | translate}}</ion-label>    
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <button ion-button class='btn-cancel' color="light">{{"EDIT.CANCEL" | translate}}</button>
+      <button ion-button class='btn-save' color="secondary" (click)='save()'>{{"EDIT.SAVE" | translate}}</button>    
+    </ion-card>
+  </ion-content>
+   -->

@@ -1,0 +1,46 @@
+status-update {
+  .item-textarea,
+  textarea,
+  form { height: 100%; }
+
+  .item-textarea { padding: 0; }
+  .item-ios.item-block .item-inner {
+    border: none;
+    padding: 0;
+  }
+  textarea {
+    margin: 0;
+    resize: none;
+  }
+  .scroll-content { overflow-y: auto; }
+  [space-between]{
+    justify-content: space-between;
+    display: flex;
+  }
+  
+  .wall-buttons button{
+    border-color: #4A4A4A;
+    color: #4A4A4A;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    font-size: 1.3em;
+    height: auto !important;
+    .button-inner {
+      padding: 6px !important;
+    }
+  }
+  .status-update-footer {
+    .toolbar-background {
+      background-color: #fff !important;
+    }
+  }
+  .is-iphone-x.header-ios  {
+    padding-top: 70px !important;
+    background-color: #f8f8f8 !important;
+  }
+  ion-header.header.header-ios{
+    padding-top: 20px;
+    background-color: #f8f8f8;
+  }
+}
+

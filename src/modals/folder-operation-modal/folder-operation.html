@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar color="blue">
+    <ion-title>{{title}}</ion-title>
+    <back-button (click)='back()'></back-button>
+  </ion-navbar>  
+</ion-header>
+
+<ion-content no-margin>
+  <div class='pb-10 pt-15 wrapper'>
+    <ion-label>Folder name</ion-label>
+    <ion-input id='headline' placeholder='Folder name' [(ngModel)]='name'></ion-input>  
+    <button ion-button class='btn-save' (click)='submit()'>Submit</button>
+  </div>
+</ion-content>

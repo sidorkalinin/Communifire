@@ -1,0 +1,17 @@
+<!-- Generated template for the ShowAttachmentsComponent component -->
+<ion-scroll scrollX="true" style="height:140px" *ngIf="attachments && attachments.length > 0">
+  <ion-row nowrap>
+    <div *ngFor="let item of attachments" class="attachment-item" [ngClass]="{ 'isImage': item.IsImage}">
+      <img [src]="item.MediaServerRootURL + '/' + item.FileName | secure | async" *ngIf="item.IsImage">
+      <!-- (click)="downloadFile2(item.MediaServerRootURL, item.FileName, item.FileName)"" -->
+      <!-- <p *ngIf="!item.IsImage" [innerHtml]="item?.Caption"></p> -->
+      <h6 *ngIf="!item.IsImage" (click)="downloadFile(item.MediaServerRootURL, item.FileName, item.Caption)">{{ item?.Caption }}
+        <fa-icon name="external-link" item-end></fa-icon>
+      </h6>
+      <div class="size" *ngIf="!item.IsImage">
+        <ion-icon name="document"></ion-icon>
+        <span>{{ item.FileSizeText }}</span>
+      </div>
+    </div>
+  </ion-row>
+</ion-scroll>

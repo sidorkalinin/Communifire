@@ -1,0 +1,17 @@
+<!-- <ion-item>
+  <ion-label>{{ "COMMONS.PRIORITY" | translate }}</ion-label>
+  <ion-select interface="popover" [(ngModel)]="currentPriority" (ionChange)="onChange()">
+    <ion-option *ngFor="let priority of priorities" [value]="priority?.IssuePriorityID">{{ priority?.IssuePriorityName }}</ion-option>
+  </ion-select>
+</ion-item> -->
+<ion-item (click)="openModal()">
+  <ion-label>
+    {{ "COMMONS.PRIORITY" | translate }}
+  </ion-label>
+  <div item-content>
+    <span *ngIf="!currentPriority && !isComment">{{ "COMMONS.VIEW_ALL" | translate }}</span>
+    <span *ngIf="!currentPriority && isComment">{{ "COMMONS.NOT_SET" | translate }}</span>
+    <span *ngIf="currentPriority">{{ priority?.IssuePriorityName }}</span>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </div>
+</ion-item>

@@ -1,0 +1,29 @@
+page-blog-detail {
+    // ion-header.header.header-ios{
+    //     padding-top: 20px;
+    //     background-color: #f8f8f8;
+    // } 
+    .banner {
+        min-height: 150px;
+        // background-color: #e1e1e1;
+      }
+    a {
+        text-decoration: none;
+        color: $linkColor;
+    }
+    .article-desc {
+        p {
+          margin: 0px;
+        }
+    }
+    
+    .alert-info {
+        color: #3a87ad;
+        background-color: #d9edf7;
+        border-color: #bce8f1;
+        padding: 3px;
+    }
+}
+
+
+

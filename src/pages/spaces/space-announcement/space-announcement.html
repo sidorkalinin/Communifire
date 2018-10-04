@@ -1,0 +1,37 @@
+<!--
+  Generated template for the SpaceAnnouncementPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+    <button ion-button icon-only button-clear menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>  
+</ion-header>
+
+<ion-content no-margin>
+  <ion-refresher (ionRefresh)="doRefreshAnnouncements($event)" [enabled]="!isRefresh">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>  
+  <ion-card card-title>
+    <ion-card-content>
+      <span>
+        {{ "ANNOUNCEMENT.ANNOUNCEMENTS" | translate }}
+      </span>
+    </ion-card-content>
+  </ion-card>
+  <loader *ngIf="isLoading == true"></loader>  
+  <no-announcement-found *ngIf="(isLoading == false) && (announcements.length == 0)"></no-announcement-found>
+  <ion-list *ngIf="isLoading == false">
+    <announcement *ngFor="let announcement of announcements" [announcement]="announcement" (open)="gotoDetail($event)"></announcement>
+  </ion-list>
+  <!-- <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="getAnnouncements($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content>
+  

@@ -1,0 +1,63 @@
+{
+  "_from": "cordova-plugin-ios-non-exempt-encryption@^1.0.0",
+  "_id": "cordova-plugin-ios-non-exempt-encryption@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-5ZlPY2YzaGX89Xyi8EfFpzt25mg=",
+  "_location": "/cordova-plugin-ios-non-exempt-encryption",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "cordova-plugin-ios-non-exempt-encryption@^1.0.0",
+    "name": "cordova-plugin-ios-non-exempt-encryption",
+    "escapedName": "cordova-plugin-ios-non-exempt-encryption",
+    "rawSpec": "^1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.0.0"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-ios-non-exempt-encryption/-/cordova-plugin-ios-non-exempt-encryption-1.0.0.tgz",
+  "_shasum": "e5994f6366336865fcf57ca2f047c5a73b76e668",
+  "_spec": "cordova-plugin-ios-non-exempt-encryption@^1.0.0",
+  "_where": "/Volumes/Work/Communifire/Communifire-Ionic-App",
+  "author": {
+    "name": "Peter Bakondy"
+  },
+  "bugs": {
+    "url": "https://github.com/pbakondy/cordova-plugin-ios-non-exempt-encryption/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-ios-non-exempt-encryption",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Export Compliance: set ITSAppUsesNonExemptEncryption to false in Info.plist file",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "homepage": "https://github.com/pbakondy/cordova-plugin-ios-non-exempt-encryption#readme",
+  "keywords": [
+    "cordova",
+    "ios",
+    "TestFlight",
+    "Export Compliance",
+    "ecosystem:cordova",
+    "cordova-ios"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-ios-non-exempt-encryption",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pbakondy/cordova-plugin-ios-non-exempt-encryption.git"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,24 @@
+select-search-modal{
+  .is-iphone-x.header-ios,  {
+    padding-top: 25px !important;
+    background-color: #f8f8f8 !important;
+  }
+  ion-header.header.header-ios{
+    padding-top: 20px;
+    background-color: #f8f8f8;
+  }
+  .item-wrapper{
+    margin-left: 15px;
+    padding: 20px 20px 20px 5px;
+    font-size: 15px;  
+    border-bottom: solid 1px gainsboro;
+    ion-icon{
+      position: absolute;
+      right: 10px;
+      color: #327eff;
+    }
+  }
+  .item-wrapper:hover{
+    cursor: pointer;
+  }
+}

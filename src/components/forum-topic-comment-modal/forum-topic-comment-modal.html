@@ -1,0 +1,31 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel({ update: false })">{{"STATUSUPDATE.CANCELBTN" | translate}}</button>
+    </ion-buttons>
+    <ion-title>{{"COMMONS.ADD_COMMENT" | translate}}</ion-title>
+    <ion-buttons end>
+      <button *ngIf="!isPosting" (click)="createComment()" ion-button icon-only>{{"STATUSUPDATE.POST" | translate}}</button>
+      <button *ngIf="isPosting" disabled ion-button icon-only>{{"COMMONS.LOADING" | translate}}...</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-margin>
+    <ion-item>
+      {{ "COMMONS.POST_COMMENT" | translate }}
+    </ion-item>
+  </ion-list>
+  <ion-list no-margin>
+    <ion-item>
+      <ion-textarea [(ngModel)]="commentText" placeholder="{{ 'ARTICLE.COMMENT' | translate }}" #forumTopic id="forumTopic" rows="10"
+        (keyup)="resize()"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer text-justified>
+  <add-attachments [isForum]="true" (files)="setFiles($event)"></add-attachments>
+</ion-footer>

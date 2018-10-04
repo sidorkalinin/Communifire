@@ -1,0 +1,35 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel({ update: false })">{{"STATUSUPDATE.CANCELBTN" | translate}}</button>
+    </ion-buttons>
+    <ion-title *ngIf="hasAddCommentPerm">{{"COMMONS.ADD_COMMENT" | translate}}</ion-title>
+    <ion-title *ngIf="!hasAddCommentPerm">{{"COMMONS.UPDATE_CASE" | translate}}</ion-title>
+    <ion-buttons end>
+      <button *ngIf="!isPosting && hasAddCommentPerm" (click)="createComment()" ion-button icon-only>{{"STATUSUPDATE.POST" | translate}}</button>
+      <button *ngIf="!isPosting && !hasAddCommentPerm" (click)="createComment()" ion-button icon-only>{{"STATUSUPDATE.UPDATE" | translate}}</button>
+      <button *ngIf="isPosting" disabled ion-button icon-only>{{"STATUSUPDATE.POSTING" | translate}}...</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-margin>
+    <ion-item *ngIf="hasAddCommentPerm">{{ "COMMONS.COMMENT_AND_UPDATE_CASE" | translate }}</ion-item>
+  </ion-list>
+  <ion-item no-lines *ngIf="hasAddCommentPerm">
+    <ion-textarea #caseComment [(ngModel)]="commentText" placeholder="{{ 'ARTICLE.COMMENT' | translate }}"  rows="10" (keyup)="resize()"></ion-textarea>
+  </ion-item>
+  <ion-list no-lines no-margin>
+    <add-attachments *ngIf="uploadAttachment" (files)="setFiles($event)"></add-attachments>
+    <!-- <status-select  *ngIf="updateIssueStatus" [spaceId]="case.SpaceID" [currentStatus]="case.IssueStatusID" (returnStatus)="setStatus($event)" (statusUploaded)="statusUploaded($event)"></status-select> -->
+    <!-- <priority-select *ngIf="updateIssuePriority"  [spaceId]="case.SpaceID" [currentPriority]="case.IssuePriorityID" (returnPriority)="setPriority($event)" (priorityUploaded)="priorityUploaded($event)"></priority-select> -->
+
+    <project-select *ngIf="case.ProjectID" [isComment]="true" (returnProject)="setProject($event)" [currentProject]="case.ProjectID" [spaceId]="case.SpaceID"></project-select>
+    <category-select *ngIf="case.ProjectID" [isComment]="true" (returnCategory)="setCategory($event)" [currentCategory]="case.ProjectSectionID" [projectId]="case.ProjectID" [spaceId]="case.SpaceID"></category-select>
+    <milestone-select *ngIf="case.ProjectID" [isComment]="true" (returnMilestone)="setMilestone($event)" [currentMilestone]="case.MilestoneID" [projectId]="case.ProjectID" [spaceId]="case.SpaceID"></milestone-select>
+    <status-select *ngIf="updateIssueStatus" [isComment]="true" (returnStatus)="setStatus($event)" [currentStatus]="case.IssueStatusID" [spaceId]="case.SpaceID" (statusUploaded)="statusUploaded($event)"></status-select>
+    <priority-select *ngIf="updateIssuePriority" [isComment]="true" (returnPriority)="setPriority($event)" [currentPriority]="case.IssuePriorityID" [spaceId]="case.SpaceID" (priorityUploaded)="priorityUploaded($event)"></priority-select>
+    <assign-to-select *ngIf="case.ProjectID && assignToUser" [isComment]="true" (returnUser)="setAssignedUser($event)" [currentUser]="case.AssignedToUserID" [spaceId]="case.SpaceID" [projectId]="case.ProjectID" [isCaseUpdate]="true"></assign-to-select>
+  </ion-list>
+</ion-content>

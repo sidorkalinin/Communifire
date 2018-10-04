@@ -1,0 +1,38 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="activity?.AuthorAvatarImageUrl" [src]="activity?.AuthorAvatarImageUrl | secure | async">
+      <img *ngIf="activity?.UserAvatarFullUrl" [src]="activity?.UserAvatarFullUrl | secure | async">
+      <img *ngIf="activity?.AuthorUserAvatarImageURL" [src]="activity?.AuthorUserAvatarImageURL | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.UpdatedByUserDisplayName"></strong>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.UserDisplayName"></strong>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.AuthorUserDisplayName"></strong>
+    </h4>
+    <p>{{activity?.DateCreatedString}}</p>
+    <p>{{activity?.Entity?.DateCreatedString}}</p>
+  </ion-item>
+
+  <ion-card (click)="goToAlbum()">
+    <img *ngIf="activity?.ContentThumbImageFullURL" [src]="activity?.ContentThumbImageFullURL | secure | async">
+    <img *ngIf="activity?.ContentImageURL" [src]="activity?.ContentImageURL | secure | async">
+    <img *ngIf="activity?.TitleImageURL" [src]="activity?.TitleImageURL | secure | async">
+    <ion-card-content>
+      <h2 [innerHtml]="activity?.ContentTitle"></h2>
+      <h2 [innerHtml]="activity?.Title"></h2>
+      <h2 [innerHtml]="activity?.Entity?.ParentContentTitle"></h2>
+      <div class="comments-line">
+        <div class="likes">
+          {{ likesCount?.LikeCount }}
+          <ion-icon name="thumbs-up"></ion-icon>
+        </div>
+        <div class="comments">
+          {{ activity?.CommentCount }} {{ activity?.EntityCommentCount }}
+          <ion-icon name="text"></ion-icon>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <like-comment-actions [isStream]="false" (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions>
+</ion-card>

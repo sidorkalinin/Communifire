@@ -1,0 +1,14 @@
+<ion-item text-wrap tappable (click)="notificationClick()">
+  <ion-avatar item-start>
+    <img *ngIf="!isImgLoaded" [src]="avatarImageURL">
+    <img [hidden]="!isImgLoaded" (load)="isImgLoaded = true" [src]="notification?.FromUserAvatarImageURL | secure | async" *ngIf="notification?.FromUserAvatarImageURL"
+      onError="this.src='assets/images/profile-default.jpg'" />
+  </ion-avatar>
+
+
+  <p [style.color]="'#000'">
+    <a *ngIf="!notification?.FromUser" [innerHtml]="notification?.FromUserInfoDisplayName != 'Anonymous'?notification?.FromUserInfoDisplayName: ''"></a>
+    <a *ngIf="notification?.FromUser" [innerHtml]="notification?.FromUser?.UserInfoDisplayName != 'Anonymous'?notification?.FromUser?.UserInfoDisplayName: ''"></a>
+    <span [innerHtml]="notification?.ActionText"></span>.
+    <span [innerHtml]="notification?.Subject"></span> {{notification?.DateCreatedString}} </p>
+</ion-item>

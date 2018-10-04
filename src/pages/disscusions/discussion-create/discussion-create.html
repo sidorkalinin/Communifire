@@ -1,0 +1,60 @@
+<!--
+  Generated template for the DiscussionCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        {{ "CREATE.CANCEL" | translate }}
+        <!-- <ion-icon name="ios-arrow-back"></ion-icon> -->
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "CREATE.STARTDISCUSSION" | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="save()">
+        {{ "CREATE.POST" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding (ionScroll)="onScroll($event)">
+  <ion-card class='mg-0 w-100 title'>
+    <div class='wrapper'>
+      <ion-label style='margin-bottom: 0px;'>{{ "CREATE.SUBJECT" | translate}}</ion-label>
+      <ion-input  id='headline' [(ngModel)]='contentTitle'></ion-input>
+    </div>
+    <div class='wrapper pt-0'>
+      <ion-label>{{"CREATE.YOURMESSAGE" | translate}}</ion-label>
+      <div id='contentBody' [froalaEditor]='froalaOption' [(froalaModel)] = 'contentBody'></div>
+    </div>
+  </ion-card>
+  <ion-card class='mg-0 w-100'>
+    <add-attachments (files)="setFiles($event)"></add-attachments>
+  </ion-card>
+  <ion-card class='mg-0 w-100 checkgroup'>
+    <discussion-category [entity]='{spaceid: spaceId, userid: userId, label: "COMMONS.CATEGORY" | translate, id: contentParentID}' (select)='setCategory($event)'></discussion-category>    
+    <ion-item *ngIf="p_locked">
+      <ion-checkbox [(ngModel)]="sticky"></ion-checkbox>
+      <ion-label class='inline'>{{"CREATE.STICKY" | translate}}</ion-label>    
+    </ion-item>
+    <ion-item *ngIf="p_locked">
+      <ion-checkbox [(ngModel)]="locked"></ion-checkbox>
+      <ion-label class='inline'>{{"CREATE.LOCKED" | translate}}</ion-label>    
+    </ion-item>
+    <ion-item *ngIf="p_marked">
+      <ion-checkbox [(ngModel)]="featured"></ion-checkbox>
+      <ion-label class='inline'>{{"CREATE.FEATURED" | translate}}</ion-label>    
+    </ion-item>
+  </ion-card>
+  <ion-card class='w-100 extra mg-0 pd-0 mb-10'>
+    <ion-label>{{ "COMMONS.TAGS" | translate }}</ion-label>
+    <div class='wrapper'>
+      <ion-tags-input [(ngModel)]="tags" [placeholder]="' '" [canEnterAdd]="true" (ionFocus)='onTagFocus()' (ionBlur)='onTagBlur()'></ion-tags-input>
+    </div>
+  </ion-card>
+  
+</ion-content>

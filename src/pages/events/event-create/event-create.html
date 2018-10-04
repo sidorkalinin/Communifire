@@ -1,0 +1,74 @@
+<!--
+  Generated template for the EventCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        {{ "CREATE.CANCEL" | translate }}
+        <!-- <ion-icon name="ios-arrow-back"></ion-icon> -->
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "CREATE.NEWEVENT" | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="save()">
+        {{ "CREATE.ADD" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class='mg-0 w-100 title'>
+    <ion-input  id='headline' placeholder='{{ "CREATE.TITLE" | translate }}' [(ngModel)]='eventTitle'></ion-input>
+    <ion-input  id='location' placeholder='{{ "CREATE.LOCATION" | translate}}' [(ngModel)]='eventLocation'></ion-input>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 w-100 time'>
+    <ion-item>
+      <ion-label>{{ "CREATE.ALLDAY" | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="IsAllDay"></ion-toggle>
+    </ion-item>
+    <ion-item [hidden]='IsAllDay'>
+      <ion-label>{{ "CREATE.START" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="fromDate" (ngModelChange)='datechange()' placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    <ion-item [hidden]='!IsAllDay'>
+      <ion-label>{{ "CREATE.START" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY" pickerFormat="DDD, MMM, D, YYYY" [(ngModel)]="fromDate" (ngModelChange)='datechange()' placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    <ion-item [hidden]='IsAllDay'>
+      <ion-label>{{ "CREATE.END" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="toDate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    
+    <!-- <option-search [entity]='{allItems: countries, label: "CREATE.COUNTRY" | translate}' (select)='setCountry($event)'></option-search> -->
+    <!-- <option-search [entity]='{allItems: states, label: "CREATE.STATE" | translate}' (select)='setState($event)'></option-search> -->
+  </ion-card>
+
+  <ion-card class='mt-10 mb-10 w-100 setting'>
+    <option-search [entity]='{allItems: calendars, label: "CREATE.CALENDAR" | translate}' (select)='setCalendar($event)'></option-search>
+    <option-search [entity]='{allItems: eventtypes, label: "CREATE.EVENTTYPE" | translate}' (select)='setEventType($event)' [hidden]='spaceId < 0'></option-search>
+    <space-people-select [entity]='{spaceid: spaceId, label: "CREATE.GUESTS" | translate, selecteditems: guests}' (select)='setGuests($event)' [hidden]='spaceId < 0'></space-people-select>
+    <event-resource [entity]='{allItems: resources, label: "CREATE.RESOURCES" | translate, selectedresources: []}' (select)='setResource($event)' [hidden]='spaceId < 0'></event-resource>
+    <option-search [entity]='{allItems: repeats, label: "CREATE.REPEAT" | translate}' (select)='setRepeat($event)'></option-search>
+    <option-search [entity]='{allItems: alerts, label: "CREATE.ALERT" | translate}' (select)='setAlert($event)'></option-search>
+    <option-search [entity]='{allItems: showas, label: "CREATE.SHOWAS" | translate}' (select)='setShowAs($event)'></option-search>
+  </ion-card>
+
+  <ion-card class='mt-10 mb-10 w-100 extra'>
+    <div class='wrapper'>
+      <ion-label>{{"CREATE.DESCRIPTION" | translate}}</ion-label>
+      <div id='contentBody' [froalaEditor]='froalaOption' [(froalaModel)] = 'description'></div>
+    </div>
+  </ion-card>
+  <ion-card class='w-100 extra mg-0 pd-0'>
+    <ion-label class='tag'>{{ "COMMONS.TAGS" | translate }}</ion-label>
+    <div class='wrapper'>
+      <ion-tags-input [(ngModel)]="tags" [placeholder]="' '" [canEnterAdd]="true" (ionFocus)='onTagFocus()' (ionBlur)='onTagBlur()'></ion-tags-input>
+    </div>
+  </ion-card>
+  
+</ion-content>

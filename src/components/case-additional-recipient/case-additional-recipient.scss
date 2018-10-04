@@ -1,0 +1,14 @@
+case-additional-recipient {
+  [select] {
+    max-width: 80%;
+  }
+  [item-content] {
+      display: flex;
+      span {
+          margin-right: 10px;
+          span {
+              margin: 0;
+          }
+      }
+  }
+}

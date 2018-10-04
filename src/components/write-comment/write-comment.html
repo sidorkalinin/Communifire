@@ -1,0 +1,6 @@
+<ion-toolbar no-padding>
+  <ion-buttons left>
+    <img class="profile-img" [style.height]="'50px'" [src]="user?.AvatarImageURL | secure | async">
+  </ion-buttons>
+  <span>{{ 'COMMONS.WRITE_A_RESPONCE' | translate }}</span>
+</ion-toolbar>

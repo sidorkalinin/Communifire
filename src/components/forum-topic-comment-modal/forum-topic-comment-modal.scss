@@ -1,0 +1,18 @@
+forum-topic-comment-modal {
+    .is-iphone-x.header-ios,  {
+        padding-top: 70px !important;
+        background-color: #f8f8f8 !important;
+    }
+    ion-header.header.header-ios{
+        padding-top: 20px;
+        background-color: #f8f8f8;
+      }
+    .scroll-content {
+        background-color: #fff;
+    }
+    [add-attachments] {
+        ion-label {
+            margin: 11px 8px 0 0;
+        }
+    }
+}

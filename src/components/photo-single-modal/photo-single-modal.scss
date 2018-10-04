@@ -1,0 +1,29 @@
+photo-single-modal {
+    ion-header {
+        background-color: #000 !important;
+    }
+    .toolbar-background {
+        background-color: #000;
+    }
+    .content {
+        background-color: #000;
+    }
+    .slide-zoom {
+        max-height: 100%;
+    }
+    zoom-area {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        padding-top: 60px;
+        .fit {
+            height: calc(100% - 60px);
+            display: flex;
+            justify-content: center;
+        }
+        img {
+            object-fit: contain;
+            max-height: 100%;
+        }
+    }
+}

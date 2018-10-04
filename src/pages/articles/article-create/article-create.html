@@ -1,0 +1,75 @@
+<!--
+  Generated template for the ArticleCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-navbar hideBackButton>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        {{ "CREATE.CANCEL" | translate }}
+        <!-- <ion-icon name="ios-arrow-back"></ion-icon> -->
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "CREATE.NEWARTICLE" | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="save()">
+        {{ "CREATE.ADD" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding (ionScroll)="onScroll($event)">
+  <ion-card class='mg-0 w-100 title'>
+    <ion-input  id='headline' placeholder='{{ "CREATE.TITLE" | translate }}' [(ngModel)]='contentTitle'></ion-input>
+    <div class='wrapper'>
+      <ion-label (click)="setFocus()">{{ "CREATE.SUMMARY" | translate }}</ion-label>
+      <ion-textarea #summary id='summary' [(ngModel)]='contentSummary'></ion-textarea>
+    </div>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 w-100 editor'>
+    <ion-label>{{ "CREATE.ARTICLEBODY" | translate }}</ion-label>
+    <div id='contentBody' [froalaEditor]='froalaOption' [(froalaModel)] = 'contentBody'></div>
+    <!-- <ion-textarea id='contentBody' [(ngModel)]='contentBody' (input)="changeTextArea()" autosize></ion-textarea> -->
+  </ion-card>
+  <ion-card class='mt-10 mb-10 pt-10 pb-10 w-100'>
+    <featured-image (featurefile)='setFeatureFile($event)'></featured-image>
+  </ion-card>
+  <ion-card class='mt-10 mb-10 w-100 checkgroup'>
+    <option-search [entity]='{allItems: categories, label: "Category", isRequired: 0}' (select)='setCategories($event)'></option-search>
+    <option-search [entity]='{allItems: subcategories, label: "Sub Category", isRequired: 0}' (select)='setSubCategories($event)' [hidden]='subcategories.length == 1'></option-search>
+    <ion-item *ngIf="MarkAsFeatured">
+      <ion-label class='inline'>{{ "CREATE.FEATURED" | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="featured"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="MarkContentAsReadRequired">
+      <ion-label class='inline'>{{"CREATE.REQUIREDREADING" | translate}}</ion-label>
+      <ion-toggle [(ngModel)]="requiredreading"></ion-toggle>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class='mt-10 mb-10 w-100 time'>    
+    <ion-item>
+      <ion-label>{{ "CREATE.PUBLICATION" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="pubdate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ "CREATE.EXPIRATION" | translate }}</ion-label>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="expiredate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ "CREATE.SHOWAFTER" | translate }}</ion-label>
+      <ion-toggle [(ngModel)]="IsContentAvailablePostExpiry"></ion-toggle>
+    </ion-item>
+  </ion-card>
+  <ion-card class='w-100 extra mg-0 pd-0'>
+    <ion-label>{{ "COMMONS.TAGS" | translate }}</ion-label>
+    <div class='wrapper'>
+      <ion-tags-input [(ngModel)]="tags" [placeholder]="' '" [canEnterAdd]="true" (ionFocus)='onTagFocus()' (ionBlur)='onTagBlur()'></ion-tags-input>
+    </div>
+  </ion-card>
+  <ion-card class='mg-0 w-100 mt-10 mb-10'>
+    <add-attachments (files)="setFiles($event)"></add-attachments>
+  </ion-card>
+</ion-content>

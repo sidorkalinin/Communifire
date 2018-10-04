@@ -1,0 +1,23 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "COMMONS.STATUS" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list radio-group [(ngModel)]="statusSelect.IssueStatusID">
+    <ion-item *ngIf="!isComment">
+      <ion-label>{{ "COMMONS.VIEW_ALL" | translate }}</ion-label>
+      <ion-radio [value]="0" (ionSelect)="selectStatus(null)"></ion-radio>
+    </ion-item>
+    <ion-item *ngFor="let status of statuses">
+      <ion-label>{{ status?.IssueStatusName }}</ion-label>
+      <ion-radio [value]="status.IssueStatusID" (ionSelect)="selectStatus(status)"></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-content>

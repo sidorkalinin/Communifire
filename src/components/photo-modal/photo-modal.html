@@ -1,0 +1,42 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-navbar>
+    <ion-title>{{photos[index]?.ContentTitle}}</ion-title>
+    <ion-buttons left>
+      <button ion-button color="light" icon-only clear (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>      
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button color="light" icon-only clear (click)="download()" *ngIf="p_download" >
+        <!-- <ion-icon name="more" ios="md-more" md="md-more"></ion-icon> -->
+        {{ "EXTRA.DOWNLOAD" | translate}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content no-margin>
+  <ion-slides>
+    <ion-slide *ngFor="let photo of photos">
+      <div class="photo">
+        <img [src]="photo?.ContentFeaturedImageFullURL | secure | async" alt="">
+      </div>
+      <div class="photo-info">
+        <div class="user">
+          <div class="img">
+            <img [src]="photo?.UpdatedByUserAvatarImageUrl | secure | async" alt="">
+          </div>
+          <div class="username">
+            <p [innerHtml]="photo?.AuthorDisplayName"></p>
+            <p>{{ photo?.DateCreatedString }}</p>
+          </div>
+        </div>
+        <div class="description">
+          <span>{{ photo?.ContentSummary }}</span>
+        </div>
+        <div class="comment-line">
+          <like-comment-actions [isStream]="false" modal-inside [entity]="photo"></like-comment-actions>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

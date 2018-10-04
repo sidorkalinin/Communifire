@@ -1,0 +1,22 @@
+photo-list {
+    .photo-items {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        img {
+            flex: 1 1 50%;
+            max-width: 50%;
+            padding: 2px;
+        }
+    }
+    .image-container {
+        min-height: 100px;
+        background-size: cover;
+    }
+    ion-grid {
+        padding: 0 !important;
+        ion-col {
+            padding: 2px !important;
+        }
+    }
+}

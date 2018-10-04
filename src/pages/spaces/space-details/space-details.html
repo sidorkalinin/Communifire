@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "TITLES.Space" | translate}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="managePeople()" *ngIf="spaceView === 1">
+        {{ "EXTRA.MANAGE" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>  
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" *ngIf="spaceView === 0">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card class="space-details-card">
+    <img *ngIf="space?.SpaceIconFileName" class="img-cover" [src]="space?.SpaceImageURL">
+    <img *ngIf="!space?.SpaceIconFileName" class="img-cover" [src]="space?.SpaceImageURL">
+    <ion-item class="space-details-card-content" [style.background]="'rgba(0,0,0,.6)'" [style.bottom]="0" [style.left]="0" [style.top]="0">
+      <ion-thumbnail item-start>
+        <ng-container *ngIf="space?.SpaceIconFileName || space?.SpaceID == 0">
+          <img class="space-details-card-thumbnail" *ngIf="space?.SpaceImageURL" [src]="space?.SpaceImageURL">
+        </ng-container>
+
+        <ng-container *ngIf="!space?.SpaceIconFileName && space?.SpaceID != 0">
+          <img class="space-details-card-thumbnail" *ngIf="space?.SpaceImageURL" [src]="space?.SpaceImageURL">
+        </ng-container>
+      </ion-thumbnail>
+      <h2 class="space-details-card-title">{{ space?.SpaceName }}</h2>
+      <div class="space-details-card-subtitle">
+        <span *ngIf="space?.SpaceVisibility === 0">{{ 'SPACEVISIBILITY.PRIVATE' | translate }}</span>
+        <span *ngIf="space?.SpaceVisibility === 1">{{ 'SPACEVISIBILITY.PUBLIC' | translate }}</span>
+        <span *ngIf="space?.SpaceVisibility === 3">{{ 'SPACEVISIBILITY.ISOLATED' | translate }}</span>
+      </div>
+    </ion-item>
+  </ion-card>
+
+  <button-group *ngIf='spaceId != 0' [buttons]="buttons" (changed)="switchSpaceView($event)"></button-group>
+
+  <ng-container [ngSwitch]="spaceView">
+    <!-- <div class="space-home" *ngSwitchCase="0" padding>
+      <loader *ngIf="isLoading"></loader>
+    </div> -->
+
+    <div class="space-activity" *ngSwitchCase="0">
+      <status-modal [spaceId]='spaceId' (modalClose)="refreshPage($event)"></status-modal>
+      <!-- <loader *ngIf="isLoadingActivity"></loader> -->
+
+      <div *ngIf="isLoadingActivity">
+        <empty-card *ngFor="let item of [1, 2, 3]"></empty-card>
+      </div>
+
+      <content-card-list [activities]="spaceActivities"></content-card-list>
+      <ion-infinite-scroll *ngIf="!isLoadingActivity" (ionInfinite)="getSpaceActivities($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+
+    <div class="space-people" *ngSwitchCase="1">
+      <people-list [isLoading]="isLoadingUsers" [peoples]="spaceUsers | search: searchtext:'UserInfoDisplayName' " (doSearch)="searchtext = $event"></people-list>
+      <ion-infinite-scroll *ngIf="!isLoadingUsers" (ionInfinite)="getSpaceUsers($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+
+    <div class="space-more" *ngSwitchCase="2">
+      <ion-list no-lines>
+        <div *ngFor="let item of list">
+          <list-button (click)="goToEntity(item)" *ngIf="entitiesAccess[item.meta]" [icon]="item.icon" [title]="item.title"></list-button>
+        </div>
+        <div class="all-disabled" *ngIf="!isOneEnabled">
+          {{ "COMMONS.ALL_ENTITIES_DISABLED" | translate }}
+        </div>
+      </ion-list>
+    </div>
+  </ng-container>
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf='!title'>{{ "TITLES.FILES" | translate}}</ion-title>
+    <ion-title *ngIf='title'>{{ title }}</ion-title>
+    <ion-buttons right *ngIf='profile == undefined'>
+      <button end add-button ion-button clear (click)="addClick()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchfilter" (keydown)="isLoadingSearch = true; files = []" (ionInput)="search()" showCancelButton="true"
+    placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+  <ion-refresher *ngIf="!isLoadingFolders && !isLoadingFiles" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <searching-for *ngIf="isLoadingSearch && searchfilter.length != 0" [text]="searchfilter"></searching-for>
+  <div *ngIf="isLoadingFolders || isLoadingFiles">
+    <loader *ngIf="isLoadingFolders || isLoadingFiles"></loader>
+  </div>
+  <no-results-found *ngIf="files.length == 0 && folders.length == 0 && !isLoadingFolders &&!isLoadingFiles && !isLoadingSearch"></no-results-found>
+  <ion-item class="mt-10" *ngIf="folders.length != 0">
+    <h2>{{"EXTRA.FOLDERS" | translate}}</h2>
+  </ion-item>
+  <ion-list class='folders' *ngIf="folders.length != 0">
+    <ion-item *ngFor="let item of folders">
+      <span (click)='gotoFolder(item)'>{{item.title}}</span>
+      <ion-icon grey-color ios="ios-arrow-down" md="md-arrow-down" item-end (click)="opensheet1(item)"></ion-icon>
+    </ion-item>
+  </ion-list>
+  <ion-item class="mt-10 border" *ngIf="files.length != 0">
+    <h2>{{"EXTRA.FILES" | translate}}</h2>
+  </ion-item>
+  <ion-list class='files' *ngIf="files.length != 0">
+    <ion-item *ngFor="let item of files">
+      <ion-thumbnail item-start>
+        <ng-container>
+          <img [src]="item.icon | secure | async">
+        </ng-container>
+      </ion-thumbnail>
+      <p (click)='gotoFile(item)'>{{item.title}}</p>
+      <ion-icon grey-color ios="ios-arrow-down" md="md-arrow-down" item-end (click)="opensheet2(item)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="searchfilter.length > 0" (ionInfinite)="doInfinite($event)" threshold="1000px">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

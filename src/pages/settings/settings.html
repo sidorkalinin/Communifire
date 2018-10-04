@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="blue">
+    <ion-title>{{"SETTINGS.TITLE" | translate}}</ion-title>
+    <button ion-button icon-only button-clear menuToggle color="white">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [style.paddingTop]="'80px'">
+    <ion-item>
+      <ion-label>
+        {{"SETTINGS.PUSH" | translate}}
+      </ion-label>
+      <ion-toggle [(ngModel)]="isPushNotificationEnabled" color="secondary" (ionChange)="notificationChanged()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{"EXTRA.LANGUAGE" | translate}}</ion-label>
+      <ion-select [(ngModel)]="lang" interface="popover" (ionChange)="selectLanguage($event)">
+        <ion-option value="1">{{"EXTRA.ENGLISH" | translate}}</ion-option>
+        <ion-option value="2">{{"EXTRA.GERMAN" | translate}}</ion-option>
+        <!-- <ion-option value="3">{{"EXTRA.ARABIC" | translate}}</ion-option> -->
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>

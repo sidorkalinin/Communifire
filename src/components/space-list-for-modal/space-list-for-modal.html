@@ -1,0 +1,8 @@
+<!-- Generated template for the SpaceListForModalComponent component -->
+<ion-searchbar [(ngModel)]="searchfilter" showCancelButton="true" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+<loader *ngIf="isLoading"></loader>
+<ion-list *ngIf="!isLoading">
+  <space-for-modal [space]="topLevel" [isAll]="isAll"></space-for-modal>
+  <space-for-modal [space]="space" *ngFor="let space of spaces | search: searchfilter:'SpaceName'" [isAll]="isAll"></space-for-modal>
+  <space-for-modal [space]="space" *ngFor="let space of notMe | search: searchfilter:'SpaceName'" [isAll]="false"></space-for-modal>
+</ion-list>

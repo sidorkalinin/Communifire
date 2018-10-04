@@ -1,0 +1,19 @@
+<ion-row tappable (click)="goToItem()">
+  <ion-item no-lines item>
+    <div class="icon-item">
+      <ion-icon *ngIf="item?.IsAnswered" name="ios-checkmark-circle" green></ion-icon> 
+       <ion-icon *ngIf="!item?.IsAnswered" name="ios-help-circle"></ion-icon>  
+    </div>
+    <div class="content">
+      <div class="sticky" *ngIf="item?.IsSticky">
+        <ion-badge >{{ "COMPONENT.STICKY" | translate }}</ion-badge>
+      </div>
+      <div class="title">
+        {{ item.ContentTitle ? item.ContentTitle: item.Title }}
+      </div>
+      <div class="created">{{ "ARTICLE.BY" | translate }} <span [innerHtml]="item?.UpdatedByUserDisplayName"></span> {{ item?.DateCreatedString }}</div>
+      <div class="created">{{ "COMMONS.UPDATED_BY" | translate }} <span [innerHtml]="item?.UpdatedByUserDisplayName"></span> {{ item?.DateUpdatedString }}</div>
+      <div class="created">{{ item?.TotalChildRecords }}&nbsp; <ion-icon name="ios-text"></ion-icon></div>
+    </div>
+  </ion-item>
+</ion-row>

@@ -1,0 +1,11 @@
+<ion-item text-wrap tappable (click)="tickerClick()">
+  <ion-avatar item-start>
+    <img *ngIf="!isImgLoaded" [src]="avatarImageURL">
+    <img [hidden]="!isImgLoaded" [src]="ticker?.UserAvatarFullUrl | secure | async" (load)="isImgLoaded = true">
+  </ion-avatar>
+  <p [style.color]="'#000'">
+    <a [innerHTML]="ticker?.UserDisplayName"></a>
+    <span [innerHtml]="getText(ticker?.ActivityText)"></span>
+    <span> {{ticker?.DateTimeSpan}}</span>
+  </p>
+</ion-item>

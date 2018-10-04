@@ -1,0 +1,459 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@import '../theme/components/_components.scss';
+
+.menu-inner {
+	ion-content.content {
+		background-color: #fff;
+	}
+}
+
+.post-update-input.card {
+	margin: 0;
+	width: 100%;
+  }
+
+ion-nav.android-padding-top {
+	font-size: 1.3rem !important;
+	page-my-account .content.activity .fixed-content {
+		margin-top: 169px !important;
+	}
+	page-my-account .content.activity .scroll-content {
+		margin-top: 169px !important;
+	}
+	page-my-account .content.notification .scroll-content, page-my-account .content.ticker .scroll-content {
+		margin-top: 117px !important;
+	}
+	page-my-account .content.notification .fixed-content, page-my-account .content.ticker .fixed-content {
+		margin-top: 117px !important;
+	}
+	.header-ios,  {
+		padding-top: 10px !important;
+		background-color: #f8f8f8 !important;
+	}
+	page-login {
+		.scroll-content {
+			padding-top: 0 !important;
+		}
+	}
+}
+
+ion-menu.android-padding-top {
+	.toolbar-ios {
+		padding: 0 !important;
+	}
+}
+
+ion-menu {
+	.header-ios,  {
+		padding-top: 15px !important;
+		background-color: #f8f8f8 !important;
+	}
+}
+
+.action-sheet-ios .action-sheet-group:first-child {
+	margin-top: 20px;
+}
+
+#menu-toolbar {
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	.toolbar-content{
+		background-color: #111647;
+	}
+	.toolbar-background-md {
+		background-color: #111647 !important;
+	}
+	background-color: #111647 !important;
+	img {
+		width: 55px;
+		max-width: inherit;
+	}
+	.photo-grey {
+		width: 40px;
+		height: 40px;
+		background-color: rgb(117, 117, 131);
+		border-radius: 50%;
+	}
+	.username-grey {
+		height: 16px;
+		width: 100%;
+		background-color: rgb(117, 117, 131);
+		margin-top: 6px;
+		border-radius: 8px;
+	}
+	.email-grey {
+		height: 14px;
+		width: 100%;
+		background-color: rgb(117, 117, 131);
+		margin-top: 6px;
+		border-radius: 7px;
+	}
+	.inline {
+		display: table-cell;
+    vertical-align: middle;
+	}
+	.photo {		
+		padding-left:10px;
+		padding-right: 10px;
+	}
+}
+
+ion-modal .is-iphone-x.header-ios {
+	// padding-top: 70px !important;
+    background-color: #f8f8f8 !important;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.post-update-input {
+	border-radius: 0 !important;
+}
+
+
+[grey-color]{
+	color: $greyText;
+}
+
+.article-content {
+	background-color: #fff;
+	border-bottom: 1px solid $greyText;
+}
+
+.banner {
+	background-color: #fff;
+}
+
+.article-title-detail h3 {
+	font-weight: 400;
+}
+
+.article-tags, .article-response {
+	padding: 0px !important;
+	border-bottom: 1px solid $greyText;
+	background-color: #fff;
+}
+
+.article-tags h6 {
+	white-space: normal;
+	color: #9a9a9a !important;
+}
+
+.article-likes-comments {
+	padding: opx !important;
+	background-color: #fff;
+	border-bottom: 1px solid $greyText;
+	color: #9a9a9a !important;
+}
+
+.article-response {
+	padding: 0 16px !important;
+
+	.item.item-block {
+		border-bottom: none;
+	}
+
+}
+
+.header-content {
+	padding: 15px 12px 12px 12px;
+	color: #fff;
+	.photo {
+		img {
+			border-radius: 50%;
+		}
+	}
+	.name {
+		p {
+			margin: 5px 0;
+			font-size: 1.2em;
+			font-weight: 500;
+		}
+	}
+	.email {
+		p {
+			margin: 5px 0;
+		}
+	}
+}
+
+.custom-menu-item {
+	color: #4a4a4a;
+	height: 47px;
+	fa-icon {
+		font-size: 1.2em !important;
+		width: 20px;
+		margin-left: 10px;
+	}
+}
+
+// ion-content.content {
+// 	margin-top: 56px;
+// }
+
+[no-margin]{
+	margin: 0 !important;
+}
+
+[card-title]{
+	margin: 0 !important;
+	width: 100% !important;
+	font-weight: 500;
+}
+
+.profile-img {
+	height: 100px;
+}
+
+.article-likes-comments {
+	padding: 5px 16px !important;
+}
+
+.like-button-section {
+	padding: 5px 16px !important;
+}
+
+.write-comment-section {
+	padding: 8px 8px 4px 8px !important;
+}
+
+.article-tags {
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+
+.is-iphone-x {
+	margin-top: 25px !important;
+	background-color: #f8f8f8 !important;	
+	box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+}
+
+/*
+ Move to content via modal.
+*/
+ion-app > .ion-page > .header-ios{
+	padding-top: 25px;
+}
+
+
+// Reference: https://github.com/ionic-team/ionic/issues/9878
+
+.ios ion-nav > .ion-page ion-header > .toolbar.statusbar-padding:first-child, 
+.ios ion-tab > .ion-page ion-header > .toolbar.statusbar-padding:first-child, 
+.ios ion-tabs > .ion-page.tab-subpage ion-header > .toolbar.statusbar-padding:first-child{
+	padding-top: calc(20px + 4px) !important;
+	min-height: calc(44px + 20px);
+}
+
+.ios ion-menu > .menu-inner ion-header > .toolbar.statusbar-padding:first-child {
+	min-height: calc(44px + 20px);
+}
+
+ 
+.ios ion-nav > .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+.ios ion-nav > .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-title, 
+.ios ion-tab > .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+.ios ion-tab > .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-title, 
+.ios ion-tabs > .ion-page.tab-subpage  ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+.ios ion-tabs > .ion-page.tab-subpage  ion-header > .toolbar.statusbar-padding:first-child ion-title, 
+.ios ion-menu > .menu-inner ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+.ios ion-menu > .menu-inner ion-header > .toolbar.statusbar-padding:first-child ion-title{
+	padding-top: 20px !important;
+	height: calc(44px + 20px);
+	min-height: calc(44px + 20px);
+}
+
+// .ion-page ion-header > .toolbar.statusbar-padding:first-child, 
+// .ion-page ion-header > .toolbar.statusbar-padding:first-child, 
+// .ion-page.tab-subpage ion-header > .toolbar.statusbar-padding:first-child, 
+// .menu-inner ion-header > .toolbar.statusbar-padding:first-child{
+// 	padding-top: calc(20px + 4px);
+// 	min-height: calc(44px + 20px);
+// }
+
+ 
+// .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+// .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-title, 
+// .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+// .ion-page  ion-header > .toolbar.statusbar-padding:first-child ion-title, 
+// .ios ion-tabs > .ion-page.tab-subpage  ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+// .ios ion-tabs > .ion-page.tab-subpage  ion-header > .toolbar.statusbar-padding:first-child ion-title, 
+// .ios ion-menu > .menu-inner ion-header > .toolbar.statusbar-padding:first-child ion-segment, 
+// .ios ion-menu > .menu-inner ion-header > .toolbar.statusbar-padding:first-child ion-title{
+// 	padding-top: 20px;
+// 	height: calc(44px + 20px);
+// 	min-height: calc(44px + 20px);
+// }
+
+.card-ios {
+	border-radius: 4px;
+	box-shadow: 0 0 0 1px rgba(63,63,68,0.05),0 1px 3px 0 rgba(63,63,68,0.15);
+	margin: 10px 10px;
+	width: calc(100% - 20px);
+}
+.item-ios ion-avatar {
+    min-width: 40px;
+    min-height: 40px;
+}
+.item-ios ion-avatar ion-img, .item-ios ion-avatar img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+}
+
+no-results-found{font-size: 1rem;}
+
+.item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
+    border-radius: 4px;
+}
+
+.searchbar-ios-cancel.activated {
+	opacity: 1 !important;
+}
+
+.is-iphone-x ion-footer, ion-footer.is-iphone-x {
+	padding-bottom: 40px;
+}
+
+ion-header {
+	ion-title.title {
+		padding-left: 32px !important;
+		padding-right: 32px !important;
+	}
+}
+
+.item-md ion-thumbnail {
+	min-width: 56px;
+	min-height: 56px;
+	img {
+		width: 56px;
+		height: 56px;
+	}
+}
+
+ion-tags-input{
+	.iti-input{
+		width: 100% !important;
+	}
+	.ion-tags-input.tit-border-color{
+		border-bottom: 0px;
+		padding-left: 10px;
+	}
+}
+.mbsc-sc-itm{
+	div{
+		opacity: 0!important;
+	}
+}
+
+.pb-10{
+	padding-bottom: 10px;
+}
+.pt-0 {
+	padding-top: 0px !important;
+}
+.pt-10{
+	padding-top: 10px;
+}
+.pt-15{
+	padding-top: 15px;
+}
+.pt-20{
+	padding-top:20px;
+}
+.mg-0{
+	margin:0px !important;    
+}
+.pd-0{
+	padding: 0px !important;
+}
+.pl-0{
+	padding-left: 0px !important;
+}
+.pr-0{
+	padding-left: 0px !important;
+}
+.pb-0{
+	padding-bottom: 0px !important;
+}
+.w-100{
+	width: 100% !important;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+.mb-10{
+	margin-bottom: 10px !important;
+}
+.mt-10{
+	margin-top: 10px !important;
+}
+.no-shadow{
+	box-shadow: none;
+}
+
+.picker-col:nth-of-type(2){
+	padding-left: 10px;
+}
+.picker-col:nth-of-type(3){
+	margin-left: -10px;
+}
+.picker-col:nth-of-type(4){
+	margin-left: -10px;
+	margin-right: -10px;
+}
+.picker-col:nth-of-type(5){
+	margin-right: -10px;
+}
+.picker-col:nth-of-type(7){
+	padding-right: 10px;
+}
+
+.is-ipad-x .scroll-content {
+	//margin-top: 215px !important;
+}
+
+body{
+	-user-select: all;
+	-webkit-user-select: all; /* Chrome/Safari */
+	-webkit-user-select: text; /* Safari only */
+	-moz-user-select: all; /* Firefox */
+	-ms-user-select: all; /* IE10+ */
+}
+
+ion-header.header.header-ios{
+	//padding-top: 20px;
+	background-color: #f8f8f8;
+}
+
+ion-alert{
+	// padding-top: 200px !important;
+}
+
+.fr-wrapper{
+	div:first-child:not(.fr-element) {
+		display: none !important;	
+	}
+}
+.fr-sticky-dummy {
+	display: none !important;
+}

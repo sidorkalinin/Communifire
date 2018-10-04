@@ -1,0 +1,104 @@
+case-comment {
+    .username-display{
+        font-weight: 500;
+        font-size: 0.9em;
+    }
+    .date-display {
+        font-size: 0.8em;
+    }
+    .comment-text {
+        color: #000 !important;
+        p {
+            color: #000;
+        }
+        img {
+            height: auto;
+            width: auto;
+        }
+    }
+    [no-margin]{
+        width: 100% !important;
+        margin: 0 !important;
+        border-bottom: 2px solid #ececec;
+    }
+    .item-md p {
+        color: $greyText;
+        font-size: 0.8em;
+    }
+    [tags] {
+        font-size: 0.8em;
+        color: $greyText;
+        font-weight: 500;
+    }
+    [horizontal-scroll] {
+        .scroll-content {
+            position: relative;
+        }
+        .scroll-zoom-wrapper {
+            display: flex;
+            overflow-x: scroll;
+        }
+        position: relative;
+        display: block;
+        white-space: nowrap;
+        overflow-x: scroll;
+    }
+    .attachment-item {
+        border-radius: 3px;
+        padding: 10px;
+        flex: 0 0 33%;
+        background-color: #F5F5F5;
+        border: 1px solid #ececec;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: baseline;
+        img {
+            height: 100px;
+            width: auto;
+            border-radius: 3px;
+        }
+        .size {
+            ion-icon {
+                color: #327eff;
+            }
+            span {
+                font-size: 0.8em;
+                color: $greyText;
+            }
+        }
+        margin: 0 16px;
+    }
+    .attachment-item.isImage {
+        padding: 0 !important;
+        background-color: #fff;
+        border: none;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .case-comment-like {
+        display: flex;
+        margin: 0 0 4px 16px;
+        button {
+            border: none !important;
+        }
+        single-content-like button.is-not-card {
+            .button-inner {
+                justify-content: flex-start !important;
+            }
+            ion-icon {
+                font-size: 1.4em !important;
+            }
+        }
+    }
+
+    .likes-count {
+        padding: 5px 16px;
+    }
+
+    a {
+        text-decoration: none;
+        color: $linkColor;
+    }
+}

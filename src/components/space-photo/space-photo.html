@@ -1,0 +1,10 @@
+<!-- Generated template for the SpacePhotoComponent component -->
+<button class='photo-label' (click)='showUpload()'>
+  {{"CREATE.UPLOADFEATURE" | translate}}(
+  <span>{{isFeaturedImage?'hide':'show'}}</span>)
+</button>
+<div [hidden]='!isFeaturedImage'>
+  <div class='pt-10'>
+    <img class="featured-image" [src]="DomSanitizer.bypassSecurityTrustUrl(file.path) | secure | async" (click)='presentActionSheet($event)'>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <!-- <img *ngIf="activity?.UserAvatarFullUrl" [src]="activity?.UserAvatarFullUrl"> -->
+      <div class="image"></div>
+    </ion-avatar>
+    <div class="text">
+      <div class="first-line"></div>
+      <div class="second-line"></div>
+    </div>
+    <div class="datetime"></div>
+  </ion-item>
+
+  <ion-card>
+    <div class="image-full">
+
+    </div>
+    <ion-card-content>
+      <div class="title"></div>
+      <div class="text-line"></div>
+      <div class="text-line"></div>
+      <div class="text-line"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding text-right>
+      <comments-count *ngIf="activity?.EntityCommentCount >= 0" [comments]="activity?.EntityCommentCount"></comments-count>
+    </ion-col>
+  </ion-row> -->
+
+  <!-- <like-comment-actions (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions> -->
+</ion-card>

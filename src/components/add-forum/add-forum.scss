@@ -1,0 +1,14 @@
+.add-button {
+  position: absolute;
+  right: 10px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  background-color: white;
+  padding: 4px 12px;
+  border: 1px solid #dfdfdf;
+  top: 8px;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+.add-button:hover{
+  cursor: pointer;
+}

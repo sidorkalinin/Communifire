@@ -1,0 +1,13 @@
+page-invite {
+  ion-card {
+    margin: 5px !important;
+    width: calc(100% - 10px) !important;
+  }
+  ion-row {
+    margin-top: 1em;
+    .button-ios {
+      height: 2.3em;
+      font-size: 1.5rem;
+    }
+  }  
+}

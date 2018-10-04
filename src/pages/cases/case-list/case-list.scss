@@ -1,0 +1,32 @@
+page-case-list {
+    // .is-iphone-x.header-ios,  {
+    //     padding-top: 70px !important;
+    //     background-color: #f8f8f8 !important;
+    // }
+    // ion-header.header.header-ios{
+    //     padding-top: 20px;
+    //     background-color: #f8f8f8;
+    // }
+    [card-title] {
+        width: 100%;
+        margin: 0;
+        font-weight: 600;
+        ion-card-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0 0 16px !important;
+            ion-icon {
+                font-size: 2.5rem;
+            }
+            [add-button]{
+                padding: 0 0.5rem 0 1rem;
+                ion-icon {
+                    font-size: 3rem;
+                    font-weight: bold;
+                }
+                height: 40px;
+            }
+        }
+    }
+}

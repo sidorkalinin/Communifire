@@ -1,0 +1,57 @@
+<!--
+  Generated template for the CaseCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-navbar hideBackButton>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        {{ "CREATE.CANCEL" | translate }}
+        <!-- <ion-icon name="ios-arrow-back"></ion-icon> -->
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "CREATE.NEWCASE" | translate }}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="save()">
+        {{ "CREATE.POST" | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding (ionScroll)="onScroll($event)">
+  <ion-card class='mg-0 w-100 title'>
+    <div class='wrapper'>
+      <ion-label>{{ "CREATE.SUBJECT" | translate }}</ion-label>
+      <ion-input  id='headline' [(ngModel)]='issueTitle'></ion-input>
+    </div>
+    <div class='wrapper editor pt-0'>
+      <ion-label>{{"CREATE.DESCRIPTION" | translate}}</ion-label>
+      <div id='caseBody' [froalaEditor]='froalaOption' [(froalaModel)] = 'issueDescription'></div>
+    </div>
+  </ion-card>
+  <ion-card class='mg-0 w-100 no-shadow'>
+    <add-attachments (files)="setFiles($event)"></add-attachments>
+  </ion-card>
+  <ion-card class='w-100 setting mg-0 no-shadow'>
+    <option-search [entity]='{allItems: d_projects, label: "COMMONS.PROJECT" | translate , isRequired: 0}' (select)='setProject($event)'></option-search>
+    <option-search  [entity]='{allItems: d_categories, label: "COMMONS.CATEGORY" | translate , isRequired: 0}' (select)='setCategory($event)'></option-search>
+    <option-search [entity]='{allItems: d_milestones, label: "COMMONS.MILESTONE" | translate , isRequired: 0}' (select)='setMilestone($event)' [hidden]='d_milestones.length == 1'></option-search>
+    <option-search [entity]='{allItems: d_statuses, label: "COMMONS.STATUS" | translate , isRequired: 1}' (select)='setStatus($event)'></option-search>
+    <option-search  [entity]='{allItems: d_priorities, label: "COMMONS.PRIORITY" | translate , isRequired: 1}' (select)='setPriority($event)'></option-search>
+    <case-assign-people [entity]='{allItems: d_assigntos, label: "COMMONS.ASSIGN_TO" | translate , isRequired: 0}' (select)='setAssignTo($event)'></case-assign-people>
+  </ion-card>
+  <ion-card class='w-100 extra mg-0 pd-0'>
+    <ion-label>{{ "COMMONS.TAGS" | translate }}</ion-label>
+    <div class='wrapper'>
+      <ion-tags-input [(ngModel)]="tags" [placeholder]="' '" [canEnterAdd]="true" (ionFocus)='onTagFocus()' (ionBlur)='onTagBlur()'></ion-tags-input>
+    </div>
+  </ion-card>
+  <ion-card class='w-100 pb-10 pt-10'>
+    <!-- <case-additional-recipient [entity]='{spaceid: spaceId, label: "Additional Recipients"}' (select)='setRecipients($event)'></case-additional-recipient> -->
+    <space-people-select [entity]='{spaceid: spaceId, label: "COMMONS.ADDITIONAL_RECIPIENT" | translate, selecteditems: recipients}' (select)='setRecipients($event)'></space-people-select>
+    <person (checkPress)="setRecipientCheck($event)" [person]="people" *ngFor="let people of d_recipients" [hascheckbox]="false"></person>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="blue">
+    <ion-title>{{ "PEOPLE.HEADING" | translate }}</ion-title>
+    <button ion-button icon-only button-clear menuToggle color="white">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="peopleFilter">
+      <ion-segment-button value="all-people" (click)="refreshPeople()">
+        {{ "PEOPLE.SEGMENT.ALL" | translate }}
+      </ion-segment-button>
+
+      <ion-segment-button value="my-connection">
+        {{ "PEOPLE.SEGMENT.CONNECTION" | translate }}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-margin>
+  <div [ngSwitch]="peopleFilter">
+    <div *ngSwitchCase="'my-connection'">
+      <people-list [isLoading]="isLoadingMy" [peoples]="friends | search: searchtext:'UserInfoDisplayName'" (doSearch)="searchtext = $event"></people-list>
+    </div>
+
+    <div *ngSwitchCase="'all-people'">
+      <people-list [isLoadingSearch]="isLoadingSearch" [isLoading]="isLoadingAll" [peoples]="people" (doSearch)="search($event)"></people-list>
+      <ion-infinite-scroll *ngIf="!isLoadingAll" (ionInfinite)="doInfinite($event)" threshold="1000px">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,34 @@
+.communifire-button {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ion-icon {
+    font-size: 30px;
+  }
+
+  &-text {
+    margin-top: 5px;
+  }
+
+  &-group {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  &.selected {
+    ion-icon {
+      color: #4487ff;
+    }
+
+    .communifire-button-text {
+      color: #4487ff;
+    }
+  }
+}

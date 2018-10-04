@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card card-title>
+    <ion-card-content no-padding>
+      <span>{{ "TITLES.CASES" | translate }}</span>
+      <ion-buttons>
+        <button end add-button ion-button clear (click)="createCase()" *ngIf='profile == undefined'>
+          <ion-icon name="add"></ion-icon>
+        </button>
+        <button end ion-button clear (click)="openFilter()">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
+  <ion-searchbar [(ngModel)]="searchfilter" (keydown)="isLoadingSearch = true; cases = []" (ionInput)="doInfinite()" showCancelButton="true" placeholder="{{'MODAL.SEARCH...'|translate}}" cancelButtonText="{{'TOAST.CANCEL'|translate}}"></ion-searchbar>
+
+  <searching-for *ngIf="isLoadingSearch && searchfilter.length != 0" [text]="searchfilter"></searching-for>
+
+  <no-results-found *ngIf="cases.length == 0 && !isLoading && !isLoadingSearch"></no-results-found>
+
+  <div *ngIf="isLoading">
+    <empty-case-card *ngFor="let item of [1,2,3,4,5]"></empty-case-card>
+  </div>
+
+  <case-item [case]="case" *ngFor="let case of cases | search: searchfilter:'IssueTitle'"></case-item>
+
+  <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="doInfinite($event)" threshold="1000px">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

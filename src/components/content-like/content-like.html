@@ -1,0 +1,8 @@
+<span class="like-button" no-padding *ngIf="likesCount && likesCount.LikeCount >= 0">
+  <ion-icon name="thumbs-up"></ion-icon>
+  <p *ngIf="likesCount.LikeCount == 1 && likesCount.DoesCurrentUserLikes"><span>{{"MYACCOUNTCARD.CARDCONTENT.YOU_LIKE_THIS" | translate}}</span> </p>
+  <p *ngIf="likesCount.LikeCount == 1 && !likesCount.DoesCurrentUserLikes"><span>{{ likesCount.LikeCount }} {{"MYACCOUNTCARD.CARDCONTENT.LIKE" | translate}}</span> </p>
+  <p *ngIf="(likesCount.LikeCount > 1 || likesCount.LikeCount == 0) && !likesCount.DoesCurrentUserLikes"><span>{{ likesCount.LikeCount }} {{"MYACCOUNTCARD.CARDCONTENT.LIKES" | translate}}</span> </p>
+  <p *ngIf="likesCount.LikeCount == 2 && likesCount.DoesCurrentUserLikes"><span>{{"MYACCOUNTCARD.CARDCONTENT.YOU_AND_ONE" | translate}}</span> </p>
+  <p *ngIf="likesCount.LikeCount > 2 && likesCount.DoesCurrentUserLikes"><span>{{"MYACCOUNTCARD.CARDCONTENT.YOU_AND_SOME" | translate:{'count': likesCount.LikeCount - 1 } }}</span> </p>
+</span>

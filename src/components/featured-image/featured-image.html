@@ -1,0 +1,14 @@
+<div (click)='showUpload()'>
+  <label for="">
+    {{"CREATE.FEATUREDIMAGE" | translate}}
+  </label>
+  <div class='pt-10 upload' *ngIf='file.filename == "" && !file.isCrop' (click)='presentActionSheet($event)'>
+    <ion-icon ios="md-cloud-upload" md="md-cloud-upload"></ion-icon>
+  </div>
+  <div class='pt-10 pb-10' *ngIf='file.filename != "" && !file.isCrop' (click)='presentActionSheet($event)'>
+    <img class="featured-image" [src]="DomSanitizer.bypassSecurityTrustUrl(mynormalizeURL(file.path)) | secure | async">
+  </div>
+  <div class='pt-10 pb-10' *ngIf='file.isCrop' (click)='presentActionSheet($event)'>
+    <img class="featured-image" [src]="file.path | secure | async">
+  </div>
+</div>

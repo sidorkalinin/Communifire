@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1066246631997",
+    "firebase_url": "https://com-ionic-communifire.firebaseio.com",
+    "project_id": "com-ionic-communifire",
+    "storage_bucket": "com-ionic-communifire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066246631997:android:d856b573aeef8062",
+        "android_client_info": {
+          "package_name": "com.ionic.communifire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066246631997-g1ko4dpgsefd0gpgpqebn3aoh69ia65o.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1066246631997-g1ko4dpgsefd0gpgpqebn3aoh69ia65o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGVfpcLVW1i0b9DqOhpxC2OTMcQm-jCYY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

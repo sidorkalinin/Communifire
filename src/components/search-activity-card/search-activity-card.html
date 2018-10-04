@@ -1,0 +1,13 @@
+<!-- Generated template for the SearchActivityCardComponent component -->
+<ion-item class="communifire-person">
+  <ion-avatar item-start style="margin-bottom: auto;">
+    <img [src]="activity?.ContentImageURL | secure | async">
+  </ion-avatar>
+  <ion-label (click)="goToEntity()">
+    <strong [innerHtml]="activity?.Title"></strong><br>
+    <small>{{activity?.DateCreatedString}}</small>
+    <h3 [innerHtml]="activity?.Summary" style="margin-top: 5px;"></h3>
+    <small (click)="goToProfile()" [innerHTML]="activity?.AuthorUserDisplayName"></small>
+    <small *ngIf="activity?.SpaceName">{{ "ARTICLE.IN" | translate }} {{ activity.SpaceName }}</small>
+  </ion-label>
+</ion-item>

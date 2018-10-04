@@ -1,0 +1,55 @@
+page-my-account{
+    .content.notification, .content.ticker {
+        .fixed-content {
+            margin-top: 107px !important;
+        }
+        .scroll-content {
+            margin-top: 107px !important;
+        }
+        ion-refresher {
+            top: 107px !important;
+        }
+    }
+    .content.activity {
+        .fixed-content {
+            margin-top: 159px !important;
+        }
+        .scroll-content {
+            margin-top: 159px !important;
+        }
+        ion-refresher {
+            top: 159px !important;
+        }
+    }
+    
+}
+
+.is-iphone-x {
+    .content.notification, .content.ticker {
+        .fixed-content {
+            margin-top: calc(107px + 30px) !important;
+        }
+        .scroll-content {
+            margin-top: calc(107px + 30px) !important;
+        }
+        ion-refresher {
+            top: calc(107px + 30px) !important;
+        }
+    }
+    .content.activity {
+        .fixed-content {
+            margin-top: calc(159px + 30px) !important;
+        }
+        .scroll-content {
+            margin-top: calc(159px + 30px) !important;
+        }
+        ion-refresher {
+            top: calc(159px + 30px) !important;
+        }
+    }
+}
+.refresher-refreshing-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

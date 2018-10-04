@@ -1,0 +1,61 @@
+empty-case-card {
+    .title {
+        white-space: normal;
+        background-color: $emptyColor;
+        width: 60%;
+        height: 18px;
+        border-radius: 4px;
+        margin-bottom: 3px;
+    }
+
+    .updated {
+        white-space: normal;
+        font-size: 0.8em;
+        color: $greyText;
+        background-color: $emptyColor;
+        width: 100%;
+        height: 13px;
+        border-radius: 4px;
+        margin-bottom: 3px;
+    }
+    .info {
+        white-space: normal;
+        font-size: 0.8em;
+        color: $greyText;
+        .comments {
+            padding-right: 15px;
+            display: flex;
+            flex-direction: row;
+            ion-icon {
+                margin-left: 3px;
+            }
+        }
+        display: flex;
+        .priority {
+            white-space: nowrap;
+            padding-right: 15px;
+            display: flex;
+            flex-direction: row;
+        }
+        .assigned {
+            white-space: nowrap;
+            display: flex;
+            flex-direction: row;
+        }
+        background-color: $emptyColor;
+        width: 100%;
+        height: 13px;
+        border-radius: 4px;
+    }
+
+    ion-badge {
+        min-width: 126px;
+        padding-top: 5px !important; 
+        padding-bottom: 5px !important; 
+    }
+
+    .default {
+        background-color: $emptyColor;
+        color: transparent;
+    }
+}

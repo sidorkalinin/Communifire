@@ -1,0 +1,53 @@
+page-video-detail {
+    // ion-header.header.header-ios{
+    //     padding-top: 20px;
+    //     background-color: #f8f8f8;
+    // } 
+
+    .article-content {
+        background-color: #fff;
+    }
+
+    .banner {
+        background-color: #fff;
+    }
+
+    .profile-img.video-page {
+        margin-top: 0 !important;
+        border: none !important;
+        height: auto !important;
+    }
+
+    .article-title-detail h3 {
+        font-weight: 400;
+    }
+
+    .article-tags, .article-response {
+        // padding: 0px !important;
+    }
+
+    .article-likes-comments {
+        // padding: 0px !important;
+        background-color: #fff;
+    }
+    .video {
+        max-height: 300px;
+        width: 100%;
+        background-color: #fff;
+    }
+    a {
+        text-decoration: none;
+        color: $linkColor;
+    }
+    iframe {
+        height: 50%;
+    }
+    .article-desc {
+        p {
+            margin: 0px;
+        }
+    }
+    .hide-frame {
+        height: 0px;
+    }
+}

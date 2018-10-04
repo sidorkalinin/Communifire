@@ -1,0 +1,6 @@
+<div class="communifire-button-group">
+  <button *ngFor="let button of buttons; let i = index" (click)="select(button.text, i)" class="communifire-button" [class.selected]="i === this.selected">
+    <ion-icon [name]="button.icon"></ion-icon>
+    <span class="communifire-button-text">{{button.text | translate}}</span>
+  </button>
+</div>

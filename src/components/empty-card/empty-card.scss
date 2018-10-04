@@ -1,0 +1,42 @@
+empty-card {
+    .image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: $emptyColor;
+    }
+    .text {
+        .first-line, .second-line {
+            width: 100%;
+            height: 15px;
+            background-color: $emptyColor;
+            border-radius: 3px;
+            margin-bottom: 4px;
+        }
+    }
+    .datetime {
+        width: 40%;
+        height: 13px;
+        border-radius: 3px;
+        background-color: $emptyColor;
+    }
+    .image-full {
+        width: 100%;
+        height: 180px;
+        background-color: $emptyColor;
+    }
+    .title {
+        width: 100%;
+        height: 20px;
+        border-radius: 3px;
+        background-color: $emptyColor;
+        margin-bottom: 5px;
+    }
+    .text-line {
+        width: 100%;
+        height: 13px;
+        border-radius: 3px;
+        background-color: $emptyColor;
+        margin-bottom: 4px;
+    }
+}

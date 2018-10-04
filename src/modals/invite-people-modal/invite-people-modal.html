@@ -1,0 +1,21 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{"INVITEPEOPLE.TITLE" | translate}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="presentConfirm()">{{"INVITEPEOPLE.POST" | translate}}</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <people-list [isLoadingSearch]="isLoadingSearch" [isLoading]="isLoading" (returnArray)="setArray($event)" [array]="attendeesIdArray" [peoples]="people" (doSearch)="search($event)" [hascheckbox]="true"></people-list>
+  <ion-infinite-scroll *ngIf="!isLoading" (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+

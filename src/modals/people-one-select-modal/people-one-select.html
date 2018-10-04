@@ -1,0 +1,17 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "MODAL.SELECT" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchString" (input)="search()" placeholder="{{'MODAL.SEARCH...' | translate}}" ></ion-searchbar>
+  <ion-list>
+    <person (checkPress)="setCheck($event)" [person]="people" [selected]='people.default' *ngFor="let people of tmppeoples" [hascheckbox]="true"></person>
+  </ion-list>
+</ion-content>

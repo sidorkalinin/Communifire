@@ -1,0 +1,43 @@
+<ion-card no-margin>
+  <ion-item>
+    <ion-avatar (click)="goToProfile(comment)" item-start>
+      <img [src]="comment?.AvatarPath">
+    </ion-avatar>
+    <h2 (click)="goToProfile(comment)" [innerHtml]="comment?.UserDisplayName" class="username-display"></h2>
+    <p (click)="goToProfile(comment)" class="date-display">{{ comment?.CommentDateString }}</p>
+  </ion-item>
+  <ion-card-content>
+    <p class="comment-text" [innerHTML]="comment?.CommentTextHtmlFormatted | safeHtml"></p>
+  </ion-card-content>
+  <ion-scroll scrollX="true" style="width:100vw; height:140px" *ngIf="comment.Attachments">
+    <ion-row nowrap>
+      <div *ngFor="let item of comment?.Attachments" class="attachment-item" [ngClass]="{ 'isImage': item.IsImage}">
+        <img [src]="item.MediaServerRootURL + '/' + item.FileName | secure | async" *ngIf="item.IsImage">
+        <!-- <p *ngIf="!item.IsImage" [innerHtml]="item?.Caption"></p> -->
+        <h6 *ngIf="!item.IsImage" (click)="downloadFile(item.MediaServerRootURL, item.FileName, item.Caption)">{{ item?.Caption }}
+          <fa-icon name="external-link" item-end></fa-icon>
+        </h6>
+        <div class="size" *ngIf="!item.IsImage">
+          <ion-icon name="document"></ion-icon>
+          <span>{{ item.FileSizeText }}</span>
+        </div>
+      </div>
+    </ion-row>
+  </ion-scroll>
+  <ion-list padding-horizontal no-lines *ngIf="comment.CommentTags">
+    <ion-item no-padding>
+      <ion-row>
+        <ion-col no-padding tags no-lines>
+          {{"ARTICLE.TAGS" | translate}}
+          <div [innerHtml]="comment?.CommentTags"></div>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+  <div class="likes-count">
+    <content-like [likesCount]="likes"></content-like>
+  </div>
+  <div class="case-comment-like">
+    <single-content-like (getCount)="setCount($event)" left [contentID]="comment?.CommentID" [entityType]="20"></single-content-like>
+  </div>
+</ion-card>

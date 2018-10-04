@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ "TITLES.PHOTOS" | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="getPhotoInfo($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!-- <ion-card card-title>
+    <ion-card-content>
+      <div (click)="navToList()">{{ "TITLES.PHOTOS" | translate }}</div>
+    </ion-card-content>
+  </ion-card> -->
+
+  <div class="banner" *ngIf="contentDetail?.ContentThumbImageFullURL">
+    <img [style.width]="'100%'" [src]="contentDetail?.ContentThumbImageFullURL | secure | async">
+  </div>
+
+  <div class="article-content" padding>
+    <div class="article-title-detail" text-center>
+      <img class="profile-img" [class.hasCover]="!!contentDetail?.ContentFeaturedImageFullURL" *ngIf="contentDetail?.AuthorAvatarImageUrl"
+        [src]="contentDetail?.AuthorAvatarImageUrl | secure | async">
+      <span>
+        <h3>
+          {{contentDetail?.ContentTitle}}
+          <!-- <edit-button [entity]='{contentId: id, entityType: "album"}'></edit-button> -->
+        </h3>
+      </span>
+      <p>
+        <span>{{contentDetail?.DateCreatedString}}</span>
+        <span>{{"ARTICLE.BY" | translate}}</span>&nbsp;
+        <span [innerHtml]="contentDetail?.AuthorDisplayName"></span>
+      </p>
+
+      <p>
+        <span>{{contentDetail?.ViewCount}} {{"ARTICLE.VIEWS" | translate}}</span>
+        &nbsp;
+        <span>{{ likesCount?.LikeCount }} {{ "COMMONS.LIKES" | translate }}</span>
+        &nbsp;
+        <span *ngIf="contentDetail?.CommentCount == 1">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</span>
+        <span *ngIf="contentDetail?.CommentCount > 1 || contentDetail?.CommentCount == 0">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</span>
+      </p>
+    </div>
+    <div class="comment-line">
+      <like-comment-actions [isStream]="false" (likeCount)="setCount($event)" [entity]="contentDetail"></like-comment-actions>
+    </div>
+
+    <div class="article-desc">
+      <p [innerHtml]="contentDetail?.ContentBody"></p>
+    </div>
+  </div>
+
+  <div class="article-like">
+    <content-like [contentID]="contentDetail?.ContentID"></content-like>
+  </div>
+  <photo-list *ngIf="contentDetail?.ContentID" [parentId]="contentDetail?.ContentID"></photo-list>
+
+</ion-content>

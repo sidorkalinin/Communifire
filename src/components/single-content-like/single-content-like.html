@@ -1,0 +1,10 @@
+<!-- <div class="like" [ngClass]="[ isCard ? 'is-card' : 'is-not-card' ]"> -->
+  <button [ngClass]="[ isCard ? 'is-card' : 'is-not-card' ]" small no-padding no-margin ion-button icon-left clear *ngIf="!likeDetails?.DoesCurrentUserLikes" (click)="postLike()">
+    <ion-icon name="thumbs-up"></ion-icon>
+    {{ "MYACCOUNTCARD.CARDCONTENT.LIKEBUTTON" | translate }}
+  </button>
+  <button [ngClass]="[ isCard ? 'is-card' : 'is-not-card' ]" small no-padding no-margin ion-button icon-left clear *ngIf="likeDetails?.DoesCurrentUserLikes" (click)="deleteLike()">
+    <ion-icon name="thumbs-down"></ion-icon>
+    {{ "MYACCOUNTCARD.CARDCONTENT.UNLIKEBUTTON" | translate }}
+  </button>
+<!-- </div> -->

@@ -1,0 +1,48 @@
+<ion-card>
+  <ion-item text-wrap>
+    <ion-avatar item-start>
+      <img *ngIf="activity?.UserAvatarFullUrl" [src]="activity?.UserAvatarFullUrl | secure | async">
+    </ion-avatar>
+    <h4>
+      <strong (click)="goToProfile()" [innerHTML]="activity?.UserDisplayName"></strong>
+      <ng-container>
+        <span [innerHtml]="activity?.ActionText"></span>
+        <span *ngIf="activity?.SpaceName">{{ "ARTICLE.IN" | translate }} {{ activity.SpaceName }}</span>
+      </ng-container>
+    </h4>
+    <p>{{activity?.DateTimeSpan}}</p>
+  </ion-item>
+  <ion-card (click)="goToArticle()">
+    <img *ngIf="activity?.TitleImageURL" [src]="activity?.TitleImageURL | secure | async">
+    <img *ngIf="activity?.ContentThumbImageFullURL" [src]="activity?.ContentThumbImageFullURL | secure | async">
+    <ion-card-content>
+      <ion-item no-padding>
+        <ion-avatar item-start class="date-avatar">
+          <h3>{{ activity?.Event?.StartDateISO | amDateFormat:'MMM'}}</h3>
+          <h2>
+            <b>{{ activity?.Event?.StartDateISO | amDateFormat:'DD'}}</b>
+          </h2>
+        </ion-avatar>
+        <h2 style='font-weight: 450;' [innerHtml]="activity?.Event?.Title"></h2>
+        <h2>{{activity?.Event?.StartDateISO | date:'d/M/yy'}}
+          <span *ngIf="activity?.Event?.IsAllDay">{{ "EVENT.ALL_DAY" | translate }}</span>
+          <span *ngIf="!activity?.Event?.IsAllDay">{{ activity?.Event?.StartTimeText }} {{ "ARTICLE.TO" | translate }} {{ activity?.Event?.EndTimeText }}</span>
+        </h2>
+        <h2 [innerHTML]="activity?.Event?.VenueName"></h2>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding text-right (click)='openComment()'>
+      <button no-padding ion-button clear small no-margin text-capitalize *ngIf="activity?.EntityCommentCount >= 0 && activity.CanBeCommented !== false">
+        <p>{{activity?.EntityCommentCount}} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <like-comment-actions (likeCount)="setCount($event)" [entity]="activity"></like-comment-actions>
+</ion-card>

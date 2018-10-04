@@ -1,0 +1,22 @@
+<!-- Generated template for the SpaceForModalComponent component -->
+<ion-item tappable (click)="goToDetails()" [style.cursor]="'pointer'">
+  <ion-thumbnail item-start>
+    <ng-container *ngIf="space?.SpaceIconFileName">
+      <img [src]="space.SpaceIconURL | secure | async">
+    </ng-container>
+
+    <ng-container *ngIf="!space?.SpaceIconFileName">
+      <img [src]="space.SpaceIconURL | secure | async">
+    </ng-container>
+  </ion-thumbnail>
+  <h2>{{space.SpaceName}}</h2>
+  <p>
+    <span *ngIf="space?.SpaceVisibility === 0">{{ 'SPACEVISIBILITY.PRIVATE' | translate }}</span>
+    <span *ngIf="space?.SpaceVisibility === 1">{{ 'SPACEVISIBILITY.PUBLIC' | translate }}</span>
+    <span *ngIf="space?.SpaceVisibility === 3">{{ 'SPACEVISIBILITY.ISOLATED' | translate }}</span>
+  </p>
+
+  <button *ngIf="isAll" ion-button clear item-end>
+    <ion-icon name="md-checkmark"></ion-icon>
+  </button>
+</ion-item>

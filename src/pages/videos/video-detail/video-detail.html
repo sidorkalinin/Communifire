@@ -1,0 +1,98 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title (click)="navToList()">{{ getTitle() | translate}}</ion-title>
+  </ion-navbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title (click)="navToList()">{{ getTitle() | translate}}</ion-title>
+    <ion-buttons right>
+      <edit-button [entity]='{contentId: contentId, entityType: "video"}' [hidden]='!canedit'></edit-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="isLoadingIframe">
+    <loader></loader>
+  </div>
+  <iframe width="100%" [src]="trustedVideoUrl" frameborder="0" allowfullscreen *ngIf="isIframe" (load)="dismissLoading()" [ngClass]="{'hide-frame':isLoadingIframe}" ></iframe>
+  <video controls class="video" [src]="contentDetail?.ContentMediaServerRootURL + '/' + contentDetail?.ContentMediaFileName"
+    *ngIf='!isIframe' controlsList="nodownload"></video>
+
+  <div class="article-content" padding>
+    <div class="article-title-detail">
+      <h3>
+        {{contentDetail?.ContentTitle}}
+      </h3>
+      <ion-row>
+        <ion-col col-2 text-left>
+          <img class="profile-img video-page" [class.hasCover]="!!contentDetail?.ContentFeaturedImageFullURL" *ngIf="contentDetail?.AuthorAvatarImageUrl"
+            [src]="contentDetail?.AuthorAvatarImageUrl | secure | async">
+        </ion-col>
+        <ion-col col-10 text-left>
+          <p>
+            <span>{{contentDetail?.DateCreatedString}}</span>
+            <span>{{"ARTICLE.BY" | translate}}</span>&nbsp;
+            <span [innerHtml]="contentDetail?.AuthorDisplayName"></span>
+          </p>
+          <p>
+            {{"ARTICLE.POSTEDIN" | translate}}
+            <span *ngIf="contentDetail?.SpaceID > 0">{{ contentDetail?.SpaceName }}</span>
+            <span *ngIf="contentDetail?.SpaceID === 0">Top Level Community</span>
+          </p>
+          <p>
+            <span>{{contentDetail?.ViewCount}} {{"ARTICLE.VIEWS" | translate}}</span>
+            &nbsp;
+            <span *ngIf="contentDetail?.CommentCount == 1">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</span>
+            <span *ngIf="contentDetail?.CommentCount > 1 || contentDetail?.CommentCount == 0">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</span>
+          </p>
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+    <div class="article-desc">
+      <span [innerHtml]="contentDetail?.ContentBody"></span>
+    </div>
+
+    <show-attachments [entity]="{id: contentId, type: 7}"></show-attachments>
+  </div>
+  <ion-list no-margin class="article-tags" padding-horizontal *ngIf="contentDetail?.TagsCSV" no-lines>
+    <ion-item>
+      <h6>{{"ARTICLE.TAGS" | translate}}</h6>
+      <h6>{{contentDetail?.TagsCSV}}</h6>
+    </ion-item>
+  </ion-list>
+
+  <ion-row class="article-likes-comments" padding-horizontal>
+    <ion-col no-padding>
+      <content-like [likesCount]="likesCount"></content-like>
+    </ion-col>
+    <ion-col no-padding>
+      <p text-right *ngIf="contentDetail?.CommentCount == 1">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENT" | translate}}</p>
+      <p text-right *ngIf="contentDetail?.CommentCount > 1 || contentDetail?.CommentCount == 0">{{ contentDetail?.CommentCount }} {{"MYACCOUNTCARD.CARDCONTENT.COMMENTS" | translate}}</p>
+    </ion-col>
+  </ion-row>
+  <div class="article-response like-button-section" padding-horizontal>
+    <single-content-like (getCount)="setCount($event)" [contentID]="contentDetail?.ContentID" [entityType]="7"></single-content-like>
+  </div>
+  <div class="article-response write-comment-section" padding-horizontal>
+    <write-comment (click)="openModal()"></write-comment>
+  </div>
+  <div class="article-comments">
+    <comment [comments]="comments" [step]="0"></comment>
+    <ion-infinite-scroll (ionInfinite)="getComments($event)" threshold="1000px">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
+
+</ion-content>

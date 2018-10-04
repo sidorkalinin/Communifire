@@ -1,0 +1,17 @@
+<ion-list padding-horizontal>
+  <ion-item no-padding [style.border]="'none'">
+    <ion-row>
+      <ion-col no-padding flex-middle>
+        <single-content-like *ngIf="entity.CanBeLiked || !isStream" (getCount)="returnCount($event)" [isCard]="true" [contentID]="contentId"
+          [entityType]="entityType" [likeDislikeCountResult]="likeDislikeCountResult"></single-content-like>
+      </ion-col>
+      <ion-col no-padding>
+        <button *ngIf="entity.CanBeCommented || !isStream" ion-button color="dark" icon-left clear small no-padding no-margin text-capitalize
+          (click)="openModal()">
+          <ion-icon name="text"></ion-icon>
+          <div>{{"MYACCOUNTCARD.CARDCONTENT.COMMENTBUTTON" | translate}}</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+</ion-list>

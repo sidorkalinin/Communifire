@@ -1,0 +1,23 @@
+<ion-header [ngClass]="{'is-iphone-x': isIphoneX}">
+  <ion-toolbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ "COMMONS.PRIORITY" | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list radio-group [(ngModel)]="prioritySelect.IssuePriorityID">
+    <ion-item *ngIf="!isComment">
+      <ion-label>{{ "COMMONS.VIEW_ALL" | translate }}</ion-label>
+      <ion-radio [value]="0" (ionSelect)="selectPriority(null)"></ion-radio>
+    </ion-item>
+    <ion-item *ngFor="let priority of priorities">
+      <ion-label>{{ priority?.IssuePriorityName }}</ion-label>
+      <ion-radio [value]="priority.IssuePriorityID" (ionSelect)="selectPriority(priority)"></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-content>

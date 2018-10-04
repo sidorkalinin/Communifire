@@ -1,0 +1,50 @@
+show-attachments {
+  [horizontal-scroll] {
+    .scroll-content {
+        position: relative;
+    }
+    .scroll-zoom-wrapper {
+        display: flex;
+        overflow-x: scroll;
+    }
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  .attachment-item {
+    border-radius: 3px;
+    padding: 10px;
+    flex: 0 0 33%;
+    background-color: #F5F5F5;
+    border: 1px solid #ececec;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: baseline;
+    img {
+      height: 100px;
+      width: auto;
+      border-radius: 3px;
+    }
+    .size {
+      width: 100%;
+      ion-icon {
+        color: #327eff;
+      }
+      span {
+        font-size: 0.8em;
+        color: $greyText;
+      }
+    }
+    margin: 0 16px 0 0px;
+  }
+  .attachment-item.isImage {
+    padding: 0 !important;
+    background-color: #fff;
+    border: none;
+    justify-content: center;
+    align-items: center;
+  }
+}
