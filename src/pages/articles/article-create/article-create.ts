@@ -71,6 +71,12 @@ export class ArticleCreatePage implements OnInit {
   @ViewChild(Content) content: Content;
   @ViewChild('summary') summary;
 
+  public customOptions: any = {
+    buttons: [{
+      text: 'Clear Date',
+      handler: () => this.expiredate = null
+    }]
+  }  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

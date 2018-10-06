@@ -55,7 +55,7 @@
     </ion-item>
     <ion-item>
       <ion-label>{{ "CREATE.EXPIRATION" | translate }}</ion-label>
-      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [(ngModel)]="expiredate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
+      <ion-datetime displayFormat="DDD, MMM D, YYYY, h:mm A" pickerFormat="DDD, MMM, D, YYYY, h:mm A" [pickerOptions]="customOptions" [(ngModel)]="expiredate" placeholder='{{"CREATE.SETDATE" | translate}}'></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>{{ "CREATE.SHOWAFTER" | translate }}</ion-label>

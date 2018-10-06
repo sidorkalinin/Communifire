@@ -68,6 +68,12 @@ export class ArticleEditPage {
   @ViewChild(Content) content: Content;
   @ViewChild('summary') summary;
 
+  public customOptions: any = {
+    buttons: [{
+      text: 'Clear Date',
+      handler: () => this.expiredate = null
+    }]
+  }  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -177,10 +183,8 @@ export class ArticleEditPage {
 
         this.contentFeaturedImageFullURL = contentData.ContentFeaturedImageFullURL;
         this.isNewFeaturedImage = false;
-
         this.pubdate = contentData.DatePublished;
         this.expiredate = contentData.DateExpired;
-
         this.getCategories();
         this.checkPermission();
       });
