@@ -121,6 +121,7 @@ export class MyAccountPage {
         this.activities.pop();
       }
       this.activities.unshift($event);
+      this.doRefresh(null);
     }
   }
 
@@ -137,6 +138,13 @@ export class MyAccountPage {
         .subscribe(res => {
           this.activities = res.ResponseData;
         }, err => refresh.complete());
+    }else {
+      this.getActivitites()
+        .finally(() => {
+        })
+        .subscribe(res => {
+          this.activities = res.ResponseData;
+        }, err =>  console.log(err));
     }
   }
 
