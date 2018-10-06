@@ -15,10 +15,12 @@ export class ChatPage {
   @ViewChild('ioshack') ioshack;
   isKeyBoardOpened = false;
   isEnabled: boolean = true;
+  loading : boolean = true; 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private keyboard: Keyboard,
     private events: Events
   ) {
+    this.loading = true;
   }
 
   ionViewDidEnter() {
@@ -38,10 +40,13 @@ export class ChatPage {
       // your action here
       // this.closeKeyBoard();
     });
+    // this.loading = false;
   }
+
   ionViewDidLeave() {
     // console.log('ionViewDidLeave: Closing keyboard on unloading of chat page.');
     this.closeKeyBoard();
+    this.loading = false
   }
 
   closeKeyBoard() {

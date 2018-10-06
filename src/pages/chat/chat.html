@@ -9,4 +9,7 @@
 <ion-content>
   <iframe ion-fixed *ngIf="isEnabled" src="assets/chat.html" frameborder="0"></iframe>
   <ion-input #ioshack type="text" value="" class="ioshack" style="height: 0px;"> </ion-input>
+  <div padding spinner-center *ngIf="loading">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
 </ion-content>
