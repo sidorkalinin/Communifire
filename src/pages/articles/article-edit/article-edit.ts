@@ -183,6 +183,7 @@ export class ArticleEditPage {
 
         this.contentFeaturedImageFullURL = contentData.ContentFeaturedImageFullURL;
         this.isNewFeaturedImage = false;
+        this.IsContentAvailablePostExpiry = contentData.IsContentAvailablePostExpiry;
         this.pubdate = contentData.DatePublished;
         this.expiredate = contentData.DateExpired;
         this.getCategories();
