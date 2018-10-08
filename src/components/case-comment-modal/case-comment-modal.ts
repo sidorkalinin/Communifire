@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { NavParams, ViewController, ToastController, LoadingController } from "ionic-angular";
+import { NavParams, ViewController, ToastController, LoadingController, Events } from "ionic-angular";
 import { ContentProvider } from "../../providers/content";
 import { SpacesProvider } from "../../providers/spaces";
 import { TranslateService } from '@ngx-translate/core';
@@ -80,7 +80,8 @@ export class CaseCommentModalComponent implements AfterViewInit {
     private translate: TranslateService,
     public device: Device,
     public keyboard: Keyboard,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public events: Events
   ) {
     this.translate.get("LOGIN.WAIT").subscribe(res => {
       this.loader = this.loadingCtrl.create({
@@ -89,6 +90,7 @@ export class CaseCommentModalComponent implements AfterViewInit {
       this.loader.present();    
       this.caseId = this.navParams.get('id');
       this.case = this.navParams.get('case');
+
       this.getPermissions();
       if (this.device.model === "iPhone10,3" || this.device.model === "iPhone10,6" || this.device.model === "iPhone10;3" || this.device.model === "iPhone10;6") {
         this.isIphoneX = true;
@@ -97,7 +99,7 @@ export class CaseCommentModalComponent implements AfterViewInit {
   }
 
   cancel(data) {
-    this.viewCtrl.dismiss(data);
+    this.viewCtrl.dismiss();
   }
 
   getPermissions() {
@@ -204,6 +206,8 @@ export class CaseCommentModalComponent implements AfterViewInit {
             this.spacesProvider.attachFileToCaseComment(elem, this.caseId, commentId, this.case.SpaceID);
           });
         }
+        this.events.publish('comment:created', 1);
+        this.cancel({ update: true }); 
       });
     } else{
       this.updateCase();

@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { ViewController, NavParams, InfiniteScroll, ToastController, Content } from 'ionic-angular';
+import { ViewController, NavParams, InfiniteScroll, ToastController, Content, Events } from 'ionic-angular';
 import { ContentProvider } from '../../providers/content';
 import { AuthenticationProvider } from '../../providers/authentication';
 import { Keyboard } from "@ionic-native/keyboard";
@@ -39,7 +39,8 @@ export class CommentModalComponent implements AfterViewInit {
     public authenticationProvider: AuthenticationProvider,
     public keyboard: Keyboard,
     public device: Device,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public events: Events
   ) {
     this.entity = this.navParams.get('entity');
     console.log(this.entity);
@@ -61,7 +62,8 @@ export class CommentModalComponent implements AfterViewInit {
   }
 
   close() {
-    this.viewCtrl.dismiss({ comments: this.comments, count: this.commentsAdded });
+    // this.viewCtrl.dismiss({ comments: this.comments, count: this.commentsAdded });
+    this.viewCtrl.dismiss({});
   }
 
   getComments(infiniteScroll?: InfiniteScroll) {
@@ -186,6 +188,7 @@ export class CommentModalComponent implements AfterViewInit {
               CommentEntityType: entityCommentId,
               ParentCommentID: 0,
             };
+            
             if (res.ResponseData.CommentID) {
               comment.CommentID = res.ResponseData.CommentID;
             }
@@ -203,6 +206,7 @@ export class CommentModalComponent implements AfterViewInit {
             setTimeout(() => {
               this.content.scrollToBottom(1000);
             }, 300);
+            this.events.publish('comment:created', 1);
           }
         });
       } else {
@@ -253,6 +257,7 @@ export class CommentModalComponent implements AfterViewInit {
               UserID: this.user.UserID,
               CommentEntityType: entityCommentId
             };
+            
             if (res.ResponseData.CommentID) {
               comment.CommentID = res.ResponseData.CommentID;
             }
@@ -267,6 +272,7 @@ export class CommentModalComponent implements AfterViewInit {
             this.content.scrollToTop().then(() => {
               this.scrollTo('comment' + res.ResponseData);
             });
+            this.events.publish('comment:created', 1);
           }
         });
       }
