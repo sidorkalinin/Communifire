@@ -99,7 +99,7 @@ export class CaseCommentModalComponent implements AfterViewInit {
   }
 
   cancel(data) {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(data);
   }
 
   getPermissions() {
@@ -188,11 +188,13 @@ export class CaseCommentModalComponent implements AfterViewInit {
         this.commentText = ''; // Clear the comment box
       })
       .subscribe(res => {
-
+        
         // Check if user has changed any of the fields to update the case.
         if (this.caseNeedUpdate) {
+          this.events.publish('comment:created', 1);
           this.updateCase();
         } else {
+          this.events.publish('comment:created', 1);
           this.isPosting = false;
           this.cancel({ update: false });
         }
@@ -206,7 +208,6 @@ export class CaseCommentModalComponent implements AfterViewInit {
             this.spacesProvider.attachFileToCaseComment(elem, this.caseId, commentId, this.case.SpaceID);
           });
         }
-        this.events.publish('comment:created', 1);
         this.cancel({ update: true }); 
       });
     } else{

@@ -63,7 +63,7 @@ export class CommentModalComponent implements AfterViewInit {
 
   close() {
     // this.viewCtrl.dismiss({ comments: this.comments, count: this.commentsAdded });
-    this.viewCtrl.dismiss({});
+    this.viewCtrl.dismiss();
   }
 
   getComments(infiniteScroll?: InfiniteScroll) {
@@ -206,7 +206,7 @@ export class CommentModalComponent implements AfterViewInit {
             setTimeout(() => {
               this.content.scrollToBottom(1000);
             }, 300);
-            this.events.publish('comment:created', 1);
+            // this.events.publish('comment:created', 1);
           }
         });
       } else {
@@ -214,6 +214,7 @@ export class CommentModalComponent implements AfterViewInit {
         this.content.scrollToTop();
         this.contentProvider.createComment(data).subscribe(res => {
           if (!res.IsError && res.ResponseData) {
+            this.events.publish('comment:created', 1);
             this.presentToast();
             let entityCommentId = 0;
             switch (data.EntityType) {
@@ -272,7 +273,6 @@ export class CommentModalComponent implements AfterViewInit {
             this.content.scrollToTop().then(() => {
               this.scrollTo('comment' + res.ResponseData);
             });
-            this.events.publish('comment:created', 1);
           }
         });
       }
