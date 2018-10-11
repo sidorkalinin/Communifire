@@ -55,7 +55,7 @@
       <ion-list *ngIf="isLoadingTicker">
         <empty-ticker *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></empty-ticker>
       </ion-list>
-      <ion-list [style.marginBottom]="'0'">
+      <ion-list *ngIf="tickers.length > 0"  [style.marginBottom]="'0'">
         <ticker [ticker]="ticker" *ngFor="let ticker of tickers"></ticker>
       </ion-list>
       <ion-infinite-scroll *ngIf="!isLoadingTicker" (ionInfinite)="getuserTickers($event)" threshold="1000px">
@@ -65,10 +65,10 @@
 
     <div [hidden]="account != 'notification'">
       <!-- <loader *ngIf="isLoadingNotifications"></loader> -->
-      <ion-list *ngIf="isLoadingNotifications">
+      <ion-list  *ngIf="isLoadingNotifications">
         <empty-notification *ngFor="let item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></empty-notification>
       </ion-list>
-      <ion-list>
+      <ion-list *ngIf="notifications.length > 0">
         <notification [notification]="notification" *ngFor="let notification of notifications"></notification>
       </ion-list>
       <ion-infinite-scroll *ngIf="!isLoadingNotification" (ionInfinite)="doNotification($event)" threshold="1000px">
